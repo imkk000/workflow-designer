@@ -4,7 +4,10 @@ const webpack = require('webpack');
 const __srcdir = path.join(__dirname, 'src');
 
 const config = {
-  entry: [path.join(__srcdir, 'index.js'), path.join(__dirname, 'assets', 'css/app.css')],
+  entry: [
+    path.join(__srcdir, 'index.js'), 
+    path.join(__dirname, 'assets', 'css/app.css')
+  ],
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/assets/',
@@ -16,8 +19,7 @@ const config = {
       $: 'jquery',
       jQuery: 'jquery',
       'window.jQuery': 'jquery',
-      'window.$': 'jquery',
-      'd3': 'd3'
+      'window.$': 'jquery'
     })
   ],
   devtool: 'source-map',
