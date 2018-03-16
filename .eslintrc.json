@@ -33,7 +33,6 @@
       "valid-typeof": "warn",
       "quotes": ["error", "single", { "allowTemplateLiterals": true }],
       "semi": "error",
-      "indent": ["error", 2],
       "linebreak-style": ["error", "unix"]
     }
   }
