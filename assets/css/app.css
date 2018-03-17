@@ -1,5 +1,6 @@
 * {
   font-family: sans-serif, Verdana, Arial, Helvetica;
+  transform-origin: 0px 0px 0px;
 }
 
 html,
@@ -13,4 +14,36 @@ svg {
   border: 1px solid lightgrey;
   text-align: center;
   position: absolute;
+}
+
+.node {
+  stroke: #999;
+  stroke-width: 1;
+  cursor: move;
+}
+
+.node_line {
+  stroke-opacity: 0.1;
+  stroke: rgb(0, 0, 0);
+  stroke-width: 1;
+}
+
+.node_label {
+  stroke-width: 0;
+  fill: #333;
+  font-size: 14px;
+  user-select: none;
+  pointer-events: none;
+}
+
+.port {
+  stroke: #999;
+  stroke-width: 1;
+  fill: #ddd;
+  cursor: pointer;
+}
+
+.port_hover {
+  fill: rgb(255, 166, 0);
+  stroke: rgb(202, 131, 0);
 }
