@@ -15,7 +15,8 @@
     "exec": "PATH=$PATH:./node_modules/.bin",
     "clean": "yarn run exec && rimraf dist",
     "clean-full": "yarn run clean && rimraf node_modules *.lock *.log",
-    "serve": "yarn run exec && webpack-dev-server --config webpack.config.js --color --progress --mode=development"
+    "serve":
+      "yarn run exec && webpack-dev-server --config webpack.config.js --color --progress --mode=development"
   },
   "devDependencies": {
     "axios": "^0.18.0",

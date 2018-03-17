@@ -5,7 +5,7 @@ const __srcdir = path.join(__dirname, 'src');
 
 const config = {
   entry: [
-    path.join(__srcdir, 'index.js'), 
+    path.join(__srcdir, 'index.js'),
     path.join(__dirname, 'assets', 'css/app.css')
   ],
   output: {
@@ -38,7 +38,7 @@ const config = {
           loader: 'babel-loader',
           options: {
             compact: false,
-            presets: ['es2015', 'stage-2', 'react'],
+            presets: ['es2015', 'stage-2', 'react']
           }
         }
       },
@@ -66,10 +66,7 @@ const config = {
   },
   devServer: {
     publicPath: '/assets/',
-    contentBase: [
-      path.join(__srcdir),
-      path.join(__dirname, 'assets')
-    ],
+    contentBase: [path.join(__srcdir), path.join(__dirname, 'assets')],
     watchContentBase: true,
     port: 3000,
     host: '0.0.0.0',
