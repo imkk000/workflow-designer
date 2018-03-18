@@ -1,7 +1,7 @@
 import Node from './editor/Node';
 document.addEventListener('contextmenu', event => event.preventDefault());
 
-$(function() {
+$(function () {
   const svg = d3.select('body').append('svg');
   const g = svg.append('g').attr('class', 'root');
   const workspace = g.append('g');
