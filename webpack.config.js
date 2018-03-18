@@ -1,13 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const __srcdir = path.join(__dirname, 'src');
-
 const config = {
-  entry: [
-    path.join(__srcdir, 'index.js'),
-    path.join(__dirname, 'assets', 'css/app.css')
-  ],
+  entry: [path.join(__dirname, 'src', 'index.js')],
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/assets/',
@@ -66,7 +61,7 @@ const config = {
   },
   devServer: {
     publicPath: '/assets/',
-    contentBase: [path.join(__srcdir), path.join(__dirname, 'assets')],
+    contentBase: [path.join(__dirname, 'src'), path.join(__dirname, 'assets')],
     watchContentBase: true,
     port: 3000,
     host: '0.0.0.0',
