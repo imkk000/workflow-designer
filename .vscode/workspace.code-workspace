@@ -1,0 +1,25 @@
+{
+  "folders": [
+    {
+      "name": "Project Root",
+      "path": "../"
+    },
+    {
+      "name": "Source Code (JS)",
+      "path": "../src/"
+    },
+    {
+      "name": "Views (Pug)",
+      "path": "../views/"
+    },
+    {
+      "name": "Assets (JS)",
+      "path": "../assets/js/"
+    },
+    {
+      "name": "Assets (CSS)",
+      "path": "../assets/css/"
+    }
+  ],
+  "settings": {}
+}
