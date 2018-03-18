@@ -1,29 +1,29 @@
 const Node = class {
   constructor(x, y, text) {
-    this.nodedata = [{ x: x, y: y }];
+    this.node_data = [{ x: x, y: y }];
 
-    this.nodegroup = d3
+    this.node_group = d3
       .select('.root')
       .append('g')
-      .data(this.nodedata)
-      .attr('class', 'nodegroup')
+      .data(this.node_data)
+      .attr('class', 'node_group')
       .attr('transform', `translate(${x}, ${y})`);
 
-    this.node = this.nodegroup
+    this.node = this.node_group
       .append('rect')
       .attr('class', 'node')
       .attr('rx', 5)
       .attr('ry', 5)
-      .attr('fill', 'lightblue')
+      .attr('fill', 'lightBlue')
       .attr('width', 125)
       .attr('height', 40);
 
-    this.line = this.nodegroup
+    this.line = this.node_group
       .append('path')
       .attr('class', 'node_line')
       .attr('d', 'M 30 1 l 0 38');
 
-    this.text = this.nodegroup
+    this.text = this.node_group
       .append('text')
       .attr('class', 'node_label')
       .attr('x', 38)
@@ -32,7 +32,7 @@ const Node = class {
       .attr('text-anchor', 'start')
       .text(text);
 
-    this.port_input = this.nodegroup
+    this.port_input = this.node_group
       .append('g')
       .attr('class', 'port_input')
       .attr('transform', 'translate(-7, 14)')
@@ -43,7 +43,7 @@ const Node = class {
       .attr('width', 14)
       .attr('height', 14);
 
-    this.port_output = this.nodegroup
+    this.port_output = this.node_group
       .append('g')
       .attr('class', 'port_output')
       .attr('transform', `translate(${this.node.attr('width') - 7}, 14)`)
@@ -58,7 +58,7 @@ const Node = class {
   }
 
   loadEvent() {
-    this.nodegroup.call(d3.behavior.drag().on('drag', this.handleNodeDrag));
+    this.node_group.call(d3.behavior.drag().on('drag', this.handleNodeDrag));
 
     this.port_input
       .on('mouseover', this.handlePortMouseOver)
