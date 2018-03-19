@@ -13,7 +13,6 @@
   "private": true,
   "scripts": {
     "exec": "PATH=$PATH:./node_modules/.bin",
-    "install": "yarn install",
     "clean": "yarn run exec && rimraf dist",
     "clean-full": "yarn run clean && rimraf node_modules *.lock *.log",
     "serve": "yarn run exec && webpack-dev-server --mode=development"
