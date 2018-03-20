@@ -1,15 +1,21 @@
 const path = require('path');
 const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const __srcdir = path.join(__dirname, 'src');
 
-const config = {
-  entry: [path.join(__dirname, 'src', 'index.js')],
+const webpackConfig = {
+  entry: {
+    app: path.join(__srcdir, 'js', 'index.js'),
+    style: path.join(__srcdir, 'scss', 'app.scss')
+  },
   output: {
+    filename: '[name].bundle.js',
     path: path.join(__dirname, 'dist'),
-    publicPath: '/assets/',
-    filename: '[name].js'
+    publicPath: '/assets/'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new CleanWebpackPlugin(),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
@@ -17,7 +23,6 @@ const config = {
       'window.$': 'jquery'
     })
   ],
-  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -38,8 +43,24 @@ const config = {
         }
       },
       {
-        test: /\.pug$/,
-        use: ['html-loader', 'pug-html-loader?pretty&exports=false']
+        test: /\.scss$/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          }
+        ]
       },
       {
         test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -52,27 +73,31 @@ const config = {
       {
         test: /\.(png|jpg|gif)$/,
         loader: 'file-loader'
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
       }
     ]
   },
+  resolve: {
+    extensions: ['.js', '.jsx', 'scss']
+  },
+  devtool: 'source-map',
   devServer: {
     publicPath: '/assets/',
-    contentBase: [path.join(__dirname, 'src'), path.join(__dirname, 'assets')],
+    contentBase: [
+      path.join(__srcdir),
+      path.join(__dirname, 'assets'),
+      path.join(__dirname, 'views')
+    ],
     watchContentBase: true,
-    port: 3000,
+    port: 8888,
     host: '0.0.0.0',
     hot: true,
     https: false,
-    before: app => {
-      app.get('/', (req, res) => {
-        res.render(path.join(__dirname, 'views/index.pug'));
+    before: function(app) {
+      app.get('/', function(req, res) {
+        res.render(path.join(__dirname, 'views', 'index.pug'));
       });
     }
   }
 };
 
-module.exports = config;
+module.exports = webpackConfig;
