@@ -1,9 +1,4 @@
-const Node = class {
-  constructor(g, workspace) {
-    this.g = g;
-    this.workspace = workspace;
-  }
-
+export default (workspace, g) => class {
   setNode(x, y, text) {
     this.node_data = [{ x: x, y: y }];
 
@@ -68,13 +63,11 @@ const Node = class {
 
     this.port_input
       .on('mouseover', this.handlePortMouseOver)
-      .on('mouseout', this.handlePortMouseOut)
-      .on('dblclick', this.handlePortDblClick);
+      .on('mouseout', this.handlePortMouseOut);
 
     this.port_output
       .on('mouseover', this.handlePortMouseOver)
-      .on('mouseout', this.handlePortMouseOut)
-      .on('dblclick', this.handlePortDblClick);
+      .on('mouseout', this.handlePortMouseOut);
   }
 
   handleNodeDrag(d) {
@@ -97,5 +90,3 @@ const Node = class {
     this.line = d3.line(10, 100);
   }
 };
-
-export default Node;
