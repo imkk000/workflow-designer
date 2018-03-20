@@ -1,3 +1,4 @@
+import * as d3 from 'd3';
 import Node from './editor/node';
 
 document.addEventListener('contextmenu', event => event.preventDefault());
