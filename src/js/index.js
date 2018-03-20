@@ -8,6 +8,6 @@ $(function () {
   const g = svg.append('g').attr('class', 'root');
   const workspace = g.append('g');
   const NewNode = Node(workspace, g);
-  new NewNode().setNode(50, 50, 'Load Image');
-  new NewNode().setNode(200, 200, 'Rotate');
+  new NewNode().setNode(200, 200, 'Load Image');
+  new NewNode().setNode(50, 50, 'Rotate');
 });
