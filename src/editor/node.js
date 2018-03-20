@@ -1,5 +1,10 @@
 const Node = class {
-  constructor(x, y, text) {
+  constructor(g, workspace) {
+    this.g = g;
+    this.workspace = workspace;
+  }
+
+  setNode(x, y, text) {
     this.node_data = [{ x: x, y: y }];
 
     this.node_group = d3
@@ -54,6 +59,7 @@ const Node = class {
       .attr('width', 14)
       .attr('height', 14);
 
+    this.drawable = false;
     this.loadEvent();
   }
 
@@ -63,13 +69,12 @@ const Node = class {
     this.port_input
       .on('mouseover', this.handlePortMouseOver)
       .on('mouseout', this.handlePortMouseOut)
-      .on('click', this.handlePortClick);
+      .on('dblclick', this.handlePortDblClick);
 
     this.port_output
       .on('mouseover', this.handlePortMouseOver)
       .on('mouseout', this.handlePortMouseOut)
-      .on('click', this.handlePortClick)
-      .on('mousemove', this.handleMouseMove);
+      .on('dblclick', this.handlePortDblClick);
   }
 
   handleNodeDrag(d) {
@@ -87,12 +92,9 @@ const Node = class {
     d3.select(this).classed('port_hover', false);
   }
 
-  handlePortClick() {
-    const w = d3.select(this).on('mousemove');
-  }
-
-  handleMouseMove() {
-    console.log(d3.event);
+  handlePortDblClick() {
+    this.drawable = true;
+    this.line = d3.line(10, 100);
   }
 };
 
