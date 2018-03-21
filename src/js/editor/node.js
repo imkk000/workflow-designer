@@ -108,7 +108,7 @@ export default (workspace, g) =>
         y = d3.event.sourceEvent.y;
       this.source = [x, y];
 
-      const link = d3.linkHorizontal();
+      const link = d3.linkVertical();
 
       workspace
         .append('path')
