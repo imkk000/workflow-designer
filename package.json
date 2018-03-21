@@ -37,6 +37,7 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
     "file-loader": "^1.1.11",
+    "graph-data-structure": "^1.6.0",
     "html-loader": "^0.5.5",
     "img-loader": "^2.0.1",
     "imports-loader": "^0.8.0",
