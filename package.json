@@ -3,11 +3,11 @@
   "version": "2.0.0",
   "description": "Workflow Designer for Basic Image Processing [Front-End]",
   "main": "index.js",
-  "repository": "git@github.com:AnonyFZ/wdp-front-end.git",
+  "repository": "git@github.com:ImKK000/wdp-front-end",
   "author": {
     "name": "Nattakit Boonyang",
     "email": "nattakit.boonyang@gmail.com",
-    "url": "https://github.com/AnonyFZ"
+    "url": "https://github.com/ImKK000"
   },
   "license": "MIT",
   "private": true,
