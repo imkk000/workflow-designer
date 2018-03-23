@@ -1,10 +1,14 @@
 import * as d3 from 'd3';
 
-const g = d3.select('body').append('svg').append('g');
+const g = d3
+  .select('body')
+  .append('svg')
+  .append('g');
 
 const d = {
   name: 'Load Image',
-  children: [{
+  children: [
+    {
       name: 'Rotate'
     },
     {
@@ -17,15 +21,15 @@ const d = {
 var hierarchies = d3.hierarchy(d);
 
 // set tree size
-const tree = d3.tree()
-  .size([1000, 500]);
+const tree = d3.tree().size([1000, 500]);
 
 // set links for update
-const links = d3.linkVertical()
-  .x(function (d) {
+const links = d3
+  .linkVertical()
+  .x(function(d) {
     return d.x;
   })
-  .y(function (d) {
+  .y(function(d) {
     return d.y;
   });
 
@@ -33,7 +37,8 @@ const links = d3.linkVertical()
 var root = tree(hierarchies);
 
 // create all line in tree
-const link = g.selectAll('.link')
+var link = g
+  .selectAll('.link')
   .data(root.links())
   .enter()
   .append('path')
@@ -44,7 +49,8 @@ const link = g.selectAll('.link')
   .attr('d', links);
 
 // make node and bind event drag
-const node = g.selectAll('.node')
+var node = g
+  .selectAll('.node')
   .data(root.descendants())
   .enter()
   .append('g')
@@ -52,10 +58,7 @@ const node = g.selectAll('.node')
   .attr('transform', d => `translate(${d.x}, ${d.y})`)
   .append('circle')
   .attr('r', 10)
-  .call(
-    d3.drag()
-    .on('drag', dragged)
-  )
+  .call(d3.drag().on('drag', dragged))
   .on('dblclick', dblclicked);
 
 function dragged(d) {
@@ -72,8 +75,31 @@ function dragged(d) {
 function dblclicked() {
   const child = d.children;
   child.push({
-    name: 'Save'
+    name: 'Empty'
   });
 
   hierarchies = d3.hierarchy(d);
+  root = tree(hierarchies);
+  link = g
+    .selectAll('.link')
+    .data(root.links())
+    .enter()
+    .append('path')
+    .attr('class', 'link')
+    .style('fill', 'none')
+    .style('stroke', 'orange')
+    .style('stroke-width', 2)
+    .attr('d', links);
+
+  node = g
+    .selectAll('.node')
+    .data(root.descendants())
+    .enter()
+    .append('g')
+    .attr('class', 'node')
+    .attr('transform', d => `translate(${d.x}, ${d.y})`)
+    .append('circle')
+    .attr('r', 10)
+    .call(d3.drag().on('drag', dragged))
+    .on('dblclick', dblclicked);
 }
