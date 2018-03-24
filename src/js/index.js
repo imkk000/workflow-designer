@@ -1,4 +1,3 @@
-import * as d3 from 'd3';
 import Node from './editor/node';
 
 // disable right click contextmenu
@@ -12,6 +11,7 @@ $(function () {
 
   const NewNode = Node(temp, workspace);
 
-  const n1 = new NewNode(200, 200, 'Load Image');
-  const n2 = new NewNode(50, 50, 'Rotate');
+  const n1 = new NewNode(50, 50, 'Load Image');
+  const n2 = new NewNode(100, 250, 'Rotate');
+  const n3 = new NewNode(150, 150, 'Blur');
 });
