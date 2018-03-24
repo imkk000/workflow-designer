@@ -20,7 +20,8 @@ const webpackConfig = {
       $: 'jquery',
       jQuery: 'jquery',
       'window.jQuery': 'jquery',
-      'window.$': 'jquery'
+      'window.$': 'jquery',
+      d3: 'd3'
     })
   ],
   module: {
