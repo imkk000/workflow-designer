@@ -19,7 +19,7 @@ svg {
 .node {
   stroke: #999;
   stroke-width: 1;
-  cursor: move;
+  cursor: pointer;
 }
 
 .node_line {
@@ -31,19 +31,6 @@ svg {
 .node_label {
   stroke-width: 0;
   fill: #333;
-  font-size: 14px;
   user-select: none;
   pointer-events: none;
-}
-
-.port {
-  stroke: #999;
-  stroke-width: 1;
-  fill: #ddd;
-  cursor: pointer;
-}
-
-.port_hover {
-  fill: rgb(255, 166, 0);
-  stroke: rgb(202, 131, 0);
 }
