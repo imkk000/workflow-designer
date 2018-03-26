@@ -48,7 +48,8 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: true
+              sourceMap: true,
+              includePaths: [path.join(__srcdir, 'scss')]
             }
           }
         ]
@@ -73,9 +74,13 @@ module.exports = {
   devtool: 'source-map',
   devServer: {
     publicPath: '/assets/',
-    contentBase: [path.join(__srcdir), path.join(__dirname, 'assets'), path.join(__dirname, 'views')],
+    contentBase: [
+      path.join(__srcdir),
+      path.join(__dirname, 'assets'),
+      path.join(__dirname, 'views')
+    ],
     watchContentBase: true,
-    port: 8888,
+    port: 2000,
     host: '0.0.0.0',
     hot: true,
     https: false,
