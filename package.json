@@ -1,8 +1,7 @@
 {
   "name": "wdp-front-end",
   "version": "2.0.0",
-  "description": "Workflow Designer for Basic Image Processing [Front-End]",
-  "main": "index.js",
+  "description": "Workflow Designer for Basic Image Processing (Front-End)",
   "repository": "git@github.com:ImKK000/wdp-front-end",
   "author": {
     "name": "Nattakit Boonyang",
@@ -12,11 +11,10 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "exec": "PATH=$PATH:./node_modules/.bin",
-    "clean": "yarn run exec && rimraf dist",
-    "clean-full": "yarn run clean && rimraf node_modules *.lock *.log",
-    "watch": "yarn run exec && webpack-dev-server --config webpack.config.js --watch --progress --mode=development",
-    "build": "yarn run exec && webpack --config webpack.config.js --progress --color --mode=production"
+    "build": "npx webpack --progress --color --mode=production",
+    "clean": "npx rimraf dist",
+    "clean-full": "npx rimraf node_modules *.lock *.log",
+    "watch": "npx webpack-dev-server --watch --progress --mode=development"
   },
   "devDependencies": {
     "axios": "^0.18.0",
@@ -29,7 +27,7 @@
     "bootstrap": "^4.0.0",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
-    "d3": "^4.13.0",
+    "d3": "^5.0.0",
     "eslint": "^4.18.2",
     "eslint-loader": "^2.0.0",
     "eslint-plugin-babel": "^4.1.2",
