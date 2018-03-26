@@ -4,12 +4,9 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const __srcdir = path.join(__dirname, 'src')
 
 module.exports = {
-  entry: {
-    app: path.join(__srcdir, 'js', 'index.js'),
-    style: path.join(__srcdir, 'scss', 'app.scss')
-  },
+  entry: path.join(__srcdir, 'webpack.imports.js'),
   output: {
-    filename: '[name].js',
+    filename: 'bundle.js',
     path: path.join(__dirname, 'dist'),
     publicPath: '/assets/'
   },
@@ -69,7 +66,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', 'scss']
+    extensions: ['.js', '.scss']
   },
   devtool: 'source-map',
   devServer: {
