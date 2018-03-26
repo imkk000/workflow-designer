@@ -1,50 +1,8 @@
-* {
-  transform-origin: 0px 0px 0px;
-}
+// import global variable
+@import './global';
 
-html,
-body {
-  font-family: sans-serif, Verdana, Arial, Helvetica;
-  font-size: 1em;
-  margin: 0 auto;
-}
-
-svg {
-  border: 1px solid lightgrey;
-  height: 100%;
-  position: absolute;
-  text-align: center;
-  width: 100%;
-}
-
-$node_stroke: #999;
-.node {
-  cursor: move;
-  stroke-width: 1;
-  stroke: $node_stroke;
-}
-
-.node_label {
-  fill: #333;
-  font-weight: bold;
-  pointer-events: none;
-  stroke-width: 0;
-  user-select: none;
-}
-
-.node_port {
-  cursor: pointer;
-  fill: #ddd;
-  stroke-width: 1;
-  stroke: $node_stroke;
-}
-
-.node_port_hover {
-  fill: Orange;
-}
-
-.draw_line {
-  fill: none;
-  stroke: orchid;
-  stroke-width: 3;
-}
+// import modules
+@import './modules/reset';
+@import './modules/default';
+@import './modules/node';
+@import './modules/line';
