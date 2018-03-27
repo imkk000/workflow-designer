@@ -1,29 +1,16 @@
-const path = require('path');
-const webpack = require('webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const __srcdir = path.join(__dirname, 'src');
+const path = require('path')
+const { HotModuleReplacementPlugin } = require('webpack')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const __srcdir = path.join(__dirname, 'src')
 
-const webpackConfig = {
-  entry: {
-    app: path.join(__srcdir, 'js', 'index.js'),
-    style: path.join(__srcdir, 'scss', 'app.scss')
-  },
+module.exports = {
+  entry: path.join(__srcdir, 'webpack.imports.js'),
   output: {
-    filename: '[name].js',
+    filename: 'bundle.js',
     path: path.join(__dirname, 'dist'),
     publicPath: '/assets/'
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new CleanWebpackPlugin(),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery',
-      'window.$': 'jquery',
-      d3: 'd3'
-    })
-  ],
+  plugins: [new CleanWebpackPlugin(), new HotModuleReplacementPlugin()],
   module: {
     rules: [
       {
@@ -39,7 +26,7 @@ const webpackConfig = {
           loader: 'babel-loader',
           options: {
             compact: false,
-            presets: ['es2015', 'stage-2', 'react']
+            presets: ['es2015']
           }
         }
       },
@@ -58,7 +45,8 @@ const webpackConfig = {
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: true
+              sourceMap: true,
+              includePaths: [path.join(__srcdir, 'scss')]
             }
           }
         ]
@@ -78,7 +66,7 @@ const webpackConfig = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx', 'scss']
+    extensions: ['.js', '.scss']
   },
   devtool: 'source-map',
   devServer: {
@@ -89,16 +77,14 @@ const webpackConfig = {
       path.join(__dirname, 'views')
     ],
     watchContentBase: true,
-    port: 8888,
+    port: 2000,
     host: '0.0.0.0',
     hot: true,
     https: false,
-    before: function(app) {
-      app.get('/', function(req, res) {
-        res.render(path.join(__dirname, 'views', 'index.pug'));
-      });
+    before: (app) => {
+      app.get('/', (req, res) => {
+        res.render(path.join(__dirname, 'views', 'index.pug'))
+      })
     }
   }
-};
-
-module.exports = webpackConfig;
+}
