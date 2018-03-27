@@ -1,5 +1,5 @@
 %node-stroke-width {
-  stroke-width: 2;
+  stroke-width: 3;
 }
 
 %node-stroke-color {
@@ -19,14 +19,19 @@
     stroke-width: 0;
     user-select: none;
   }
-  .node-box-blurred {
+  .node-box {
     @extend %node-stroke-width;
-    @extend %node-stroke-color;
     @extend %node-fill;
   }
-  .node-box-focused {
+  .node-box-hover {
     @extend %node-stroke-width;
-    stroke: $node-stroke-focused-color;
     @extend %node-fill;
+  }
+  .node-port {
+    cursor: crosshair;
+    fill: lightgray;
+  }
+  .node-port-hover {
+    fill: olive
   }
 }
