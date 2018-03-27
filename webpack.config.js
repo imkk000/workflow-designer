@@ -26,7 +26,8 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             compact: false,
-            presets: ['es2015']
+            presets: ['es2015'],
+            plugins: ['babel-plugin-transform-class-properties']
           }
         }
       },
