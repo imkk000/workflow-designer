@@ -1,33 +1,32 @@
-%node-stroke {
-  stroke-width: 1;
+%node-stroke-width {
+  stroke-width: 2;
+}
+
+%node-stroke-color {
   stroke: $node-stroke-color;
 }
 
-.node {
-  @extend %node-stroke;
-  cursor: move;
-  fill: $node-fill-color;
+%node-fill {
+  fill: $node-box-fill-color;
+}
 
+.node {
+  cursor: pointer;
   .node-label {
-    fill: $node-stroke-color;
+    fill: $node-label-fill-color;
     font-weight: bold;
     pointer-events: none;
     stroke-width: 0;
     user-select: none;
   }
-
-  %node-port {
-    @extend %node-stroke;
-    cursor: pointer;
+  .node-box-blurred {
+    @extend %node-stroke-width;
+    @extend %node-stroke-color;
+    @extend %node-fill;
   }
-
-  .node-port {
-    @extend %node-port;
-    fill: $node-port-fill-hover-color;
-  }
-
-  .node-port-hover {
-    @extend %node-port;
-    fill: $node-port-fill-color;
+  .node-box-focused {
+    @extend %node-stroke-width;
+    stroke: $node-stroke-focused-color;
+    @extend %node-fill;
   }
 }
