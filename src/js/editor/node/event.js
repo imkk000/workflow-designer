@@ -8,20 +8,28 @@ export const handleNodeGroupDragging = (data, index, nodes) => {
   nodeSelected.attr('transform', `translate(${data.x}, ${data.y})`)
 }
 
-export const handleNodeGroupFocus = (data, index, nodes) => {
-  const node = nodes[index]
-  const nodeSelected = d3.select(node)
-  nodeSelected
-    .select('.node-box')
-    .classed('node-box-focused', true)
-    .classed('node-box-blurred', false)
+export const handleNodePortStartDrag = (data, index, nodes) => {
+
 }
 
-export const handleNodeGroupBlur = (data, index, nodes) => {
+export const handleNodePortDragging = (data, index, nodes) => {
+
+}
+
+export const handleNodePortEndDrag = (data, index, nodes) => {
+
+}
+
+export const handleNodePortMouseOver = (data, index, nodes) => {
   const node = nodes[index]
-  const nodeSelected = d3.select(node)
-  nodeSelected
-    .select('.node-box')
-    .classed('node-box-blurred', true)
-    .classed('node-box-focused', false)
+  const nodeSelected = d3.select(node.parentNode)
+  const nodePortSelected = nodeSelected.select('.node-port')
+  nodePortSelected.classed('node-port-hover', true)
+}
+
+export const handleNodePortMouseOut = (data, index, nodes) => {
+  const node = nodes[index]
+  const nodeSelected = d3.select(node.parentNode)
+  const nodePortSelected = nodeSelected.select('.node-port')
+  nodePortSelected.classed('node-port-hover', false)
 }
