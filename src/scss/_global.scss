@@ -1,9 +1,11 @@
 // default style
-$font-family: Arial, Helvetica, sans-serif;
+$font-family: "Lucida Console", Monaco, monospace;
 $font-size: 1em;
 
 // node
-$node-fill-color: rgb(179, 36, 36);
-$node-stroke-color: rgb(172, 172, 172);
-$node-port-fill-color: rgb(170, 170, 170);
+$node-box-fill-color: #fff698;
+$node-label-fill-color: brown;
+$node-stroke-color: #a1ff98;
+$node-stroke-focused-color: #ffbb00;
+$node-port-fill-color: rgb(255, 143, 51);
 $node-port-fill-hover-color: rgb(255, 166, 0);
