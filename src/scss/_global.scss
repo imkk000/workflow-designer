@@ -3,9 +3,9 @@ $font-family: "Lucida Console", Monaco, monospace;
 $font-size: 1em;
 
 // node
-$node-box-fill-color: rgb(196, 196, 196);
-$node-label-fill-color: rgb(0, 0, 0);
-$node-stroke-color: rgb(0, 0, 0);
-$node-stroke-focused-color: rgb(68, 0, 255);
+$node-box-fill-color: #fff698;
+$node-label-fill-color: brown;
+$node-stroke-color: #a1ff98;
+$node-stroke-focused-color: #ffbb00;
 $node-port-fill-color: rgb(255, 143, 51);
 $node-port-fill-hover-color: rgb(255, 166, 0);
