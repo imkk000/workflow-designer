@@ -1,8 +1,9 @@
 import * as event from './event'
-import * as d3 from 'd3'
+import { drag } from 'd3'
 import generateId from '../../utility/generateId'
+import { getWorkspace } from '../../utility/getCanvas'
 
-export default ([temp, workspace]) =>
+export default (workspace = getWorkspace()) =>
   class {
     constructor(options) {
       this.id = generateId()
@@ -20,14 +21,14 @@ export default ([temp, workspace]) =>
       const nodeLabel = nodeGroup
         .append('text')
         .attr('class', 'node-label')
-        .attr('dx', '1em')
+        .attr('dx', '.4em')
         .attr('dy', '1.2em')
         .attr('text-anchor', 'start')
         .text(text.toUpperCase())
 
       const textBBox = nodeLabel.node().getBBox()
       const { width: textWidth, height: textHeight } = textBBox
-      const [rectWidthOffset, rectHeightOffset] = [30, 10]
+      const [rectWidthOffset, rectHeightOffset] = [10, 10]
 
       const nodeBox = nodeGroup
         .insert('rect', ':first-child')
@@ -35,45 +36,14 @@ export default ([temp, workspace]) =>
         .attr('width', textWidth + rectWidthOffset)
         .attr('height', textHeight + rectHeightOffset)
 
-      const nodeBoxBBox = nodeBox.node().getBBox()
-      const { width: nodeBoxWidth, height: nodeBoxHeight } = nodeBoxBBox
-
-      const nodeInputPort = nodeGroup
-        .append('rect')
-        .attr('class', 'node-input-port node-port')
-        .attr('x', 0)
-        .attr('y', 0)
-        .attr('width', 12)
-        .attr('height', nodeBoxHeight)
-
-      const nodeOutputPort = nodeGroup
-        .append('rect')
-        .attr('class', 'node-input-port node-port')
-        .attr('x', nodeBoxWidth - 12)
-        .attr('y', 0)
-        .attr('width', 12)
-        .attr('height', nodeBoxHeight)
-
       this.loadEvent({
         nodeGroup,
         nodeLabel,
-        nodeBox,
-        nodeInputPort,
-        nodeOutputPort
+        nodeBox
       })
     }
 
-    loadEvent = ({ nodeGroup, nodeInputPort }) => {
-      nodeGroup.call(d3.drag().on('drag', event.handleNodeGroupDragging))
-      nodeInputPort
-        .call(
-          d3
-            .drag()
-            .on('start', event.handleNodePortStartDrag)
-            .on('drag', event.handleNodePortDragging)
-            .on('end', event.handleNodePortEndDrag)
-        )
-        .on('mouseover', event.handleNodePortMouseOver)
-        .on('mouseout', event.handleNodePortMouseOut)
+    loadEvent = ({ nodeGroup }) => {
+      nodeGroup.call(drag().on('drag', event.handleNodeGroupDragging))
     }
   }
