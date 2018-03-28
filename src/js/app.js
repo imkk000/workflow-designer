@@ -9,9 +9,8 @@ const load = () => {
   const workspace = root.append('g').attr('class', 'workspace')
   const arrow = new Arrow()
 
-  const NodeClass = new Node()
-  const node1 = new NodeClass({ x: 100, y: 100, text: 'Load Image' })
-  const node2 = new NodeClass({ x: 200, y: 200, text: 'Rotate' })
+  const node1 = new Node({ x: 100, y: 100, text: 'Load Image' })
+  const node2 = new Node({ x: 200, y: 200, text: 'Rotate' })
   const idNodes = [node1.id, node2.id]
   console.log('from app.js:', idNodes)
 }
