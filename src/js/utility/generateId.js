@@ -1,6 +1,6 @@
 import hashString from 'string-hash'
 
-export default () => {
+export const generateId = () => {
   const date = Date().toString()
   const salt = Math.random() * 999990
   const hashData = date + salt
