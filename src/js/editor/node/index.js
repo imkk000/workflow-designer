@@ -4,7 +4,7 @@ import { generateId } from '../../utility/generateId'
 import { getWorkspace as workspace } from '../../utility/getCanvas'
 
 // global variable : shared memory
-let drawMode = false
+let activeDrawingMode = false
 
 export default class {
   constructor(options) {
@@ -88,9 +88,17 @@ export default class {
     console.log(key)
   }
 
-  handleOnAddLine = ({ $trigger: target }) => {
-    drawMode = !drawMode
-    console.log(drawMode)
-    console.log(target.html())
+  handleOnAddLine = ({ $trigger }) => {
+    const nodeSelected = select($trigger.get(0))
+    const nodeBoxSelected = nodeSelected.select('.node-box')
+
+    if (activeDrawingMode) {
+      console.log('deactive')
+    } else {
+      nodeBoxSelected.classed('node-active', true)
+      console.log('active')
+    }
+
+    activeDrawingMode = !activeDrawingMode
   }
 }
