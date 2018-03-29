@@ -1,4 +1,4 @@
-import * as $ from 'jquery'
+import $ from 'jquery'
 import { drag, event, select } from 'd3'
 import { generateId } from '../../utility/generateId'
 import { getWorkspace as workspace } from '../../utility/getCanvas'
