@@ -3,7 +3,7 @@ import Arrow from './editor/arrow/'
 import { select } from 'd3'
 
 const load = () => {
-  const svg = select('body').append('svg')
+  const svg = select('svg.diagram-drawing')
   const root = svg.append('g').attr('class', 'root')
   const temp = root.append('g').attr('class', 'temp')
   const workspace = root.append('g').attr('class', 'workspace')
