@@ -1,8 +1,10 @@
-import * as event from './event'
 import * as $ from 'jquery'
-import { drag } from 'd3'
+import { drag, event, select } from 'd3'
 import { generateId } from '../../utility/generateId'
 import { getWorkspace as workspace } from '../../utility/getCanvas'
+
+// global variable : shared memory
+let drawMode = false
 
 export default class {
   constructor(options) {
@@ -12,7 +14,12 @@ export default class {
 
   render = ({ x = 0, y = 0, text = 'null' }) => {
     const nodeGroup = workspace()
-      .data([{ x, y }])
+      .data([
+        {
+          x,
+          y
+        }
+      ])
       .append('g')
       .attr('class', 'node')
       .attr('id', this.id)
@@ -45,29 +52,45 @@ export default class {
 
   loadEvent = ({ nodeGroup }) => {
     nodeGroup
-      .call(drag().on('drag', event.handleNodeGroupDragging))
-      .on('click', event.handleNodeGroupClick)
+      .call(drag().on('drag', this.handleNodeGroupDragging))
+      .on('click', this.handleNodeGroupClick)
 
     $.contextMenu({
-      selector: '.node',
-      callback: function(key, options) {
-        var m = 'clicked: ' + key
-        ;(window.console && console.log(m)) || alert(m)
-      },
+      selector: `.node#${this.id}`,
+      callback: this.handleContextMenuCallback,
       items: {
-        edit: { name: 'Edit', icon: 'edit' },
-        cut: { name: 'Cut', icon: 'cut' },
-        copy: { name: 'Copy', icon: 'copy' },
-        paste: { name: 'Paste', icon: 'paste' },
-        delete: { name: 'Delete', icon: 'delete' },
-        sep1: '---------',
-        quit: {
-          name: 'Quit',
-          icon: function() {
-            return 'context-menu-icon context-menu-icon-quit'
-          }
+        addLine: {
+          name: 'Add Line',
+          icon: 'fa-plus'
         }
       }
     })
+  }
+
+  handleNodeGroupDragging = (data, index, nodes) => {
+    data.x += event.dx
+    data.y += event.dy
+    const node = nodes[index]
+    const nodeSelected = select(node)
+    nodeSelected.attr('transform', `translate(${data.x}, ${data.y})`)
+  }
+
+  handleNodeGroupClick = (data, index, nodes) => {
+    console.log(data, index, nodes)
+  }
+
+  handleContextMenuCallback = (key, options) => {
+    switch (key) {
+      case 'addLine':
+        this.handleOnAddLine(options)
+        break
+    }
+    console.log(key)
+  }
+
+  handleOnAddLine = ({ $trigger: target }) => {
+    drawMode = !drawMode
+    console.log(drawMode)
+    console.log(target.html())
   }
 }
