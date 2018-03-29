@@ -7,4 +7,18 @@ html(lang='en')
     meta(name='author', content='Nattakit Boonyang')
     meta(name='viewport', content='width=device-width')
   body
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      span.navbar-brand wdp Logo
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#application-menu', aria-controls='application-menu', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+
+      #application-menu.collapse.navbar-collapse
+        .navbar-nav.mr-auto
+        span.nav-item Mode
+
+    .container
+      .row
+        .col-2
+        .col
+          svg
     script(src='/assets/bundle.js')
