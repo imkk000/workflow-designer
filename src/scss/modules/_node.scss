@@ -23,15 +23,9 @@
     @extend %node-stroke-width;
     @extend %node-fill;
   }
-  .node-box-hover {
+  .node-active {
     @extend %node-stroke-width;
+    stroke: black;
     @extend %node-fill;
-  }
-  .node-port {
-    cursor: crosshair;
-    fill: lightgray;
-  }
-  .node-port-hover {
-    fill: olive
   }
 }
