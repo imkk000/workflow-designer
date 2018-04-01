@@ -1,10 +1,6 @@
-import hashString from 'string-hash'
+import crypto from 'crypto'
 
 export const generateId = () => {
-  const date = Date().toString()
-  const salt = Math.random() * 999990
-  const hashData = date + salt
-  const hashResult = hashString(hashData)
-  const hashResultPadding = hashResult.toString().padStart(11, '0')
-  return hashResultPadding
+  // TODO: build a hash table or use UUID to support unique ID generation
+  return crypto.randomBytes(16).toString('hex')
 }
