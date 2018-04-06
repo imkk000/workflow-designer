@@ -13,6 +13,10 @@
   },
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "watch:dev-server": "npx webpack-dev-server --watch --progress --mode=development",
+    "watch:test": "npx jest --watchAll"
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.0.0",
