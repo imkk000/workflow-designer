@@ -13,6 +13,9 @@
   },
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "reinstall": "npx lerna clean && npx lerna bootstrap"
+  },
   "devDependencies": {
     "lerna": "^2.9.1"
   }
