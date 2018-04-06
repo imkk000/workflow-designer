@@ -1,10 +1,12 @@
-module.exports = {
-  env: {
-    browser: true,
-    node: true,
-    es6: true,
-    jquery: true,
-    jest: true,
+module.exports = Object.assign(
+  {
+    env: {
+      browser: true,
+      node: true,
+      es6: true,
+      jquery: true,
+      jest: true,
+    },
   },
-  ...require('../.eslintrc'),
-}
+  require('../.eslintrc')
+)
