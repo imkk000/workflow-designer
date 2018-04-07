@@ -5,7 +5,6 @@ module.exports = Object.assign(
       node: true,
       es6: true,
       jquery: true,
-      jest: true,
     },
     globals: {
       d3: true,
