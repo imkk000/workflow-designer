@@ -11,5 +11,6 @@ module.exports = {
   },
   rules: {
     semi: [2, 'never'],
-  }
+    'arrow-parens': [2, 'always'],
+  },
 }
