@@ -1,5 +1,5 @@
 import path from 'path'
-import { HotModuleReplacementPlugin } from 'webpack'
+import { ProvidePlugin, HotModuleReplacementPlugin } from 'webpack'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 
 const SRC_DIR = path.join(__dirname, 'src')
@@ -11,7 +11,11 @@ const prodConfig = {
     path: path.join(__dirname, 'dist'),
     publicPath: '/assets/',
   },
-  plugins: [new CleanWebpackPlugin(), new HotModuleReplacementPlugin()],
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HotModuleReplacementPlugin(),
+    new ProvidePlugin({ d3: 'd3' }),
+  ],
   module: {
     rules: [
       {
