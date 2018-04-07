@@ -7,6 +7,9 @@ module.exports = Object.assign(
       jquery: true,
       jest: true,
     },
+    globals: {
+      d3: true,
+    },
   },
   require('../.eslintrc')
 )
