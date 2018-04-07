@@ -1,4 +1,5 @@
 // NOTE: Import javascript app dependencies
+import 'd3'
 import 'jquery-contextmenu'
 import 'popper.js'
 import 'bootstrap'
