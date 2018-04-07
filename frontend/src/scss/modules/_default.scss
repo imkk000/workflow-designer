@@ -1,0 +1,16 @@
+* {
+  transform-origin: 0 0 0;
+}
+
+html,
+body {
+  font-family: $font-family;
+  font-size: $font-size;
+}
+
+svg {
+  border: 1px solid lightgrey;
+  width: 5000px;
+  height: 5000px;
+  position: absolute;
+}
