@@ -11,6 +11,7 @@ module.exports = {
   },
   rules: {
     semi: [2, 'never'],
+    'no-unused-vars': 1,
     'arrow-parens': [2, 'always'],
   },
 }
