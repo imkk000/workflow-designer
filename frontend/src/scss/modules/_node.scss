@@ -1,0 +1,9 @@
+.node {
+  cursor: pointer;
+  .node-label {
+    font-weight: bold;
+    pointer-events: none;
+    stroke-width: 0;
+    user-select: none;
+  }
+}
