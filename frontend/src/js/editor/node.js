@@ -1,5 +1,7 @@
 import generateId from '../utility/generateId'
 import { getDrawArea } from '../utility/getArea'
+import { isAddLineMode } from '../utility/editorMode'
+import errorDialog from '../dialog/errorDialog'
 
 /**
  * TODO: Node life cycle
@@ -10,9 +12,7 @@ import { getDrawArea } from '../utility/getArea'
 
 export default class {
   constructor(options) {
-    this.render({
-      ...options,
-    })
+    this.render(options)
   }
 
   render = ({ id = generateId(), x, y, label, fill, stroke }) => {
@@ -50,7 +50,9 @@ export default class {
   }
 
   loadEvent = ({ nodeGroup }) => {
-    nodeGroup.call(d3.drag().on('drag', this.handleNodeGroupDragging))
+    nodeGroup
+      .call(d3.drag().on('drag', this.handleNodeGroupDragging))
+      .on('click', this.handleNodeGroupClick)
   }
 
   handleNodeGroupDragging(data) {
@@ -59,5 +61,12 @@ export default class {
     data.y += d3.event.dy
 
     d3.select(this).attr('transform', `translate(${data.x}, ${data.y})`)
+  }
+
+  handleNodeGroupClick = () => {
+    if (isAddLineMode()) {
+      errorDialog({ text: 'Sorry, have some problem' })
+      console.log('Add line')
+    }
   }
 }
