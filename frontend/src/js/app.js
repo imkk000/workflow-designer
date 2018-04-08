@@ -1,7 +1,15 @@
 import axios from 'axios'
 import Node from './editor/node'
+import loadNodeContextMenu from './editor/nodeContextMenu'
+
+const initialGlobalVariable = () => {
+  window.EDITOR_MODE = 'NORMAL'
+}
 
 const load = () => {
+  // TODO: initial global variable project
+  initialGlobalVariable()
+
   // TODO: create new svg, root area
   const svg = d3.select('svg.diagram-drawing')
   const root = svg.append('g').attr('class', 'root-area-group')
@@ -16,6 +24,7 @@ const load = () => {
       data.forEach((element) => {
         new Node(element)
       })
+      loadNodeContextMenu()
     })
     .catch((error) => {
       console.log(error)
