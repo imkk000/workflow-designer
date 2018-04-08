@@ -37,5 +37,5 @@ const load = () => {
     })
 }
 
-document.addEventListener('contextmenu', (event) => event.preventDefault())
+document.addEventListener('contextmenu', event => event.preventDefault())
 document.addEventListener('load', load())
