@@ -5090,9 +5090,9 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
-jquery-contextmenu@^3.0.0-beta.2:
-  version "3.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/jquery-contextmenu/-/jquery-contextmenu-3.0.0-beta.2.tgz#683f7f6289bf0dd337b640c175d2fb01328ceacb"
+jquery-contextmenu@^2.6.4:
+  version "2.6.4"
+  resolved "https://registry.yarnpkg.com/jquery-contextmenu/-/jquery-contextmenu-2.6.4.tgz#f48e56c436b1becb6935e5dd0def02e39d4e129e"
 
 jquery-ui@^1.12.1:
   version "1.12.1"
