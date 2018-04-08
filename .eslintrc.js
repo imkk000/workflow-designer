@@ -14,7 +14,5 @@ module.exports = {
     'no-new': 0,
     'no-param-reassign': 0,
     'no-unused-vars': 1,
-    'object-curly-newline': 0,
-    'arrow-parens': [2, 'always'],
   },
 }
