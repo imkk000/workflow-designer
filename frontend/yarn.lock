@@ -5094,9 +5094,9 @@ jquery-contextmenu@^2.6.4:
   version "2.6.4"
   resolved "https://registry.yarnpkg.com/jquery-contextmenu/-/jquery-contextmenu-2.6.4.tgz#f48e56c436b1becb6935e5dd0def02e39d4e129e"
 
-jquery-ui@^1.12.1:
-  version "1.12.1"
-  resolved "https://registry.yarnpkg.com/jquery-ui/-/jquery-ui-1.12.1.tgz#bcb4045c8dd0539c134bc1488cdd3e768a7a9e51"
+jquery-ui-bundle@^1.12.1-migrate:
+  version "1.12.1-migrate"
+  resolved "https://registry.yarnpkg.com/jquery-ui-bundle/-/jquery-ui-bundle-1.12.1-migrate.tgz#b9343e2c310743527632cff8bedb0c5e9600b14c"
 
 jquery@^3.3.1:
   version "3.3.1"
