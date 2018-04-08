@@ -106,13 +106,13 @@ const devConfig = {
           },
           {
             x: 200,
-            y: 200,
+            y: 250,
             label: 'Rotate',
             fill: 'green',
             stroke: 'black',
           },
           {
-            x: 150,
+            x: 300,
             y: 150,
             label: 'Blur',
             fill: 'cyan',
