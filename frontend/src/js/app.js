@@ -1,9 +1,12 @@
 import axios from 'axios'
 import Node from './editor/node'
 import loadNodeContextMenu from './editor/nodeContextMenu'
+import loadArrow from './editor/arrow'
+import errorDialog from './dialog/errorDialog'
 
 const initialGlobalVariable = () => {
   window.EDITOR_MODE = 'NORMAL'
+  window.NODES = {}
 }
 
 const load = () => {
@@ -24,10 +27,13 @@ const load = () => {
       data.forEach((element) => {
         new Node(element)
       })
+
+      // TODO: load all object for global use
       loadNodeContextMenu()
+      loadArrow()
     })
     .catch((error) => {
-      console.log(error)
+      errorDialog(error.response)
     })
 }
 
