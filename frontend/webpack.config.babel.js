@@ -90,6 +90,32 @@ const devConfig = {
     hot: true,
     https: false,
     before: (app) => {
+      app.get('/api/nodes', (req, res) => {
+        res.send([
+          {
+            x: 100,
+            y: 100,
+            label: 'Load Image',
+            fill: 'red',
+            stroke: 'black',
+          },
+          {
+            x: 200,
+            y: 200,
+            label: 'Rotate',
+            fill: 'green',
+            stroke: 'black',
+          },
+          {
+            x: 150,
+            y: 150,
+            label: 'Blur',
+            fill: 'cyan',
+            stroke: 'black',
+          },
+        ])
+      })
+
       app.get('/', (req, res) => {
         res.render(path.join(__dirname, 'views', 'index.pug'))
       })
