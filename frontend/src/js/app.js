@@ -1,3 +1,4 @@
+import axios from 'axios'
 import Node from './editor/node'
 
 const load = () => {
@@ -9,8 +10,16 @@ const load = () => {
   root.append('g').attr('class', 'temp-area-group')
   root.append('g').attr('class', 'draw-area-group')
 
-  new Node({ x: 100, y: 100, text: 'Load Image', fill: 'red' })
-  new Node({ x: 200, y: 200, text: 'Rotate', fill: 'green' })
+  axios
+    .get('//127.0.0.1:3000/api/nodes')
+    .then(({ data }) => {
+      data.forEach((element) => {
+        new Node(element)
+      })
+    })
+    .catch((error) => {
+      console.log(error)
+    })
 }
 
 document.addEventListener('contextmenu', (event) => event.preventDefault())
