@@ -1,7 +1,6 @@
 import generateId from '../utility/generateId'
-import { getDrawArea } from '../utility/getArea'
-import { isAddLineMode } from '../utility/editorMode'
-import errorDialog from '../dialog/errorDialog'
+import { getDrawArea, getTempArea } from '../utility/getArea'
+import { isAddLineMode, getPassData } from '../utility/editorMode'
 
 /**
  * TODO: Node life cycle
@@ -17,6 +16,13 @@ export default class {
 
   render = ({ id = generateId(), x, y, label, fill, stroke }) => {
     const drawArea = getDrawArea()
+
+    // DEBUG: only
+    window.NODES[id] = {
+      id,
+      position: [x, y],
+      lines: [],
+    }
 
     const nodeGroup = drawArea
       .data([{ x, y }])
@@ -60,13 +66,47 @@ export default class {
     data.x += d3.event.dx
     data.y += d3.event.dy
 
-    d3.select(this).attr('transform', `translate(${data.x}, ${data.y})`)
+    // DEBUG: only
+    const node = d3.select(this)
+    const nodeId = node.attr('id')
+    window.NODES[nodeId].position = [data.x, data.y]
+
+    node.attr('transform', `translate(${data.x}, ${data.y})`)
   }
 
-  handleNodeGroupClick = () => {
+  handleNodeGroupClick() {
     if (isAddLineMode()) {
-      errorDialog({ text: 'Sorry, have some problem' })
-      console.log('Add line')
+      // TODO: calculate beginNode size
+      const { beginId, node: beginNode } = getPassData()
+      const {
+        width: widthBeginNode,
+        height: heightBeginNode,
+      } = beginNode.node().getBBox()
+      const halfHeightBeginNode = heightBeginNode / 2
+      const endNode = d3.select(this)
+      const endId = endNode.attr('id')
+
+      // DEBUG: only
+      const source = window.NODES[beginId]
+      const target = window.NODES[endId]
+
+      const link = d3
+        .linkHorizontal()
+        .x(({ id, position }) => {
+          if (id === source.id) return position[0] + widthBeginNode
+          return position[0]
+        })
+        .y(({ position }) => position[1] + halfHeightBeginNode)
+
+      getTempArea()
+        .data([{ source, target }])
+        .append('path')
+        .attr('class', 'line')
+        .attr('d', link)
+        .style('fill', 'none')
+        .style('stroke-width', 3)
+        .style('stroke', 'blue')
+      // .attr('marker-end', 'url(#arrow)')
     }
   }
 }
