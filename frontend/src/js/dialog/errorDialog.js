@@ -19,7 +19,7 @@ export default (options) => {
     resizable: false,
     width: 500,
     close() {
-      // TODO: remove DOM when dialog closed
+      // NOTE: remove DOM when dialog closed
       $(this).remove()
     },
   })

@@ -10,14 +10,14 @@ const initialGlobalVariable = () => {
 }
 
 const load = () => {
-  // TODO: initial global variable project
+  // NOTE: initial global variable project
   initialGlobalVariable()
 
-  // TODO: create new svg, root area
+  // NOTE: create new svg, root area
   const svg = d3.select('svg.diagram-drawing')
   const root = svg.append('g').attr('class', 'root-area-group')
 
-  // TODO: create new temp area, draw area in root area
+  // NOTE: create new temp area, draw area in root area
   root.append('g').attr('class', 'temp-area-group')
   root.append('g').attr('class', 'draw-area-group')
 
@@ -28,7 +28,7 @@ const load = () => {
         new Node(element)
       })
 
-      // TODO: load all object for global use
+      // NOTE: load all object for global use
       loadNodeContextMenu()
       loadArrow()
     })
