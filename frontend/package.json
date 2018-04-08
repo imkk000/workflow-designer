@@ -23,9 +23,11 @@
     "font-awesome": "^4.7.0",
     "graph-data-structure": "^1.8.0",
     "jquery": "^3.3.1",
-    "jquery-contextmenu": "^2.6.4",
+    "jquery-contextmenu": "^3.0.0-beta.2",
+    "jquery-ui": "^1.12.1",
     "lodash": "^4.17.5",
-    "popper.js": "^1.14.3"
+    "popper.js": "^1.14.3",
+    "webpack-dev-server": "^3.1.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -58,7 +60,6 @@
     "style-loader": "^0.20.3",
     "url-loader": "^1.0.1",
     "webpack": "^4.5.0",
-    "webpack-cli": "^2.0.14",
-    "webpack-dev-server": "^3.1.1"
+    "webpack-cli": "^2.0.14"
   }
 }
