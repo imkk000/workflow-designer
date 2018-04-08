@@ -4,7 +4,6 @@ import { getDrawArea } from '../utility/getArea'
 /**
  * TODO: Node life cycle
  * pass options
- * beforeRender
  * render
  * loadEvent
  */
@@ -52,28 +51,6 @@ export default class {
 
   loadEvent = ({ nodeGroup }) => {
     nodeGroup.call(d3.drag().on('drag', this.handleNodeGroupDragging))
-    $.contextMenu({
-      selector: 'g.node',
-      trigger: 'left',
-      callback: (key, options) => {
-        console.log(key, options)
-      },
-      items: {
-        ADD_LINE: {
-          name: 'Add Line',
-          icon: 'fa-plus-circle',
-        },
-        SETTING: {
-          name: 'Setting',
-          icon: 'fa-edit',
-        },
-        SEP: '---------',
-        CLOSE: {
-          name: 'Close',
-          icon: 'fa-close',
-        },
-      },
-    })
   }
 
   handleNodeGroupDragging(data) {
