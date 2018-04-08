@@ -16,7 +16,7 @@ export default class {
     })
   }
 
-  render = ({ id = generateId(), x, y, text, fill }) => {
+  render = ({ id = generateId(), x, y, label, fill, stroke }) => {
     const drawArea = getDrawArea()
 
     const nodeGroup = drawArea
@@ -32,8 +32,8 @@ export default class {
       .attr('dx', '.4em')
       .attr('dy', '1.2em')
       .attr('text-anchor', 'start')
-      .attr('fill', 'white')
-      .text(text.toUpperCase())
+      .attr('fill', stroke)
+      .text(label.toUpperCase())
 
     const textBBox = nodeLabel.node().getBBox()
     const { width: textWidth, height: textHeight } = textBBox
@@ -45,13 +45,42 @@ export default class {
       .attr('width', textWidth + rectWidthOffset)
       .attr('height', textHeight + rectHeightOffset)
       .attr('fill', fill)
+      .attr('stroke', stroke)
 
     this.loadEvent({ nodeGroup, nodeLabel, nodeBox })
   }
 
   loadEvent = ({ nodeGroup }) => {
-    nodeGroup.on('click', this.handleNodeGroupClick)
+    nodeGroup.call(d3.drag().on('drag', this.handleNodeGroupDragging))
+    $.contextMenu({
+      selector: 'g.node',
+      trigger: 'left',
+      callback: (key, options) => {
+        console.log(key, options)
+      },
+      items: {
+        ADD_LINE: {
+          name: 'Add Line',
+          icon: 'fa-plus-circle',
+        },
+        SETTING: {
+          name: 'Setting',
+          icon: 'fa-edit',
+        },
+        SEP: '---------',
+        CLOSE: {
+          name: 'Close',
+          icon: 'fa-close',
+        },
+      },
+    })
   }
 
-  handleNodeGroupClick = () => {}
+  handleNodeGroupDragging(data) {
+    // TODO: Calculate coordinate
+    data.x += d3.event.dx
+    data.y += d3.event.dy
+
+    d3.select(this).attr('transform', `translate(${data.x}, ${data.y})`)
+  }
 }
