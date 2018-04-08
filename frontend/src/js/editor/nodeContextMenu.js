@@ -1,3 +1,5 @@
+import EDITOR_MODE, { setEditorMode, setPassData } from '../utility/editorMode'
+
 const contextMenuItem = {
   ADD_LINE: {
     name: 'Add Line',
@@ -18,17 +20,21 @@ const contextMenuCallback = (key, { $trigger }) => {
   const node = d3.select($trigger.get(0))
   const nodeBox = node.select('.node-box')
 
-  window.EDITOR_MODE = key
-
   switch (key) {
     case 'ADD_LINE':
+      setEditorMode(EDITOR_MODE.ADD_LINE)
       nodeBox.attr('stroke', 'yellow')
+      setPassData({
+        begin: node.attr('id'),
+        end: null,
+      })
       break
     case 'SETTING':
+      setEditorMode(EDITOR_MODE.SETTING)
+
       break
     default:
   }
-  console.log(window.EDITOR_MODE)
 }
 
 export default () => {
