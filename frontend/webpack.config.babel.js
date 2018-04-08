@@ -14,7 +14,7 @@ const prodConfig = {
   plugins: [
     new CleanWebpackPlugin(),
     new HotModuleReplacementPlugin(),
-    new ProvidePlugin({ d3: 'd3' }),
+    new ProvidePlugin({ $: 'jquery', jQuery: 'jquery', d3: 'd3' }),
   ],
   module: {
     rules: [
