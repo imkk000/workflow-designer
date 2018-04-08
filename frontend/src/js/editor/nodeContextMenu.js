@@ -24,10 +24,7 @@ const contextMenuCallback = (key, { $trigger }) => {
     case 'ADD_LINE':
       setEditorMode(EDITOR_MODE.ADD_LINE)
       nodeBox.attr('stroke', 'yellow')
-      setPassData({
-        begin: node.attr('id'),
-        end: null,
-      })
+      setPassData({ beginId: node.attr('id'), node })
       break
     case 'SETTING':
       setEditorMode(EDITOR_MODE.SETTING)
