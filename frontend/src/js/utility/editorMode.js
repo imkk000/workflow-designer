@@ -26,6 +26,18 @@ export const setPassData = (data) => {
   window.PASS_DATA = data
 }
 
+// NOTE: clear pass data from global variable
+export const clearPassData = () => {
+  window.PASS_DATA = null
+}
+
+// NOTE: return pass data before clear pass data
+export const getPassDataBeforeClear = () => {
+  const data = getPassData()
+  clearPassData()
+  return data
+}
+
 // NOTE: get editor mode to global variable
 export const getEditorMode = () => window.EDITOR_MODE
 
