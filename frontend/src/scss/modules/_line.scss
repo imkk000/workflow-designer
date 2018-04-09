@@ -1,3 +1,7 @@
 .line {
+  fill: none;
   cursor: pointer;
+  stroke-width: 3;
+  // DEBUG: only
+  stroke: purple;
 }
