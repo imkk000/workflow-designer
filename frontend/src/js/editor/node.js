@@ -80,7 +80,6 @@ render = ({
 loadEvent = ({ nodeGroup }) => {
   nodeGroup
     .on('click', this.handleNodeGroupClick)
-    .on('mouseover', this.handleNodeGroupMouseOver)
     .call(d3
       .drag()
       .on('drag', this.handleNodeGroupDragging))
@@ -99,13 +98,6 @@ handleNodeGroupDragging(data) {
 
   // NOTE: update line
   updateLine({ node, data })
-}
-
-handleNodeGroupMouseOver() {
-  if (isNormalMode()) {
-    const nodes = getDataFromGlobal('NODES')
-    const lines = getDataFromGlobal('LINES')
-  }
 }
 
 handleNodeGroupClick() {
