@@ -7,6 +7,7 @@ import errorDialog from './dialog/errorDialog'
 const initialGlobalVariable = () => {
   window.EDITOR_MODE = 'NORMAL'
   window.NODES = {}
+  window.LINES = {}
 }
 
 const load = () => {
