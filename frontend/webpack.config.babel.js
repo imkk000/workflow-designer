@@ -108,7 +108,7 @@ const devConfig = {
             x: 200,
             y: 250,
             label: 'Rotate',
-            fill: 'green',
+            fill: 'orange',
             stroke: 'black',
           },
           {
@@ -116,6 +116,13 @@ const devConfig = {
             y: 150,
             label: 'Blur',
             fill: 'cyan',
+            stroke: 'black',
+          },
+          {
+            x: 150,
+            y: 350,
+            label: 'Resize',
+            fill: '#9BFF00',
             stroke: 'black',
           },
         ])
