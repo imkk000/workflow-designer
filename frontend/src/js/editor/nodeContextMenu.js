@@ -10,8 +10,8 @@ const contextMenuItem = {
     icon: 'fa-edit',
   },
   SEP: '---------',
-  CLOSE: {
-    name: 'Close',
+  CANCEL: {
+    name: 'Cancel',
     icon: 'fa-close',
   },
 }
@@ -23,8 +23,14 @@ const contextMenuCallback = (key, { $trigger }) => {
   switch (key) {
     case 'ADD_LINE':
       setEditorMode(EDITOR_MODE.ADD_LINE)
-      nodeBox.attr('stroke', 'yellow')
-      setPassData({ beginId: node.attr('id'), node })
+      // NOTE: when active box
+      setPassData({
+        node,
+        beginId: node.attr('id'),
+        defaultStroke: nodeBox.attr('stroke'),
+      })
+      nodeBox.attr('stroke', 'blue')
+      $('g.node').contextMenu(false)
       break
     case 'SETTING':
       setEditorMode(EDITOR_MODE.SETTING)
@@ -35,10 +41,25 @@ const contextMenuCallback = (key, { $trigger }) => {
 }
 
 export default () => {
-  $.contextMenu({
+  const nodeContextMenuOptions = {
     selector: 'g.node',
-    trigger: 'right',
+
     callback: contextMenuCallback,
     items: contextMenuItem,
+  }
+
+  // NOTE: context menu on right click trigger
+  $.contextMenu({
+    trigger: 'right',
+    ...nodeContextMenuOptions,
+  })
+
+  // NOTE: context menu on hover trigger
+  // DEBUG: only
+  $.contextMenu({
+    delay: 750,
+    autoHide: true,
+    trigger: 'hover',
+    ...nodeContextMenuOptions,
   })
 }
