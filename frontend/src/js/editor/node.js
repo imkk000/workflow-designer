@@ -1,11 +1,12 @@
 import generateId from '../utility/generateId'
 import { getDrawArea } from '../utility/getArea'
-import EDITOR_MODE, {
+import {
   isAddLineMode,
-  setEditorMode,
-  getPassDataBeforeClear,
+  getDataFromGlobal,
+  isNormalMode,
 } from '../utility/editorMode'
-import diagonal from './diagonal'
+import updateLine from './updateLine'
+import addLineMode from '../mode/addLineMode'
 
 /**
  * NOTE: Node life cycle
@@ -23,10 +24,11 @@ render = ({
   id = generateId(), x, y, label, fill, stroke,
 }) => {
   const drawArea = getDrawArea()
+  const nodes = getDataFromGlobal('NODES')
 
-  this.defautlFill = fill
-  // DEBUG: only
-  window.NODES[id] = {
+  this.defaultFill = fill
+
+  nodes[id] = {
     id,
     position: [x, y],
     lines: [],
@@ -42,33 +44,46 @@ render = ({
   const nodeLabel = nodeGroup
     .append('text')
     .attr('class', 'node-label')
-    .attr('dx', '.4em')
-    .attr('dy', '1.2em')
+    .attr('dx', '.48em')
+    .attr('dy', '1.4em')
     .attr('text-anchor', 'start')
-    .attr('fill', stroke)
+    .attr('stroke', stroke)
     .text(label.toUpperCase())
 
   const textBBox = nodeLabel.node().getBBox()
   const { width: textWidth, height: textHeight } = textBBox
-  const [rectWidthOffset, rectHeightOffset] = [10, 10]
+  const [rectWidthOffset, rectHeightOffset] = [15, 15]
 
   const nodeBox = nodeGroup
     .insert('rect', ':first-child')
     .attr('class', 'node-box')
+    .attr('rx', 5)
+    .attr('ry', 5)
     .attr('width', textWidth + rectWidthOffset)
     .attr('height', textHeight + rectHeightOffset)
     .attr('fill', fill)
     .attr('stroke', stroke)
 
-  this.loadEvent({ nodeGroup, nodeLabel, nodeBox })
+  const nodeBG = nodeGroup.insert('rect', ':first-child')
+    .attr('class', 'node-bg')
+    .attr('rx', 5)
+    .attr('ry', 5)
+    .attr('width', textWidth + rectWidthOffset)
+    .attr('height', textHeight + rectHeightOffset)
+    .attr('fill', 'white')
+
+  this.loadEvent({
+    nodeGroup, nodeLabel, nodeBox, nodeBG,
+  })
 }
 
 loadEvent = ({ nodeGroup }) => {
   nodeGroup
+    .on('click', this.handleNodeGroupClick)
+    .on('mouseover', this.handleNodeGroupMouseOver)
     .call(d3
       .drag()
       .on('drag', this.handleNodeGroupDragging))
-    .on('click', this.handleNodeGroupClick)
 }
 
 handleNodeGroupDragging(data) {
@@ -78,51 +93,24 @@ handleNodeGroupDragging(data) {
 
   // DEBUG: only
   const node = d3.select(this)
-  const nodeId = node.attr('id')
-  window.NODES[nodeId].position = [data.x, data.y]
 
+  // NOTE: set transform from [x, y]
   node.attr('transform', `translate(${data.x}, ${data.y})`)
+
+  // NOTE: update line
+  updateLine({ node, data })
+}
+
+handleNodeGroupMouseOver() {
+  if (isNormalMode()) {
+    const nodes = getDataFromGlobal('NODES')
+    const lines = getDataFromGlobal('LINES')
+  }
 }
 
 handleNodeGroupClick() {
   if (isAddLineMode()) {
-    // TODO: validate node !!!
-
-    // NOTE: prepare data for add line
-    const { beginId, node: beginNode, defaultStroke } = getPassDataBeforeClear()
-    const endNode = d3.select(this)
-    const endId = endNode.attr('id')
-
-    // DEBUG: only
-    const link = diagonal({ beginId, beginNode })
-    const lineId = generateId()
-    const source = window.NODES[beginId]
-    const target = window.NODES[endId]
-
-    // NOTE: add this line to begin and end node.lines
-    source.lines.push(lineId)
-    target.lines.push(lineId)
-
-    // NOTE: add line to global LINES
-    // addDataToGlobal()
-    // NOTE: render line to draw-area-group
-    getDrawArea()
-      .insert('g', ':first-child')
-      .attr('class', 'line')
-      .attr('id', lineId)
-      .data([{ source, target }])
-      .append('path')
-      .attr('d', link)
-
-    // NOTE: reset stroke and context menu
-    beginNode.select('.node-box').attr('stroke', defaultStroke)
-    $('g.node').contextMenu(true)
-
-    // NOTE: reset mode to NORMAL
-    setEditorMode(EDITOR_MODE.NORMAL)
-
-    // DEBUG: only
-    console.log(source, target)
+    addLineMode.bind(this)()
   }
 }
 }
