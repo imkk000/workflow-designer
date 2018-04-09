@@ -52,8 +52,8 @@ export const addDataToGlobal = (name, value) => {
 }
 
 // NOTE: set data if exists data
-export const setDataInGlobal = (name, value) => {
-  addDataToGlobal(name, value)
+export const setDataInGlobal = (nameOfData, name, value) => {
+  window[nameOfData][name] = value
 }
 
 // NOTE: get data from global variable
