@@ -3,11 +3,12 @@ import Node from './editor/node'
 import loadNodeContextMenu from './editor/nodeContextMenu'
 import loadArrow from './editor/arrow'
 import errorDialog from './dialog/errorDialog'
+import { addDataToGlobal } from './utility/editorMode'
 
 const initialGlobalVariable = () => {
-  window.EDITOR_MODE = 'NORMAL'
-  window.NODES = {}
-  window.LINES = {}
+  addDataToGlobal('EDITOR_MODE', 'NORMAL')
+  addDataToGlobal('NODES', {})
+  addDataToGlobal('LINES', {})
 }
 
 const load = () => {
