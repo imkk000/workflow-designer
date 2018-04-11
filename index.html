@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SVG Curve with Marker Middle</title>
+</head>
+
+<body>
+  <svg>
+    <!-- Draw Arrow -->
+  <defs>
+    <marker id="arrow" refX="0" refY="0" viewBox="0 -5 10 10" markerWidth="6" markerHeight="6" oriet="auto" markerUnits="strokeWidth">
+      <path d="M0, -5L10, 0L0, 5" fill="blue"></path>
+    </marker>
+  </defs>
+
+    <!-- Draw 2 Circle -->
+    <circle id="source" r="10" fill="gray"></circle>
+    <circle id="target" r="10" fill="gray"></circle>
+
+    <!-- Draw cubic beziers curve line -->
+    <!-- M( source.x, source.y ) -->
+    <!-- C( (source.x + target.x) / 2, source.y )( (source.x + target.x) / 2, taget.y )( target.x, target.y ) -->
+    <path class="line line-guide" id="line-guide" marker-start="url(#arrow)" marker-mid="url(#arrow)" marker-end="url(#arrow)"></path>
+    <path class="line" id="line-new" marker-start="url(#arrow)" marker-mid="url(#arrow)" marker-end="url(#arrow)"></path>
+  </svg>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js"></script>
+</body>
+
+</html>
