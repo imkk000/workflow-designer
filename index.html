@@ -10,21 +10,19 @@
 
 <body>
   <svg>
-    <!-- Draw Arrow -->
-  <defs>
-    <marker id="arrow" markerWidth="6" markerHeight="6" oriet="auto" markerUnits="strokeWidth">
-      <path fill="blue"></path>
-    </marker>
-  </defs>
+
+    <!-- Draw cubic beziers curve line with arrow -->
+    <g class="line-arrow" >
+      <path class="line" id="line-new"></path>
+      <text class="text" dy="1">
+        <textPath href="#line-new" dominant-baseline="middle" startOffset="50%">►</textPath>
+      </text>
+    </g>
 
     <!-- Draw 2 Circle -->
     <!-- <circle id="circle-guide" r="20" fill="brown"></circle> -->
     <circle id="source" r="10" fill="gray"></circle>
     <circle id="target" r="10" fill="gray"></circle>
-
-    <!-- Draw cubic beziers curve line -->
-    <path class="line line-guide" id="line-guide"></path>
-    <path class="line" id="line-new" marker-end="url(#arrow)"></path>
   </svg>
   <link rel="stylesheet" href="./style.css">
   <script src="./script.js"></script>

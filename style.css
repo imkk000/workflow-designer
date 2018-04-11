@@ -16,6 +16,12 @@ svg {
   stroke-width: 3;
 }
 
-.line-guide {
-  stroke: orange;
+.text {
+  fill: purple;
+  font-size: 2em;
+  text-align: center;
+  text-anchor: middle;
+  pointer-events: none;
+  stroke-width: 0;
+  user-select: none;
 }
