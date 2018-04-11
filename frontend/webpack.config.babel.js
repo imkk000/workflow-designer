@@ -23,12 +23,12 @@ const prodConfig = {
   ],
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: ['babel-loader', 'eslint-loader'],
-      },
+      // {
+      //   enforce: 'pre',
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   loader: ['babel-loader', 'eslint-loader'],
+      // },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -94,7 +94,7 @@ const devConfig = {
     host: '0.0.0.0',
     hot: true,
     https: false,
-    before: (app) => {
+    before: app => {
       app.get('/api/nodes', (req, res) => {
         res.send([
           {
