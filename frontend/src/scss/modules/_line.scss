@@ -1,7 +1,20 @@
 .line {
-  fill: none;
-  cursor: pointer;
-  stroke-width: 3;
   // DEBUG: only
-  stroke: purple;
+  fill: $line-fill;
+  stroke: $line-stroke;
+  cursor: pointer;
+
+  .line-path {
+    fill: none;
+    stroke-width: 3;
+  }
+
+  .line-text {
+    font-size: 3.5em;
+    stroke-width: 0;
+    text-align: center;
+    text-anchor: middle;
+    pointer-events: none;
+    user-select: none;
+  }
 }

@@ -1,7 +1,6 @@
 import axios from 'axios'
 import Node from './editor/node'
 import loadNodeContextMenu from './editor/nodeContextMenu'
-import loadArrow from './editor/arrow'
 import errorDialog from './dialog/errorDialog'
 import { addDataToGlobal } from './utility/editorMode'
 
@@ -26,15 +25,14 @@ const load = () => {
   axios
     .get('//127.0.0.1:3000/api/nodes')
     .then(({ data }) => {
-      data.forEach((element) => {
+      data.forEach(element => {
         new Node(element)
       })
 
       // NOTE: load all object for global use
       loadNodeContextMenu()
-      loadArrow()
     })
-    .catch((error) => {
+    .catch(error => {
       errorDialog(error.response)
     })
 }
