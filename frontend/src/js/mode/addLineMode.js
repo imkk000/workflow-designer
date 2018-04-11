@@ -1,9 +1,14 @@
 import { getDrawArea } from '../utility/getArea'
-import EDITOR_MODE, { setEditorMode, setDataInGlobal, getDataFromGlobal, getPassDataBeforeClear } from '../utility/editorMode'
+import EDITOR_MODE, {
+  setEditorMode,
+  setDataInGlobal,
+  getDataFromGlobal,
+  getPassDataBeforeClear,
+} from '../utility/editorMode'
 import generateId from '../utility/generateId'
 import diagonal from '../editor/diagonal'
 
-export default function () {
+export default function() {
   const drawArea = getDrawArea()
   const nodes = getDataFromGlobal('NODES')
 
@@ -28,14 +33,30 @@ export default function () {
     endId,
   })
 
-  // NOTE: render line to draw-area-group
+  // NOTE: render line group to draw-area-group
   const lineGroup = drawArea
     .insert('g', ':first-child')
+    // .append('g')
     .attr('class', 'line')
     .attr('id', lineId)
     .data([{ source, target }])
+
+  // NOTE: render path
+  lineGroup
     .append('path')
+    .attr('class', 'line-path')
+    .attr('id', `line-path-${lineId}`)
     .attr('d', link)
+
+  // NOTE: render arrow by text
+  lineGroup
+    .append('text')
+    .attr('class', 'line-text')
+    .append('textPath')
+    .attr('href', `#line-path-${lineId}`)
+    .attr('dominant-baseline', 'middle')
+    .attr('startOffset', '50%')
+    .text('►')
 
   // NOTE: reset stroke and context menu
   beginNode.select('.node-box').attr('stroke', defaultStroke)
