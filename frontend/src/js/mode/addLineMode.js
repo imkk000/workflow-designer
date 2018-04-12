@@ -3,19 +3,36 @@ import EDITOR_MODE, {
   setEditorMode,
   setDataInGlobal,
   getDataFromGlobal,
+  getPassData,
   getPassDataBeforeClear,
+  isAddLineMode,
 } from '../utility/editorMode'
 import generateId from '../utility/generateId'
 import diagonal from '../editor/diagonal'
 
-export default function() {
+// NOTE: other modules can cancel ADD_LINE mode
+export const quitAddLineMode = () => {
+  if (isAddLineMode()) {
+    // NOTE: get and remove global data in pass data
+    const { node: beginNode, defaultStroke } = getPassDataBeforeClear()
+
+    // NOTE: reset stroke and context menu
+    beginNode.select('.node-box').attr('stroke', defaultStroke)
+    $('g.node').contextMenu(true)
+
+    // NOTE: reset mode to NORMAL
+    setEditorMode(EDITOR_MODE.NORMAL)
+  }
+}
+
+function addLineMode() {
   const drawArea = getDrawArea()
   const nodes = getDataFromGlobal('NODES')
 
   // TODO: validate node !!!
 
   // NOTE: prepare data for add line
-  const { beginId, node: beginNode, defaultStroke } = getPassDataBeforeClear()
+  const { beginId, node: beginNode } = getPassData()
   const endNode = d3.select(this)
   const endId = endNode.attr('id')
   const link = diagonal({ beginId, beginNode })
@@ -58,10 +75,8 @@ export default function() {
     .attr('startOffset', '50%')
     .text('►')
 
-  // NOTE: reset stroke and context menu
-  beginNode.select('.node-box').attr('stroke', defaultStroke)
-  $('g.node').contextMenu(true)
-
-  // NOTE: reset mode to NORMAL
-  setEditorMode(EDITOR_MODE.NORMAL)
+  // NOTE: exit ADD_LINE mode
+  quitAddLineMode()
 }
+
+export default addLineMode
