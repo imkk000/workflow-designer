@@ -9,7 +9,7 @@ const createDom = ({ text }) => {
     .append(content)
 }
 
-export default (options) => {
+export default options => {
   createDom(options)
 
   $(`#${DOM_ID}`).dialog({
