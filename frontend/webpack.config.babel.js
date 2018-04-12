@@ -9,7 +9,7 @@ const prodConfig = {
   output: {
     filename: 'bundle.js',
     path: path.join(__dirname, 'dist'),
-    publicPath: '/assets/',
+    publicPath: '/dist/',
   },
   plugins: [
     new CleanWebpackPlugin(),
