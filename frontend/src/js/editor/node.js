@@ -1,6 +1,6 @@
 import generateId from '../utility/generateId'
 import { getDrawArea } from '../utility/getArea'
-import { isAddLineMode, getDataFromGlobal, isNormalMode } from '../utility/editorMode'
+import { isAddLineMode, getDataFromGlobal } from '../utility/editorMode'
 import updateLine from './updateLine'
 import addLineMode from '../mode/addLineMode'
 
