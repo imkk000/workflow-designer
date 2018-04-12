@@ -3,16 +3,19 @@ import { ProvidePlugin, HotModuleReplacementPlugin } from 'webpack'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 
 const SRC_DIR = path.join(__dirname, 'src')
+const DIST_DIR = path.join(__dirname, 'dist')
+
+const pathsToClean = [DIST_DIR]
 
 const prodConfig = {
   entry: path.join(SRC_DIR, 'webpack.import.js'),
   output: {
     filename: 'bundle.js',
-    path: path.join(__dirname, 'dist'),
+    path: DIST_DIR,
     publicPath: '/dist/',
   },
   plugins: [
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin(pathsToClean),
     new HotModuleReplacementPlugin(),
     new ProvidePlugin({
       $: 'jquery',
@@ -87,7 +90,7 @@ const prodConfig = {
 const devConfig = {
   devtool: 'source-map',
   devServer: {
-    publicPath: '/assets/',
+    publicPath: '/dist/',
     contentBase: [SRC_DIR],
     watchContentBase: true,
     port: 3000,
