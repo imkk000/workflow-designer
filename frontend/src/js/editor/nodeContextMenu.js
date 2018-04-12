@@ -21,8 +21,8 @@ const contextMenuItem = {
   },
 }
 
-const contextMenuCallback = (key, { $trigger }) => {
-  const node = d3.select($trigger.get(0))
+function contextMenuCallback(key) {
+  const node = d3.select(this.get(0))
   const nodeBox = node.select('.node-box')
 
   switch (key) {
@@ -50,15 +50,23 @@ const contextMenuCallback = (key, { $trigger }) => {
 }
 
 export default () => {
-  const nodeContextMenuOptions = {
-    selector: 'g.node',
-    callback: contextMenuCallback,
-    items: contextMenuItem,
-  }
-
+  const nodeContextMenuClassName = 'context-menu-node'
   // NOTE: context menu on right click trigger
   $.contextMenu({
+    selector: 'g.node',
+    className: nodeContextMenuClassName,
+    callback: contextMenuCallback,
+    items: contextMenuItem,
     trigger: 'right',
-    ...nodeContextMenuOptions,
+    events: {
+      show() {
+        const nodeId = this.attr('id')
+        const attrName = 'context-menu-node-title-content'
+        const nodeTitleContent = `NODE_ID = ${nodeId}`
+
+        // NOTE: set node context menu title before show
+        $(`.${nodeContextMenuClassName}`).attr(attrName, nodeTitleContent)
+      },
+    },
   })
 }
