@@ -15,7 +15,8 @@
   "private": false,
   "scripts": {
     "dev": "npx webpack-dev-server --watch --progress --mode=development",
-    "build": "npx webpack --progress --mode=production"
+    "build": "npx webpack --progress --mode=production",
+    "full-clean": "npx rimraf dist node_modules *.log"
   },
   "dependencies": {
     "axios": "^0.18.0",
