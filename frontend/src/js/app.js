@@ -1,18 +1,14 @@
 import axios from 'axios'
 import Node from './editor/node'
-import loadNodeContextMenu from './editor/nodeContextMenu'
 import errorDialog from './dialog/errorDialog'
 import { addDataToGlobal } from './utility/editorMode'
 
-const initialGlobalVariable = () => {
+$(document).contextmenu(event => event.preventDefault())
+$(document).ready(() => {
+  // NOTE: initial global variable project
   addDataToGlobal('EDITOR_MODE', 'NORMAL')
   addDataToGlobal('NODES', {})
   addDataToGlobal('LINES', {})
-}
-
-const load = () => {
-  // NOTE: initial global variable project
-  initialGlobalVariable()
 
   // NOTE: create new svg, root area
   const svg = d3.select('svg.diagram-drawing')
@@ -28,14 +24,8 @@ const load = () => {
       data.forEach(element => {
         new Node(element)
       })
-
-      // NOTE: load all object for global use
-      loadNodeContextMenu()
     })
     .catch(error => {
       errorDialog(error.response)
     })
-}
-
-document.addEventListener('contextmenu', event => event.preventDefault())
-document.addEventListener('load', load())
+})
