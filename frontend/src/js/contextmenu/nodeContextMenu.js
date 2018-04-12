@@ -1,6 +1,10 @@
 import EDITOR_MODE, { setEditorMode, setPassData } from '../utility/editorMode'
+import nodeDrawAreaContextMenu from './nodeDrawAreaContextMenu'
 
-const contextMenuItem = {
+const selector = 'g.node'
+const className = 'context-menu-node'
+
+const items = {
   ADD_LINE: {
     name: 'Add Line',
     icon: 'fa-plus-circle',
@@ -21,7 +25,7 @@ const contextMenuItem = {
   },
 }
 
-function contextMenuCallback(key) {
+function callback(key) {
   const node = d3.select(this.get(0))
   const nodeBox = node.select('.node-box')
 
@@ -34,8 +38,11 @@ function contextMenuCallback(key) {
         beginId: node.attr('id'),
         defaultStroke: nodeBox.attr('stroke'),
       })
-      nodeBox.attr('stroke', 'purple')
+      nodeBox.attr('stroke', 'pink')
+
+      // NOTE: toggle context menu
       $('g.node').contextMenu(false)
+      nodeDrawAreaContextMenu()
       break
     case 'SETTING':
       setEditorMode(EDITOR_MODE.SETTING)
@@ -49,24 +56,23 @@ function contextMenuCallback(key) {
   }
 }
 
+function show() {
+  const nodeId = this.attr('id')
+  const attrName = 'context-menu-node-title-content'
+  const nodeTitleContent = `NODE_ID = ${nodeId}`
+
+  // NOTE: set node context menu title before show
+  $(`.${className}`).attr(attrName, nodeTitleContent)
+}
+
 export default () => {
-  const nodeContextMenuClassName = 'context-menu-node'
   // NOTE: context menu on right click trigger
   $.contextMenu({
-    selector: 'g.node',
-    className: nodeContextMenuClassName,
-    callback: contextMenuCallback,
-    items: contextMenuItem,
+    selector,
+    className,
+    callback,
+    items,
+    events: { show },
     trigger: 'right',
-    events: {
-      show() {
-        const nodeId = this.attr('id')
-        const attrName = 'context-menu-node-title-content'
-        const nodeTitleContent = `NODE_ID = ${nodeId}`
-
-        // NOTE: set node context menu title before show
-        $(`.${nodeContextMenuClassName}`).attr(attrName, nodeTitleContent)
-      },
-    },
   })
 }
