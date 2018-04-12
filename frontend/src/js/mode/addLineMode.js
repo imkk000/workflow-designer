@@ -9,6 +9,7 @@ import EDITOR_MODE, {
 } from '../utility/editorMode'
 import generateId from '../utility/generateId'
 import diagonal from '../editor/diagonal'
+import { destroyNodeDrawAreaContextMenu } from '../contextmenu/nodeDrawAreaContextMenu'
 
 // NOTE: other modules can cancel ADD_LINE mode
 export const quitAddLineMode = () => {
@@ -16,9 +17,12 @@ export const quitAddLineMode = () => {
     // NOTE: get and remove global data in pass data
     const { node: beginNode, defaultStroke } = getPassDataBeforeClear()
 
-    // NOTE: reset stroke and context menu
+    // NOTE: reset stroke
     beginNode.select('.node-box').attr('stroke', defaultStroke)
+
+    // NOTE: reset context menu
     $('g.node').contextMenu(true)
+    destroyNodeDrawAreaContextMenu()
 
     // NOTE: reset mode to NORMAL
     setEditorMode(EDITOR_MODE.NORMAL)
