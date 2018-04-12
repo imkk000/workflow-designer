@@ -1,3 +1,5 @@
+import showCurrentMode from '../editor/showCurrentMode'
+
 // NOTE: initial constant editor mode
 const EDITOR_MODE = {
   NORMAL: 'NORMAL',
@@ -48,6 +50,9 @@ export const getEditorMode = () => window.EDITOR_MODE
 // NOTE: set editor mode to global variable
 export const setEditorMode = data => {
   window.EDITOR_MODE = data
+
+  // NOTE: show mode after set mode
+  showCurrentMode(window.EDITOR_MODE)
 }
 
 // NOTE: add data to global variable
