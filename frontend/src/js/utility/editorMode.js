@@ -12,8 +12,14 @@ const EDITOR_MODE = {
 // NOTE: check mode is NORMAL
 export const isNormalMode = () => window.EDITOR_MODE === EDITOR_MODE.NORMAL
 
+// NOTE: check mode is not NORMAL
+export const notNormalMode = () => !isNormalMode()
+
 // NOTE: check mode is ADD_LINE
 export const isAddLineMode = () => window.EDITOR_MODE === EDITOR_MODE.ADD_LINE
+
+// NOTE: check mode is not ADD_LINE
+export const notAddLineMode = () => !isAddLineMode()
 
 // NOTE: check mode is SETTING
 export const isSettingMode = () => window.EDITOR_MODE === EDITOR_MODE.SETTING

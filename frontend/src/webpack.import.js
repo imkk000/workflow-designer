@@ -5,6 +5,7 @@ import 'popper.js'
 import 'jquery-ui-bundle'
 import 'jquery-contextmenu'
 import './js/app'
+import './js/contextmenu'
 
 // NOTE: Import style(css, scss) app dependencies
 import '../node_modules/font-awesome/scss/font-awesome.scss'
