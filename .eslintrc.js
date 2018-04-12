@@ -1,6 +1,6 @@
 module.exports = {
-  extends: 'airbnb',
-  plugins: ['babel'],
+  extends: ['airbnb', 'prettier'],
+  plugins: ['babel', 'prettier'],
   parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 8,
@@ -10,9 +10,42 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    semi: [2, 'never'],
     'no-new': 0,
     'no-param-reassign': 0,
-    'no-unused-vars': 1,
+    'no-unused-vars': [
+      1,
+      {
+        argsIgnorePattern: 'res|next|^err',
+      },
+    ],
+    'arrow-body-style': [2, 'as-needed'],
+    'no-console': 0,
+    quotes: [
+      2,
+      'single',
+      {
+        avoidEscape: true,
+        allowTemplateLiterals: true,
+      },
+    ],
+    semi: [2, 'never'],
+    'prettier/prettier': [
+      'error',
+      {
+        arrowParens: 'avoid',
+        printWidth: 120,
+        semi: false,
+        singleQuote: true,
+        tabWidth: 2,
+        trailingComma: 'es5',
+      },
+    ],
+    'jsx-a11y/href-no-hash': 'off',
+    'jsx-a11y/anchor-is-valid': [
+      'warn',
+      {
+        aspects: ['invalidHref'],
+      },
+    ],
   },
 }

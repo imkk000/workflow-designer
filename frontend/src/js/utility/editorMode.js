@@ -26,7 +26,7 @@ export const isDeleteNodeMode = () => window.EDITOR_MODE === EDITOR_MODE.DELETE_
 export const getPassData = () => window.PASS_DATA
 
 // NOTE: set pass data to global variable
-export const setPassData = (data) => {
+export const setPassData = data => {
   window.PASS_DATA = data
 }
 
@@ -46,7 +46,7 @@ export const getPassDataBeforeClear = () => {
 export const getEditorMode = () => window.EDITOR_MODE
 
 // NOTE: set editor mode to global variable
-export const setEditorMode = (data) => {
+export const setEditorMode = data => {
   window.EDITOR_MODE = data
 }
 

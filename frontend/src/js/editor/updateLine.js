@@ -8,7 +8,9 @@ export default ({ node, data }) => {
 
   // NOTE: get node id (this node from event)
   const nodeId = node.attr('id')
-  const { [nodeId]: { lines: linesData } } = nodes
+  const {
+    [nodeId]: { lines: linesData },
+  } = nodes
 
   /* FIXME: incorrect way to access data
             fix later (setGlobal :: utility/editorNode.js) */
@@ -16,19 +18,23 @@ export default ({ node, data }) => {
   nodeData.position = [data.x, data.y]
 
   // NOTE: update line when node moving
-  linesData.map((lineId) => {
-    const { [lineId]: { beginId, endId } } = lines
+  linesData.map(lineId => {
+    const {
+      [lineId]: { beginId, endId },
+    } = lines
     const beginNode = d3.select($(`#${beginId}`).get(0))
     const line = d3.select($(`#${lineId} path`).get(0))
-    const source = (nodeId === beginId) ? nodeData : nodes[beginId]
-    const target = (nodeId === endId) ? nodeData : nodes[endId]
+    const source = nodeId === beginId ? nodeData : nodes[beginId]
+    const target = nodeId === endId ? nodeData : nodes[endId]
     const link = diagonal({ beginId, beginNode })
 
     line
-      .data([{
-        source,
-        target,
-      }])
+      .data([
+        {
+          source,
+          target,
+        },
+      ])
       .attr('d', link)
 
     return true

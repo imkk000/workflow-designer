@@ -1,9 +1,6 @@
 export default ({ beginId, beginNode }) => {
   // NOTE: computed path
-  const {
-    width: widthBeginNode,
-    height: heightBeginNode,
-  } = beginNode.node().getBBox()
+  const { width: widthBeginNode, height: heightBeginNode } = beginNode.node().getBBox()
   const halfHeightBeginNode = heightBeginNode / 2
   const source = window.NODES[beginId]
 
