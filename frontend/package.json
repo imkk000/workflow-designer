@@ -14,7 +14,8 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev": "npx webpack-dev-server --watch --progress --mode=development"
+    "dev": "npx webpack-dev-server --watch --progress --mode=development",
+    "build": "npx webpack --progress --mode=production"
   },
   "dependencies": {
     "axios": "^0.18.0",
