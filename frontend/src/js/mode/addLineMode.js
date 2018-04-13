@@ -10,7 +10,7 @@ import EDITOR_MODE, {
 import generateId from '../utility/generateId'
 import diagonal from '../editor/diagonal'
 import { destroyNodeDrawAreaContextMenu } from '../contextmenu/nodeDrawAreaContextMenu'
-import { checkSelfNode } from '../utility/nodeValidator'
+import nodeValidate from '../utility/nodeValidator'
 
 // NOTE: other modules can cancel ADD_LINE mode
 export const quitAddLineMode = () => {
@@ -40,7 +40,7 @@ function addLineMode() {
   const endId = endNode.attr('id')
 
   // TODO: validate node !!!
-  checkSelfNode({ beginId, endId })
+  if (nodeValidate({ beginId, endId })) return
 
   // NOTE: prepare data for add line
   const link = diagonal({ beginId, beginNode })
