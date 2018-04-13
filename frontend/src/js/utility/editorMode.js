@@ -59,6 +59,13 @@ export const setEditorMode = data => {
 
   // NOTE: show mode after set mode
   showCurrentMode(window.EDITOR_MODE)
+
+  // DEBUG: only
+  if (isNormalMode()) {
+    console.log(getDataFromGlobal('NODES'))
+    console.log(getDataFromGlobal('LINES'))
+    console.log(getDataFromGlobal('GRAPH'))
+  }
 }
 
 // NOTE: add data to global variable
