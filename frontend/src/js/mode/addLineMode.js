@@ -83,6 +83,10 @@ function addLineMode() {
     .attr('startOffset', '50%')
     .text('►')
 
+  // NOTE: add edge to graph data
+  const graph = getDataFromGlobal('GRAPH')
+  graph.addEdge(beginId, endId)
+
   // NOTE: exit ADD_LINE mode
   quitAddLineMode()
 }
