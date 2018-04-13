@@ -1,10 +1,19 @@
 import axios from 'axios'
 import Node from './editor/node'
-import errorDialog from './dialog/errorDialog'
+import { errorDialog } from './editor/dialog'
 import { addDataToGlobal } from './utility/editorMode'
+import { getAppName, getAppTitle, getAppVersion } from './utility/aboutApp'
 
 $(document).contextmenu(event => event.preventDefault())
 $(document).ready(() => {
+  // NOTE: show app information
+  console.log('** APP INFORMATION **')
+  console.log('APP_NAME:', getAppName())
+  console.log('APP_TITLE:', getAppTitle())
+  console.log('APP_VERSION:', getAppVersion())
+  console.log('** APP INFORMATION **')
+  console.log('')
+
   // NOTE: initial global variable project
   addDataToGlobal('EDITOR_MODE', 'NORMAL')
   addDataToGlobal('NODES', {})
