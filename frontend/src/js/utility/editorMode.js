@@ -7,6 +7,7 @@ const EDITOR_MODE = {
   SETTING: 'SETTING',
   ERROR: 'ERROR',
   DELETE_NODE: 'DELETE_NODE',
+  DELETE_LINE: 'DELETE_LINE',
 }
 
 // NOTE: check mode is NORMAL
@@ -29,6 +30,9 @@ export const isErrorMode = () => window.EDITOR_MODE === EDITOR_MODE.ERROR
 
 // NOTE: check mode is DELETE_NODE
 export const isDeleteNodeMode = () => window.EDITOR_MODE === EDITOR_MODE.DELETE_NODE
+
+// NOTE: check mode is DELETE_LINE
+export const isDeleteLineMode = () => window.EDITOR_MODE === EDITOR_MODE.DELETE_LINE
 
 // NOTE: get pass data in global variable
 export const getPassData = () => window.PASS_DATA

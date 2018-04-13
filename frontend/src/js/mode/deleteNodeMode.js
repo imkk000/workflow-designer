@@ -1,6 +1,6 @@
 import EDITOR_MODE, { setEditorMode, getDataFromGlobal, getPassDataBeforeClear } from '../utility/editorMode'
 
-export default function() {
+export default () => {
   // NOTE: get all data for delete node
   const { nodeId, node } = getPassDataBeforeClear()
   const nodes = getDataFromGlobal('NODES')
