@@ -1,6 +1,6 @@
 import axios from 'axios'
 import Node from './editor/node'
-import errorDialog from './dialog/errorDialog'
+import { errorDialog } from './editor/dialog'
 import { addDataToGlobal } from './utility/editorMode'
 import { getAppName, getAppTitle, getAppVersion } from './utility/aboutApp'
 
