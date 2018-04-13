@@ -1,6 +1,6 @@
 import generateId from '../utility/generateId'
 import { getDrawArea } from '../utility/getArea'
-import { isAddLineMode, getDataFromGlobal } from '../utility/editorMode'
+import { isAddLineMode, getDataFromGlobal, isNormalMode } from '../utility/editorMode'
 import updateLine from './updateLine'
 import addLineMode from '../mode/addLineMode'
 
@@ -84,18 +84,21 @@ export default class {
   }
 
   handleNodeGroupDragging(data) {
-    // NOTE: Calculate coordinate
-    data.x += d3.event.dx
-    data.y += d3.event.dy
+    // NOTE: on drag active on NORMAL mode
+    if (isNormalMode()) {
+      // NOTE: Calculate coordinate
+      data.x += d3.event.dx
+      data.y += d3.event.dy
 
-    // DEBUG: only
-    const node = d3.select(this)
+      // DEBUG: only
+      const node = d3.select(this)
 
-    // NOTE: set transform from [x, y]
-    node.attr('transform', `translate(${data.x}, ${data.y})`)
+      // NOTE: set transform from [x, y]
+      node.attr('transform', `translate(${data.x}, ${data.y})`)
 
-    // NOTE: update line
-    updateLine({ node, data })
+      // NOTE: update line
+      updateLine({ node, data })
+    }
   }
 
   handleNodeGroupClick() {
