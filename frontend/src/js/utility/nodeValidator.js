@@ -1,10 +1,12 @@
-import errorDialog from '../dialog/errorDialog'
+import { errorDialog } from '../editor/dialog'
 
 const isSelfNode = ({ beginId, endId }) => beginId === endId
-const notSelfNode = nodesId => !isSelfNode(nodesId)
 
 export const checkSelfNode = nodesId => {
-  if (isSelfNode(nodesId)) errorDialog('Error!')
+  const result = isSelfNode(nodesId)
+
+  if (result) errorDialog("Can't select")
+  return result
 }
 
 export default isSelfNode
