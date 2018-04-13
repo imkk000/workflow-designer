@@ -64,7 +64,7 @@ export const setEditorMode = data => {
   if (isNormalMode()) {
     console.log(getDataFromGlobal('NODES'))
     console.log(getDataFromGlobal('LINES'))
-    console.log(getDataFromGlobal('GRAPH'))
+    console.log(getDataFromGlobal('GRAPH').topologicalSort())
   }
 }
 
