@@ -25,6 +25,9 @@ export const quitAddLineMode = () => {
     $('g.node').contextMenu(true)
     destroyNodeDrawAreaContextMenu()
 
+    // NOTE: reset all node after quit add line mode
+    d3.selectAll('g.node').style('cursor', 'move')
+
     // NOTE: reset mode to NORMAL
     setEditorMode(EDITOR_MODE.NORMAL)
   }
