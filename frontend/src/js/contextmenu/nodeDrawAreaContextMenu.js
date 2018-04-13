@@ -1,5 +1,6 @@
 import { isAddLineMode } from '../utility/editorMode'
 import { quitAddLineMode } from '../mode/addLineMode'
+import { setContextMenuTitle } from './contextMenuTitle'
 
 const selector = '.diagram-drawing'
 const className = 'context-menu-add-line'
@@ -10,7 +11,7 @@ export const destroyNodeDrawAreaContextMenu = () => {
 
 const items = {
   CANCEL: {
-    name: 'Exit ADD_LINE Mode',
+    name: 'Exit Mode',
     icon: 'fa-close',
   },
 }
@@ -21,12 +22,18 @@ function callback() {
   destroyNodeDrawAreaContextMenu()
 }
 
+const show = () => {
+  // NOTE: set title before context menu show
+  setContextMenuTitle('EDITOR_MODE = ADD_LINE')
+}
+
 export default () => {
   $.contextMenu({
     selector,
     className,
     callback,
     items,
+    events: { show },
     trigger: 'right',
   })
 }

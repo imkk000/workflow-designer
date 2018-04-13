@@ -1,5 +1,6 @@
 import EDITOR_MODE, { setEditorMode, setPassData } from '../utility/editorMode'
 import nodeDrawAreaContextMenu from './nodeDrawAreaContextMenu'
+import { setContextMenuTitle } from './contextMenuTitle'
 
 const selector = 'g.node'
 const className = 'context-menu-node'
@@ -46,7 +47,6 @@ function callback(key) {
       break
     case 'SETTING':
       setEditorMode(EDITOR_MODE.SETTING)
-
       break
     case 'DELETE_NODE':
       setEditorMode(EDITOR_MODE.DELETE_NODE)
@@ -58,11 +58,10 @@ function callback(key) {
 
 function show() {
   const nodeId = this.attr('id')
-  const attrName = 'context-menu-node-title-content'
   const nodeTitleContent = `NODE_ID = ${nodeId}`
 
   // NOTE: set node context menu title before show
-  $(`.${className}`).attr(attrName, nodeTitleContent)
+  setContextMenuTitle(nodeTitleContent)
 }
 
 export default () => {
