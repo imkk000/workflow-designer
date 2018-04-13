@@ -2,11 +2,15 @@ import { errorDialog } from '../editor/dialog'
 
 const isSelfNode = ({ beginId, endId }) => beginId === endId
 
-export const checkSelfNode = nodesId => {
-  const result = isSelfNode(nodesId)
-
-  if (result) errorDialog("Can't select")
-  return result
+const showErrorDialog = () => {
+  errorDialog('You can not select this node, please try again.')
+  return true
 }
 
-export default isSelfNode
+export default nodes => {
+  const result = isSelfNode(nodes)
+  if (result) return showErrorDialog()
+
+  // NOTE: this connection is ok
+  return false
+}
