@@ -2,6 +2,16 @@
 
 ![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)
 
+## Browser Support
+
+> Bootstrap 4
+
+[![Bootstrap 4 Test Status](https://saucelabs.com/browser-matrix/bootstrap.svg)](https://saucelabs.com/u/bootstrap)
+
+> jQuery-contextMenu
+
+[![jQuery ContextMenu Test Status](https://saucelabs.com/browser-matrix/bbrala-contextmenu.svg)](https://saucelabs.com/u/bbrala-contextmenu)
+
 ## Contributions
 
 1. Mr. Nattakit Boonyang
