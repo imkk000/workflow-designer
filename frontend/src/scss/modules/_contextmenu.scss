@@ -1,4 +1,24 @@
+// NOTE: custom jquery contextmenu
+
 .context-menu-list {
+  font-size: 0.9em;
+  font-weight: bold;
+
+  :first-child {
+    margin-top: 20px;
+  }
+}
+
+.context-menu-list:before {
+  content: attr(context-menu-title-content);
+  background: lightgray;
+  display: block;
   font-size: $contextmenu-font-size;
   font-weight: bold;
+  left: 0;
+  padding: 1px;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
 }
