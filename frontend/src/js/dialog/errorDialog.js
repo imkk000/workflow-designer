@@ -1,6 +1,6 @@
 const DOM_ID = 'error-dialog'
 
-const createDom = ({ text }) => {
+const createDom = text => {
   const content = $('<p></p>').text(text)
 
   $('<div></div>')
@@ -9,8 +9,8 @@ const createDom = ({ text }) => {
     .append(content)
 }
 
-export default options => {
-  createDom(options)
+export default text => {
+  createDom(text)
 
   $(`#${DOM_ID}`).dialog({
     title: 'Error Dialog',
