@@ -1,6 +1,7 @@
 import EDITOR_MODE, { setEditorMode, setPassData } from '../utility/editorMode'
 import nodeDrawAreaContextMenu from './nodeDrawAreaContextMenu'
 import { setContextMenuTitle } from './contextMenuTitle'
+import deleteNodeMode from '../mode/deleteNodeMode'
 
 const selector = 'g.node'
 const className = 'context-menu-node'
@@ -29,30 +30,30 @@ const items = {
 function callback(key) {
   const node = d3.select(this.get(0))
   const nodeBox = node.select('.node-box')
+  const nodeId = node.attr('id')
 
-  switch (key) {
-    case 'ADD_LINE':
-      setEditorMode(EDITOR_MODE.ADD_LINE)
-      // NOTE: when active box
-      setPassData({
-        node,
-        beginId: node.attr('id'),
-        defaultStroke: nodeBox.attr('stroke'),
-      })
-      nodeBox.attr('stroke', 'pink')
+  if (key === EDITOR_MODE.ADD_LINE) {
+    setEditorMode(EDITOR_MODE.ADD_LINE)
+    // NOTE: when active box
+    setPassData({
+      node,
+      beginId: nodeId,
+      defaultStroke: nodeBox.attr('stroke'),
+    })
+    nodeBox.attr('stroke', 'pink')
 
-      // NOTE: toggle context menu
-      $('g.node').contextMenu(false)
-      nodeDrawAreaContextMenu()
-      break
-    case 'SETTING':
-      setEditorMode(EDITOR_MODE.SETTING)
-      break
-    case 'DELETE_NODE':
-      setEditorMode(EDITOR_MODE.DELETE_NODE)
-
-      break
-    default:
+    // NOTE: toggle context menu
+    $('g.node').contextMenu(false)
+    nodeDrawAreaContextMenu()
+  } else if (key === EDITOR_MODE.SETTING) {
+    setEditorMode(EDITOR_MODE.SETTING)
+  } else if (key === EDITOR_MODE.DELETE_NODE) {
+    setEditorMode(EDITOR_MODE.DELETE_NODE)
+    setPassData({
+      nodeId,
+      node,
+    })
+    deleteNodeMode()
   }
 }
 
