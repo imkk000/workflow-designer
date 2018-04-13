@@ -1,4 +1,5 @@
 import axios from 'axios'
+import GraphDataStructure from 'graph-data-structure'
 import Node from './editor/node'
 import { errorDialog } from './editor/dialog'
 import { addDataToGlobal } from './utility/editorMode'
@@ -18,6 +19,7 @@ $(document).ready(() => {
   addDataToGlobal('EDITOR_MODE', 'NORMAL')
   addDataToGlobal('NODES', {})
   addDataToGlobal('LINES', {})
+  addDataToGlobal('GRAPH', new GraphDataStructure())
 
   // NOTE: create new svg, root area
   const svg = d3.select('svg.diagram-drawing')

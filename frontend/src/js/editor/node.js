@@ -67,6 +67,10 @@ export default class {
       .attr('height', textHeight + rectHeightOffset)
       .attr('fill', 'white')
 
+    // NOTE: add node to graph data
+    const graph = getDataFromGlobal('GRAPH')
+    graph.addNode(id)
+
     this.loadEvent({
       nodeGroup,
       nodeLabel,
