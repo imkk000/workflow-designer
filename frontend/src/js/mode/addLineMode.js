@@ -10,6 +10,7 @@ import EDITOR_MODE, {
 import generateId from '../utility/generateId'
 import diagonal from '../editor/diagonal'
 import { destroyNodeDrawAreaContextMenu } from '../contextmenu/nodeDrawAreaContextMenu'
+import { checkSelfNode } from '../utility/nodeValidator'
 
 // NOTE: other modules can cancel ADD_LINE mode
 export const quitAddLineMode = () => {
@@ -33,12 +34,15 @@ function addLineMode() {
   const drawArea = getDrawArea()
   const nodes = getDataFromGlobal('NODES')
 
-  // TODO: validate node !!!
-
-  // NOTE: prepare data for add line
+  // NOTE: prepare data for validate
   const { beginId, node: beginNode } = getPassData()
   const endNode = d3.select(this)
   const endId = endNode.attr('id')
+
+  // TODO: validate node !!!
+  checkSelfNode({ beginId, endId })
+
+  // NOTE: prepare data for add line
   const link = diagonal({ beginId, beginNode })
   const lineId = generateId()
   const { [beginId]: source } = nodes
