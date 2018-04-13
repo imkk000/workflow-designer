@@ -8,25 +8,3 @@
     user-select: none;
   }
 }
-
-.context-menu-node {
-  font-size: 0.9em;
-
-  :first-child {
-    margin-top: 20px;
-  }
-}
-
-.context-menu-node:before {
-  content: attr(context-menu-node-title-content);
-  background: lightgray;
-  display: block;
-  font-size: $contextmenu-font-size;
-  font-weight: bold;
-  left: 0;
-  padding: 1px;
-  position: absolute;
-  right: 0;
-  text-align: center;
-  top: 0;
-}
