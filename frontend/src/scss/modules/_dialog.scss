@@ -4,14 +4,15 @@
   display: none;
 }
 
-label,
-input {
-  display:block;
+.ui-dialog-title {
+  text-align: center;
 }
 
+label.label,
 input.text,
 input.upload-file {
-  margin-bottom:12px;
+  display:block;
   width: 100%;
   padding: .4em;
+  margin-bottom:12px;
 }
