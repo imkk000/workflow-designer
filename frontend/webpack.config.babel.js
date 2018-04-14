@@ -1,4 +1,5 @@
 import path from 'path'
+import cors from 'cors'
 import { ProvidePlugin, HotModuleReplacementPlugin } from 'webpack'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 
@@ -106,6 +107,9 @@ const devConfig = {
     hot: true,
     https: false,
     before: app => {
+      // NOTE: enable cors
+      app.use(cors())
+
       app.get('/api/nodes', (req, res) => {
         res.send([
           {

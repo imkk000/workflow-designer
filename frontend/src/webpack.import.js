@@ -4,6 +4,7 @@ import 'bootstrap'
 import 'popper.js'
 import 'jquery-ui-bundle'
 import 'jquery-contextmenu'
+import 'dm-file-uploader'
 import './js/app'
 import './js/contextmenu'
 
