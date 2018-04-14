@@ -1,4 +1,4 @@
-import EDITOR_MODE, { setEditorMode, setPassData, getDataFromGlobal } from '../utility/editorMode'
+import EDITOR_MODE, { setEditorMode, setPassData } from '../utility/editorMode'
 import nodeDrawAreaContextMenu from './nodeDrawAreaContextMenu'
 import { setContextMenuTitle } from './contextMenuTitle'
 import deleteNodeMode from '../mode/deleteNodeMode'
@@ -34,6 +34,7 @@ function callback(key) {
 
   if (key === EDITOR_MODE.ADD_LINE) {
     setEditorMode(EDITOR_MODE.ADD_LINE)
+
     // NOTE: set all nodes before add line
     d3.selectAll('g.node').style('cursor', 'pointer')
 
