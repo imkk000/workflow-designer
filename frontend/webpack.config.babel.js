@@ -26,20 +26,28 @@ const prodConfig = {
   ],
   module: {
     rules: [
+      // {
+      //   enforce: 'pre',
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   loader: ['babel-loader', 'eslint-loader'],
+      // },
       {
-        enforce: 'pre',
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: ['babel-loader', 'eslint-loader'],
-      },
-      {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
             presets: ['es2015', 'stage-0'],
-            plugins: ['babel-plugin-transform-class-properties'],
+            plugins: [
+              'babel-plugin-transform-class-properties',
+              [
+                'babel-plugin-transform-react-jsx',
+                {
+                  pragma: 'dom',
+                },
+              ],
+            ],
           },
         },
       },
@@ -83,7 +91,7 @@ const prodConfig = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.scss'],
+    extensions: ['.js', '.jsx', '.scss'],
   },
 }
 
