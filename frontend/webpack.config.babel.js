@@ -119,7 +119,7 @@ const devConfig = {
             type: 'load_image',
             fill: 'red',
             stroke: 'black',
-            limitInput: 1,
+            limitInput: 0,
             files: {
               fileId: '',
               fileName: '',
