@@ -72,15 +72,9 @@ export const setEditorMode = data => {
   }
 }
 
-// NOTE: add data to global variable
-export const addDataToGlobal = (name, value) => {
+// NOTE: set data to global variable
+export const setDataToGlobal = (name, value) => {
   window[name] = value
-}
-
-// NOTE: set data if exists data
-export const setDataInGlobal = (nameOfData, name, value) => {
-  // NOTE: careful - nameOfData not exists
-  window[nameOfData][name] = value
 }
 
 // NOTE: get data from global variable

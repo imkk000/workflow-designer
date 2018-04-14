@@ -1,7 +1,6 @@
 import { getDrawArea } from '../utility/getArea'
 import EDITOR_MODE, {
   setEditorMode,
-  setDataInGlobal,
   getDataFromGlobal,
   getPassData,
   getPassDataBeforeClear,
@@ -56,10 +55,8 @@ function addLineMode() {
   target.lines.push(lineId)
 
   // NOTE: add line to global LINES
-  setDataInGlobal('LINES', lineId, {
-    beginId,
-    endId,
-  })
+  const lines = getDataFromGlobal('LINES')
+  lines[lineId] = { beginId, endId }
 
   // NOTE: render line group to draw-area-group
   const lineGroup = drawArea
