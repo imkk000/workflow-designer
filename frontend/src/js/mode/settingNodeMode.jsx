@@ -31,10 +31,11 @@ export default () => {
   )
   showDialog(settingType, content)
   $('input[name=upload-file]').dmUploader({
+    // DEBUG: url upload file server
     url: '//127.0.0.1:9999/upload',
-    dnd: false,
     multiple: false,
-    maxFileSize: 10485760, // NOTE: file size limit 10 mib
+    // NOTE: file size limit 10 mib
+    maxFileSize: 10485760,
     allowedTypes: 'image/*',
     extFilter: ['jpg', 'jpeg', 'png'],
     onInit() {
@@ -44,8 +45,8 @@ export default () => {
       // errorDialog(status)
       console.log(status, errorThrown)
     },
-    onUploadComplete() {
-      console.log('upload ok!')
+    onUploadSuccess(id, data) {
+      console.log(data)
     },
   })
 }
