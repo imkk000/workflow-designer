@@ -1,6 +1,6 @@
 import dom from 'jsx-render'
-import { showDialog, errorDialog } from '../editor/dialog'
-import { getPassDataBeforeClear } from '../utility/editorMode'
+import { showDialog, errorDialog } from '../../editor/dialog'
+import { getPassDataBeforeClear } from '../../utility/editorMode'
 
 export default () => {
   const { nodeId, node } = getPassDataBeforeClear()
@@ -33,6 +33,7 @@ export default () => {
   $('input[name=upload-file]').dmUploader({
     // DEBUG: url upload file server
     url: '//127.0.0.1:9999/upload',
+    // auto: false,
     multiple: false,
     // NOTE: file size limit 10 mib
     maxFileSize: 10485760,
@@ -41,9 +42,9 @@ export default () => {
     onInit() {
       console.log('Callback: Plugin initialized')
     },
-    onUploadError(id, xhr, status, errorThrown) {
-      // errorDialog(status)
+    onFileTypeError(id, xhr, status, errorThrown) {
       console.log(status, errorThrown)
+      errorDialog(errorThrown)
     },
     onUploadSuccess(id, data) {
       console.log(data)
