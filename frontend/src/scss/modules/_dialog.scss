@@ -6,6 +6,25 @@
 
 .ui-dialog-title {
   text-align: center;
+  width: 100% !important;
+}
+
+.error-dialog {
+  .ui-widget-header {
+    background: orange;
+  }
+}
+
+.information-dialog {
+  .ui-widget-header {
+    background: lightgreen;
+  }
+}
+
+.confirm-dialog {
+  .ui-widget-header {
+    background: lightblue;
+  }
 }
 
 label.label,
