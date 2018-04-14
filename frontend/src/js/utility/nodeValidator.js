@@ -1,9 +1,9 @@
 import { errorDialog } from '../editor/dialog'
 import { getDataFromGlobal } from './editorMode'
 
-const nodes = getDataFromGlobal('NODES')
-const lines = getDataFromGlobal('LINES')
-const graph = getDataFromGlobal('GRAPH')
+let nodes
+let lines
+let graph
 
 const isSelfNode = ({ beginId, endId }) => beginId === endId
 
@@ -15,9 +15,15 @@ const showErrorDialog = () => {
 }
 
 export default nodeData => {
-  console.log(nodeData[nodeData.beginId].limitInput === graph.indegree(nodeData.endId))
-  if (isSelfNode(nodeData)) return showErrorDialog()
-  if (isLimitInput(nodeData)) return showErrorDialog()
+  // NOTE: first, get all data from global
+  nodes = getDataFromGlobal('NODES')
+  lines = getDataFromGlobal('LINES')
+  graph = getDataFromGlobal('GRAPH')
+
+  const validateFunctionList = [isSelfNode, isLimitInput]
+
+  for (let i = 0; i < validateFunctionList.length; i += 1)
+    if (validateFunctionList[i](nodeData)) return showErrorDialog()
 
   // NOTE: this connection is ok
   return false
