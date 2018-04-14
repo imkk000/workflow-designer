@@ -1,10 +1,15 @@
 import dom from 'jsx-render'
 import { isEmpty } from 'validator'
 import { showDialog, errorDialog, confirmDialog } from '../../editor/dialog'
-import { getPassDataBeforeClear, getDataFromGlobal } from '../../utility/editorMode'
+import EDITOR_MODE, { setEditorMode, getPassDataBeforeClear, getDataFromGlobal } from '../../utility/editorMode'
 
 let uploadId = null
 let nodes = null
+
+const quitSettingNodeMode = () => {
+  uploadId = null
+  setEditorMode(EDITOR_MODE.NORMAL)
+}
 
 const startUploadFile = () => {
   if (uploadId) {
@@ -37,6 +42,7 @@ export default () => {
       }
     },
     Cancel() {
+      quitSettingNodeMode()
       $(this).dialog('close')
     },
   }
@@ -94,12 +100,14 @@ export default () => {
       errorDialog('File upload error, please try again')
     },
     onUploadSuccess(id, data) {
-      console.log(data)
       nodes[nodeId].files = data
 
       // NOTE: destroy uploader and close dialog
       $(this).dmUploader('destroy')
       $(`#${dialogId}`).dialog('close')
+    },
+    onUploadComplete() {
+      quitSettingNodeMode()
     },
   })
 }
