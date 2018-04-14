@@ -12,7 +12,7 @@ build/Release
 node_modules/
 
 # Temp directory
-Temp/
+temp/
 
 # Dist directory
 dist/
