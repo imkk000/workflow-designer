@@ -2,14 +2,24 @@ const DIALOG = {
   ERROR: {
     id: 'error-dialog',
     title: 'Error Dialog',
+    buttons: [],
   },
   INFO: {
     id: 'infomation-dialog',
     title: 'Infomation Dialog',
+    buttons: [],
   },
-  LOG: {
-    id: 'log-dialog',
-    title: 'Log Dialog',
+  CONFIRM: {
+    id: 'confirm-dialog',
+    title: 'Confirm Dialog',
+    buttons: [
+      {
+        text: 'Cancel',
+        click() {
+          $(this).dialog('close')
+        },
+      },
+    ],
   },
 }
 
@@ -22,28 +32,13 @@ const createDom = (id, text) => {
     .append(content)
 }
 
-const buttons = [
-  {
-    text: 'Ok',
-    click() {
-      $(this).dialog('close')
-    },
-  },
-  {
-    text: 'Cancel',
-    click() {
-      $(this).dialog('close')
-    },
-  },
-]
-
 function close() {
   // NOTE: remove DOM when dialog closed
   $(this).dialog('destroy')
   $(this).remove()
 }
 
-const showDialog = ({ id, title }, text) => {
+const showDialog = ({ id, title, buttons }, text) => {
   createDom(id, text)
 
   $(`#${id}`).dialog({
@@ -53,7 +48,15 @@ const showDialog = ({ id, title }, text) => {
     modal: true,
     resizable: false,
     width: 450,
-    buttons,
+    buttons: [
+      {
+        text: 'Ok',
+        click() {
+          $(this).dialog('close')
+        },
+      },
+      ...buttons,
+    ],
     close,
   })
 }
@@ -67,5 +70,5 @@ export const infoDialog = text => {
 }
 
 export const logDialog = text => {
-  showDialog(DIALOG.LOG, text)
+  showDialog(DIALOG.CONFIRM, text)
 }
