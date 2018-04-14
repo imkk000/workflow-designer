@@ -119,6 +119,10 @@ const devConfig = {
             fill: 'red',
             stroke: 'black',
             limitInput: 1,
+            files: {
+              fileId: '',
+              fileName: '',
+            },
           },
           {
             x: 200,
@@ -127,6 +131,10 @@ const devConfig = {
             fill: 'orange',
             stroke: 'black',
             limitInput: 1,
+            files: {
+              fileId: '',
+              fileName: '',
+            },
           },
           {
             x: 300,
@@ -135,6 +143,10 @@ const devConfig = {
             fill: 'cyan',
             stroke: 'black',
             limitInput: 1,
+            files: {
+              fileId: '',
+              fileName: '',
+            },
           },
           {
             x: 150,
@@ -143,6 +155,10 @@ const devConfig = {
             fill: '#9BFF00',
             stroke: 'black',
             limitInput: 1,
+            files: {
+              fileId: '',
+              fileName: '',
+            },
           },
         ])
       })
