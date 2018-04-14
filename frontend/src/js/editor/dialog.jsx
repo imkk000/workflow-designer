@@ -1,38 +1,13 @@
 import dom from 'jsx-render'
 import xdom from '../utility/xdom'
 
-const DIALOG = {
-  ERROR: {
-    id: 'error-dialog',
-    title: 'Error Dialog',
-    buttons: [],
-  },
-  INFO: {
-    id: 'infomation-dialog',
-    title: 'Infomation Dialog',
-    buttons: [],
-  },
-  CONFIRM: {
-    id: 'confirm-dialog',
-    title: 'Confirm Dialog',
-    buttons: [
-      {
-        text: 'Cancel',
-        click() {
-          $(this).dialog('close')
-        },
-      },
-    ],
-  },
-}
-
 function close() {
   // NOTE: remove DOM when dialog closed
   $(this).dialog('destroy')
   $(this).remove()
 }
 
-export const showDialog = ({ id, title, buttons, custom }, content) => {
+export const showDialog = ({ id, title, buttons, content, custom }) => {
   // NOTE: append dom to body
   const defaultContent = (
     <div id={id}>
@@ -42,38 +17,65 @@ export const showDialog = ({ id, title, buttons, custom }, content) => {
   const newContent = custom ? content : defaultContent
   xdom('body', newContent)
 
-  const newButtons = custom
-    ? buttons
-    : [
-        {
-          text: 'Ok',
-          click() {
-            $(this).dialog('close')
-          },
-        },
-        ...buttons,
-      ]
+  const dialogClass = `no-close ${id}`
 
   $(`#${id}`).dialog({
     title: title.toUpperCase(),
-    dialogClass: 'no-close',
+    dialogClass,
     draggable: false,
     modal: true,
     resizable: false,
     width: 450,
-    buttons: newButtons,
+    buttons,
     close,
   })
 }
 
-export const errorDialog = text => {
-  showDialog(DIALOG.ERROR, text)
+export const errorDialog = content => {
+  const id = 'error-dialog'
+  const title = 'Error Dialog'
+  const buttons = {
+    Close() {
+      $(this).dialog('close')
+    },
+  }
+  showDialog({
+    id,
+    title,
+    buttons,
+    content,
+  })
 }
 
-export const infoDialog = text => {
-  showDialog(DIALOG.INFO, text)
+export const confirmDialog = (content, OK) => {
+  const id = 'confirm-dialog'
+  const title = 'Confirm Dialog'
+  const buttons = {
+    OK,
+    Cancel() {
+      $(this).dialog('close')
+    },
+  }
+  showDialog({
+    id,
+    title,
+    buttons,
+    content,
+  })
 }
 
-export const confirmDialog = text => {
-  showDialog(DIALOG.CONFIRM, text)
+export const informationDialog = content => {
+  const id = 'information-dialog'
+  const title = 'Infomation Dialog'
+  const buttons = {
+    Close() {
+      $(this).dialog('close')
+    },
+  }
+  showDialog({
+    id,
+    title,
+    buttons,
+    content,
+  })
 }
