@@ -2,7 +2,7 @@ import axios from 'axios'
 import GraphDataStructure from 'graph-data-structure'
 import Node from './editor/node'
 import { errorDialog } from './editor/dialog'
-import EDITOR_MODE, { setEditorMode, setPassData, setDataToGlobal } from './utility/editorMode'
+import EDITOR_MODE, { setEditorMode, setPassData, setDataToGlobal, getDataFromGlobal } from './utility/editorMode'
 import { getAppName, getAppTitle, getAppVersion, getAppAuthor } from './utility/aboutApp'
 import settingNodeMode from './mode/settingNodeMode'
 
@@ -42,10 +42,11 @@ $(document).ready(() => {
       })
 
       // DEBUG: open setting dialog
+      const nodes = getDataFromGlobal('NODES')
+      const nodeId = Object.keys(nodes)[0]
       setEditorMode(EDITOR_MODE.SETTING)
       setPassData({
-        nodeId: '99999999999999',
-        node: null,
+        nodeId,
       })
       settingNodeMode()
     })
