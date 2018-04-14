@@ -8,7 +8,8 @@ module.exports = Object.assign(
     },
     globals: {
       d3: true,
-    },
+      dom: true,
+    }
   },
   require('../.eslintrc')
 )
