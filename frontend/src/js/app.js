@@ -34,12 +34,19 @@ $(document).ready(() => {
   root.append('g').attr('class', 'draw-area-group')
 
   // NOTE: query nodes description
+  const nodesBuffer = []
   axios
     .get('//127.0.0.1:3000/api/nodes')
     .then(({ data }) => {
       data.forEach(element => {
         new Node(element)
+        nodesBuffer.push(element)
       })
+
+      // DEBUG: add node
+      new Node(nodesBuffer[0])
+      new Node(nodesBuffer[1])
+      new Node(nodesBuffer[3])
 
       // DEBUG: open setting dialog
       const nodes = getDataFromGlobal('NODES')
