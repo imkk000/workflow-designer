@@ -1,5 +1,5 @@
 import dom from 'jsx-render'
-import { showDialog } from '../editor/dialog'
+import { showDialog, errorDialog } from '../editor/dialog'
 import { getPassDataBeforeClear } from '../utility/editorMode'
 
 export default () => {
@@ -9,19 +9,43 @@ export default () => {
     custom: true,
     id: 'setting-dialog',
     title: `Node Setting: id = ${nodeId}`,
-    button: [],
+    buttons: [
+      {
+        text: 'Cancel',
+        click() {
+          $(this).dialog('close')
+        },
+      },
+    ],
   }
 
   const content = (
     <div id={settingType.id}>
-      <form>
+      <form method="post">
         <fieldset>
-          <label for="name">Upload Image:</label>
+          <label for="upload-file">Upload Image:</label>
           <input type="file" name="upload-file" class="upload-file ui-widget-content ui-corner-all" />
-          {/* <input type="submit" tabindex="-1" style="position:absolute; top:-1000px" /> */}
         </fieldset>
       </form>
     </div>
   )
   showDialog(settingType, content)
+  $('input[name=upload-file]').dmUploader({
+    url: '//127.0.0.1:9999/upload',
+    dnd: false,
+    multiple: false,
+    maxFileSize: 10485760, // NOTE: file size limit 10 mib
+    allowedTypes: 'image/*',
+    extFilter: ['jpg', 'jpeg', 'png'],
+    onInit() {
+      console.log('Callback: Plugin initialized')
+    },
+    onUploadError(id, xhr, status, errorThrown) {
+      // errorDialog(status)
+      console.log(status, errorThrown)
+    },
+    onUploadComplete() {
+      console.log('upload ok!')
+    },
+  })
 }
