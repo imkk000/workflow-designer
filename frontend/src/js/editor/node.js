@@ -16,7 +16,7 @@ export default class {
     this.render(options)
   }
 
-  render = ({ id = generateId(), x, y, label, fill, stroke }) => {
+  render = ({ id = generateId(), x, y, limitInput, label, fill, stroke }) => {
     const drawArea = getDrawArea()
     const nodes = getDataFromGlobal('NODES')
 
@@ -26,7 +26,7 @@ export default class {
       id,
       position: [x, y],
       lines: [],
-      limitInput: 1,
+      limitInput,
     }
 
     const nodeGroup = drawArea
