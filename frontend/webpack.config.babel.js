@@ -136,7 +136,8 @@ const devConfig = {
       })
 
       app.get('/', (req, res) => {
-        res.render(path.join(__dirname, 'views', 'index.pug'))
+        res.set('Content-Type', 'text/html')
+        res.send('<!DOCTYPE html><html lang="en"><body><script src="/dist/bundle.js"></script></body></html>')
       })
     },
   },
