@@ -3,18 +3,21 @@ import GraphDataStructure from 'graph-data-structure'
 import Node from './editor/node'
 import { errorDialog } from './editor/dialog'
 import { setDataToGlobal } from './utility/editorMode'
-import { getAppName, getAppTitle, getAppVersion } from './utility/aboutApp'
+import { getAppName, getAppTitle, getAppVersion, getAppAuthor } from './utility/aboutApp'
 
+// NOTE: generate tag
+$(document.head)
+  .append('<meta charset="utf-8">')
+  .append('<meta name="viewport" content="width=device-width" initial-scale="1.0">')
+  .append('<meta http-equiv="X-UA-Compatible" content="ie=edge">')
+  .append(`<meta name="description" content="${getAppTitle()}">`)
+  .append(`<meta name="author" content="${getAppAuthor()}">`)
+  .append(`<title>${getAppName()} - v${getAppVersion()} (Development Mode)</title>`)
+$(document.body).append('<svg class="diagram-drawing"></svg>')
+
+// NOTE: disable right click contextmenu
 $(document).contextmenu(event => event.preventDefault())
 $(document).ready(() => {
-  // NOTE: show app information
-  console.log('** APP INFORMATION **')
-  console.log('APP_NAME:', getAppName())
-  console.log('APP_TITLE:', getAppTitle())
-  console.log('APP_VERSION:', getAppVersion())
-  console.log('** APP INFORMATION **')
-  console.log('')
-
   // NOTE: initial global variable project
   setDataToGlobal('EDITOR_MODE', 'NORMAL')
   setDataToGlobal('NODES', {})
@@ -29,6 +32,7 @@ $(document).ready(() => {
   root.append('g').attr('class', 'temp-area-group')
   root.append('g').attr('class', 'draw-area-group')
 
+  // NOTE: query nodes description
   axios
     .get('//127.0.0.1:3000/api/nodes')
     .then(({ data }) => {
