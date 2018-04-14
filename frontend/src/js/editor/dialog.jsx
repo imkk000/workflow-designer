@@ -7,6 +7,13 @@ function close() {
   $(this).remove()
 }
 
+function open() {
+  // const id = $(this).attr('id')
+  setTimeout(() => {
+    if ($(document).has(this).length > 0) $(this).dialog('close')
+  }, 5000)
+}
+
 export const showDialog = ({ id, title, buttons, content, custom }) => {
   // NOTE: append dom to body
   const defaultContent = (
@@ -15,6 +22,7 @@ export const showDialog = ({ id, title, buttons, content, custom }) => {
     </div>
   )
   const newContent = custom ? content : defaultContent
+  const newOpen = custom ? null : open
   xdom('body', newContent)
 
   const dialogClass = `no-close ${id}`
@@ -27,6 +35,7 @@ export const showDialog = ({ id, title, buttons, content, custom }) => {
     resizable: false,
     width: 450,
     buttons,
+    open: newOpen,
     close,
   })
 }
