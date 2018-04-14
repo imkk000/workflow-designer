@@ -27,6 +27,7 @@ export default class {
       position: [x, y],
       lines: [],
       limitInput,
+      label,
     }
 
     const nodeGroup = drawArea
