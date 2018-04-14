@@ -3,3 +3,15 @@
 .no-close .ui-dialog-titlebar-close {
   display: none;
 }
+
+label,
+input {
+  display:block;
+}
+
+input.text,
+input.upload-file {
+  margin-bottom:12px;
+  width: 100%;
+  padding: .4em;
+}
