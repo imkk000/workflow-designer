@@ -26,15 +26,6 @@ const DIALOG = {
   },
 }
 
-const createDom = (id, text) => {
-  xdom(
-    'body',
-    <div id={id}>
-      <p>{text}</p>
-    </div>
-  )
-}
-
 function close() {
   // NOTE: remove DOM when dialog closed
   $(this).dialog('destroy')
@@ -42,7 +33,13 @@ function close() {
 }
 
 const showDialog = ({ id, title, buttons }, text) => {
-  createDom(id, text)
+  // NOTE: append dom to body
+  xdom(
+    'body',
+    <div id={id}>
+      <p>{text}</p>
+    </div>
+  )
 
   $(`#${id}`).dialog({
     title: title.toUpperCase(),
@@ -72,6 +69,6 @@ export const infoDialog = text => {
   showDialog(DIALOG.INFO, text)
 }
 
-export const logDialog = text => {
+export const confirmDialog = text => {
   showDialog(DIALOG.CONFIRM, text)
 }
