@@ -16,6 +16,7 @@ module.exports = {
     'no-unused-vars': [
       1,
       {
+        varsIgnorePattern: 'dom',
         argsIgnorePattern: 'res|next|^err',
       },
     ],
@@ -48,5 +49,6 @@ module.exports = {
         aspects: ['invalidHref'],
       },
     ],
+    'react/react-in-jsx-scope': 'off'
   },
 }
