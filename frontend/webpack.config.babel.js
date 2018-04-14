@@ -106,6 +106,7 @@ const devConfig = {
             label: 'Load Image',
             fill: 'red',
             stroke: 'black',
+            limitInput: 1,
           },
           {
             x: 200,
@@ -113,6 +114,7 @@ const devConfig = {
             label: 'Rotate',
             fill: 'orange',
             stroke: 'black',
+            limitInput: 1,
           },
           {
             x: 300,
@@ -120,6 +122,7 @@ const devConfig = {
             label: 'Blur',
             fill: 'cyan',
             stroke: 'black',
+            limitInput: 1,
           },
           {
             x: 150,
@@ -127,6 +130,7 @@ const devConfig = {
             label: 'Resize',
             fill: '#9BFF00',
             stroke: 'black',
+            limitInput: 1,
           },
         ])
       })
