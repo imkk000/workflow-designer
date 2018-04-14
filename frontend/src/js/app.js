@@ -2,8 +2,9 @@ import axios from 'axios'
 import GraphDataStructure from 'graph-data-structure'
 import Node from './editor/node'
 import { errorDialog } from './editor/dialog'
-import { setDataToGlobal } from './utility/editorMode'
+import EDITOR_MODE, { setEditorMode, setPassData, setDataToGlobal } from './utility/editorMode'
 import { getAppName, getAppTitle, getAppVersion, getAppAuthor } from './utility/aboutApp'
+import settingNodeMode from './mode/settingNodeMode'
 
 // NOTE: generate tag
 $(document.head)
@@ -39,6 +40,14 @@ $(document).ready(() => {
       data.forEach(element => {
         new Node(element)
       })
+
+      // DEBUG: open setting dialog
+      setEditorMode(EDITOR_MODE.SETTING)
+      setPassData({
+        nodeId: '99999999999999',
+        node: null,
+      })
+      settingNodeMode()
     })
     .catch(error => {
       errorDialog(error.response)
