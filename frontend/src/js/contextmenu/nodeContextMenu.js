@@ -2,6 +2,7 @@ import EDITOR_MODE, { setEditorMode, setPassData } from '../utility/editorMode'
 import nodeDrawAreaContextMenu from './nodeDrawAreaContextMenu'
 import { setContextMenuTitle } from './contextMenuTitle'
 import deleteNodeMode from '../mode/deleteNodeMode'
+import settingNodeMode from '../mode/settingNodeMode'
 
 const selector = 'g.node'
 const className = 'context-menu-node'
@@ -51,6 +52,11 @@ function callback(key) {
     nodeDrawAreaContextMenu()
   } else if (key === EDITOR_MODE.SETTING) {
     setEditorMode(EDITOR_MODE.SETTING)
+    setPassData({
+      nodeId,
+      node,
+    })
+    settingNodeMode()
   } else if (key === EDITOR_MODE.DELETE_NODE) {
     setEditorMode(EDITOR_MODE.DELETE_NODE)
     setPassData({
