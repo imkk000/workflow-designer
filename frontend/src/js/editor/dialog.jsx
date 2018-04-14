@@ -32,14 +32,27 @@ function close() {
   $(this).remove()
 }
 
-const showDialog = ({ id, title, buttons }, text) => {
+export const showDialog = ({ id, title, buttons, custom }, content) => {
   // NOTE: append dom to body
-  xdom(
-    'body',
+  const defaultContent = (
     <div id={id}>
-      <p>{text}</p>
+      <p>{content}</p>
     </div>
   )
+  const newContent = custom ? content : defaultContent
+  xdom('body', newContent)
+
+  const newButtons = custom
+    ? buttons
+    : [
+        {
+          text: 'Ok',
+          click() {
+            $(this).dialog('close')
+          },
+        },
+        ...buttons,
+      ]
 
   $(`#${id}`).dialog({
     title: title.toUpperCase(),
@@ -48,15 +61,7 @@ const showDialog = ({ id, title, buttons }, text) => {
     modal: true,
     resizable: false,
     width: 450,
-    buttons: [
-      {
-        text: 'Ok',
-        click() {
-          $(this).dialog('close')
-        },
-      },
-      ...buttons,
-    ],
+    buttons: newButtons,
     close,
   })
 }
