@@ -1,3 +1,6 @@
+import dom from 'jsx-render'
+import xdom from '../utility/xdom'
+
 const DIALOG = {
   ERROR: {
     id: 'error-dialog',
@@ -24,12 +27,12 @@ const DIALOG = {
 }
 
 const createDom = (id, text) => {
-  const content = $('<p></p>').text(text)
-
-  $('<div></div>')
-    .attr('id', id)
-    .appendTo('body')
-    .append(content)
+  xdom(
+    'body',
+    <div id={id}>
+      <p>{text}</p>
+    </div>
+  )
 }
 
 function close() {
