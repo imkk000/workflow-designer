@@ -1,11 +1,10 @@
+import dom from 'jsx-render'
 import axios from 'axios'
 import GraphDataStructure from 'graph-data-structure'
 import Node from './editor/node'
 import { errorDialog } from './editor/dialog'
-import EDITOR_MODE, { setEditorMode, setPassData, setDataToGlobal, getDataFromGlobal } from './utility/editorMode'
+import { setDataToGlobal } from './utility/editorMode'
 import { getAppName, getAppTitle, getAppVersion, getAppAuthor } from './utility/aboutApp'
-import settingNodeMode from './mode/settingNodeMode'
-import dom from 'jsx-render'
 import xdom from './utility/xdom'
 
 // NOTE: generate tag
@@ -14,9 +13,14 @@ xdom('head', <meta name="viewport" content="width=device-width" initial-scale="1
 xdom('head', <meta http-equiv="X-UA-Compatible" content="ie=edge" />)
 xdom('head', <meta name="description" content={getAppTitle()} />)
 xdom('head', <meta name="author" content={getAppAuthor()} />)
-xdom('head', <title>{getAppName()} - v{getAppVersion()} (Development Mode)</title>)
+xdom(
+  'head',
+  <title>
+    {getAppName()} - v{getAppVersion()} (Development Mode)
+  </title>
+)
 
-xdom('body', <svg class="diagram-drawing"></svg>)
+xdom('body', <svg class="diagram-drawing" />)
 
 // NOTE: disable right click contextmenu
 $(document).contextmenu(event => event.preventDefault())
