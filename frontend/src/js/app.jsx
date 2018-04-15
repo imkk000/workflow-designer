@@ -3,25 +3,8 @@ import axios from 'axios'
 import GraphDataStructure from 'graph-data-structure'
 import { errorDialog } from './editor/dialog'
 import { setDataToGlobal, getDataFromGlobal } from './utility/editorMode'
-import { getAppName, getAppTitle, getAppVersion, getAppAuthor } from './utility/aboutApp'
 import xdom from './utility/xdom'
 import attachDragAndDrop from './utility/attachDragAndDrop'
-
-// NOTE: generate tag
-xdom('head', <meta charset="utf-8" />)
-xdom('head', <meta name="viewport" content="width=device-width" initial-scale="1.0" />)
-xdom('head', <meta http-equiv="X-UA-Compatible" content="ie=edge" />)
-xdom('head', <meta name="description" content={getAppTitle()} />)
-xdom('head', <meta name="author" content={getAppAuthor()} />)
-xdom(
-  'head',
-  <title>
-    {getAppName()} - v{getAppVersion()} (Development Mode)
-  </title>
-)
-
-xdom('body', <div id="node-preview" />)
-xdom('body', <svg id="diagram-drawing" />)
 
 // NOTE: disable right click contextmenu
 $(document).contextmenu(event => event.preventDefault())
