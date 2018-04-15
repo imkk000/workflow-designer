@@ -135,8 +135,8 @@ const devConfig = {
             limitInput: 1,
             settings: {
               angle: {
-                label: 'Angle (0 - 359) [degree]',
-                value: 90,
+                label: 'Angle (-359 - 359) [degree]',
+                value: 0,
                 defaultValue: 0,
               },
             },
