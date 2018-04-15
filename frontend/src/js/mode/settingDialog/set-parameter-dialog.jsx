@@ -69,7 +69,6 @@ export default validator => {
           const key = settingsKeysToArray[index]
           const { defaultValue } = settingsValuesToArray[index]
           $(`input[name=${key}]`).val(defaultValue)
-          setting.value = defaultValue
         })
 
         $('#confirm-dialog').dialog('close')
