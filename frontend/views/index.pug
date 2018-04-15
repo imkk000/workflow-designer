@@ -7,6 +7,16 @@ html(lang="en")
     meta(name="author" content=author)
     title !{name} - !{version} (Development Mode)
   body
-    #node-preview
-    svg#diagram-drawing
+    ul.nav.nav-tabs.nav-pills.justify-content-end
+      li.nav-item
+        a.nav-link(href='#') Start
+      li.nav-item
+        a.nav-link(href='#') Previews
+      li.nav-item
+        span.nav-link Mode
+
+    .d-flex
+      #node-preview.d-flex.flex-column.bd-highlight
+      svg#diagram-drawing.d-flex
+
     script(src="/dist/bundle.js")
