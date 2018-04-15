@@ -135,10 +135,9 @@ const devConfig = {
             limitInput: 1,
             settings: {
               angle: {
+                label: 'Angle (0 - 359) [degree]',
                 value: 90,
                 defaultValue: 0,
-                validator: value => value >= 0 && value <= 359,
-                errorText: 'Angle has value between 0 degree to 359 degree',
               },
             },
             files: {
@@ -156,16 +155,14 @@ const devConfig = {
             limitInput: 1,
             settings: {
               sigmaX: {
+                label: 'Sigma X (0 - 100) [integer]',
                 value: 0,
                 defaultValue: 15,
-                validator: value => value >= 0 && value <= 100,
-                errorText: 'sigmaX has value between 0 to 100',
               },
               sigmaY: {
+                label: 'Sigma Y (0 - 100) [integer]',
                 value: 0,
                 defaultValue: 0,
-                validator: value => value >= 0 && value <= 100,
-                errorText: 'sigmaY has value between 0 to 100. if sigmaY is zero, it is set to be equal to sigmaX',
               },
             },
             files: {
@@ -183,16 +180,14 @@ const devConfig = {
             limitInput: 1,
             settings: {
               widthPercent: {
+                label: 'Width (0 - 100) [%]',
                 value: 0,
                 defaultValue: 0,
-                validator: value => value >= 0 && value <= 100,
-                errorText: 'widthPercent has value between 0% to 100%',
               },
               heightPercent: {
+                label: 'Height (0 - 100) [%]',
                 value: 0,
                 defaultValue: 0,
-                validator: value => value >= 0 && value <= 100,
-                errorText: 'heightPercent has value between 0% to 100%',
               },
             },
             files: {
