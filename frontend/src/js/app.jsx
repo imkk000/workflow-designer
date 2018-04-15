@@ -5,16 +5,18 @@ import { errorDialog } from './editor/dialog'
 import EDITOR_MODE, { setEditorMode, setPassData, setDataToGlobal, getDataFromGlobal } from './utility/editorMode'
 import { getAppName, getAppTitle, getAppVersion, getAppAuthor } from './utility/aboutApp'
 import settingNodeMode from './mode/settingNodeMode'
+import dom from 'jsx-render'
+import xdom from './utility/xdom'
 
 // NOTE: generate tag
-$(document.head)
-  .append('<meta charset="utf-8">')
-  .append('<meta name="viewport" content="width=device-width" initial-scale="1.0">')
-  .append('<meta http-equiv="X-UA-Compatible" content="ie=edge">')
-  .append(`<meta name="description" content="${getAppTitle()}">`)
-  .append(`<meta name="author" content="${getAppAuthor()}">`)
-  .append(`<title>${getAppName()} - v${getAppVersion()} (Development Mode)</title>`)
-$(document.body).append('<svg class="diagram-drawing"></svg>')
+xdom('head', <meta charset="utf-8" />)
+xdom('head', <meta name="viewport" content="width=device-width" initial-scale="1.0" />)
+xdom('head', <meta http-equiv="X-UA-Compatible" content="ie=edge" />)
+xdom('head', <meta name="description" content={getAppTitle()} />)
+xdom('head', <meta name="author" content={getAppAuthor()} />)
+xdom('head', <title>{getAppName()} - v{getAppVersion()} (Development Mode)</title>)
+
+xdom('body', <svg class="diagram-drawing"></svg>)
 
 // NOTE: disable right click contextmenu
 $(document).contextmenu(event => event.preventDefault())
