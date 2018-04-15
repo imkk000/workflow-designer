@@ -8,19 +8,17 @@ const allowDrop = event => {
 const drop = event => {
   event.preventDefault()
 
-  if (event.target.id === 'diagram-drawing') {
-    const buffer = getDataFromGlobal('NODES_BUFFER')
-    const data = event.dataTransfer.getData('text')
-    const nodeBuffer = buffer[data]
-    const nodeData = {
-      ...nodeBuffer,
-      x: event.offsetX,
-      y: event.offsetY,
-    }
-
-    // NOTE: create new Node
-    new Node(nodeData)
+  const buffer = getDataFromGlobal('NODES_BUFFER')
+  const data = event.dataTransfer.getData('text')
+  const nodeBuffer = buffer[data]
+  const nodeData = {
+    ...nodeBuffer,
+    x: event.offsetX,
+    y: event.offsetY,
   }
+
+  // NOTE: create new Node
+  new Node(nodeData)
 }
 
 const drag = event => {
