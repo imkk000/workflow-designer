@@ -2,7 +2,7 @@ import { isAddLineMode } from '../utility/editorMode'
 import { quitAddLineMode } from '../mode/addLineMode'
 import { setContextMenuTitle } from './contextMenuTitle'
 
-const selector = '.diagram-drawing'
+const selector = '#diagram-drawing'
 const className = 'context-menu-add-line'
 
 export const destroyNodeDrawAreaContextMenu = () => {

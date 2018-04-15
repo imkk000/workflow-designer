@@ -113,8 +113,8 @@ const devConfig = {
       app.get('/api/nodes', (req, res) => {
         res.send([
           {
-            x: 100,
-            y: 100,
+            x: 0,
+            y: 0,
             label: 'Load Image',
             type: 'load_image',
             fill: 'red',
@@ -126,8 +126,8 @@ const devConfig = {
             },
           },
           {
-            x: 200,
-            y: 250,
+            x: 0,
+            y: 0,
             label: 'Rotate',
             type: 'rotate',
             fill: 'orange',
@@ -146,8 +146,8 @@ const devConfig = {
             },
           },
           {
-            x: 300,
-            y: 150,
+            x: 0,
+            y: 0,
             label: 'GaussianBlur',
             type: 'gaussian_blur',
             fill: 'cyan',
@@ -171,8 +171,8 @@ const devConfig = {
             },
           },
           {
-            x: 150,
-            y: 350,
+            x: 0,
+            y: 0,
             label: 'Resize',
             type: 'resize',
             fill: '#9BFF00',

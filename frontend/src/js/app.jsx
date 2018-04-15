@@ -1,11 +1,11 @@
 import dom from 'jsx-render'
 import axios from 'axios'
 import GraphDataStructure from 'graph-data-structure'
-import Node from './editor/node'
 import { errorDialog } from './editor/dialog'
-import { setDataToGlobal } from './utility/editorMode'
+import { setDataToGlobal, getDataFromGlobal } from './utility/editorMode'
 import { getAppName, getAppTitle, getAppVersion, getAppAuthor } from './utility/aboutApp'
 import xdom from './utility/xdom'
+import attachDragAndDrop from './utility/attachDragAndDrop'
 
 // NOTE: generate tag
 xdom('head', <meta charset="utf-8" />)
@@ -20,33 +20,50 @@ xdom(
   </title>
 )
 
-xdom('body', <svg class="diagram-drawing" />)
+xdom('body', <div id="node-preview" />)
+xdom('body', <svg id="diagram-drawing" />)
 
 // NOTE: disable right click contextmenu
 $(document).contextmenu(event => event.preventDefault())
 $(document).ready(() => {
   // NOTE: initial global variable project
   setDataToGlobal('EDITOR_MODE', 'NORMAL')
+  setDataToGlobal('NODES_BUFFER', {})
   setDataToGlobal('NODES', {})
   setDataToGlobal('LINES', {})
   setDataToGlobal('GRAPH', new GraphDataStructure())
 
   // NOTE: create new svg, root area
-  const svg = d3.select('svg.diagram-drawing')
-  const root = svg.append('g').attr('class', 'root-area-group')
+  const nodePreview = d3.select('#node-preview')
+  const svg = d3.select('#diagram-drawing')
+  const root = svg.append('g').attr('id', 'root-area-group')
 
   // NOTE: create new temp area, draw area in root area
-  root.append('g').attr('class', 'temp-area-group')
-  root.append('g').attr('class', 'draw-area-group')
+  root.append('g').attr('id', 'temp-area-group')
+  root.append('g').attr('id', 'draw-area-group')
 
   // NOTE: query nodes description
-  const nodesBuffer = []
   axios
     .get('//127.0.0.1:3000/api/nodes')
     .then(({ data }) => {
+      const buffer = getDataFromGlobal('NODES_BUFFER')
+
       data.forEach(element => {
-        new Node(element)
-        nodesBuffer.push(element)
+        const { type, fill, stroke, label } = element
+        const node = nodePreview
+          .append('div')
+          .attr('id', type)
+          .attr('class', 'node')
+          .attr('draggable', 'true')
+          .style('background-color', fill)
+          .style('border', `1px solid ${stroke}`)
+          .style('color', stroke)
+        node.append('span').text(label)
+
+        attachDragAndDrop(svg, node)
+
+        // NOTE: save node to buffer with nodeId
+        buffer[type] = element
       })
     })
     .catch(error => {
