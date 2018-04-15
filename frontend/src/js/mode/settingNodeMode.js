@@ -1,4 +1,5 @@
 import uploadFileDialog from './settingDialog/upload-file-dialog'
+import setParameterDialog from './settingDialog/set-parameter-dialog'
 import { getDataFromGlobal, getPassData } from '../utility/editorMode'
 
 export default () => {
@@ -7,4 +8,5 @@ export default () => {
   const { type } = nodes[nodeId]
 
   if (type === 'load_image') uploadFileDialog()
+  else setParameterDialog()
 }
