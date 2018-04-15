@@ -95,7 +95,6 @@ export default class {
       data.x += d3.event.dx
       data.y += d3.event.dy
 
-      // DEBUG: only
       const node = d3.select(this)
 
       // NOTE: set transform from [x, y]

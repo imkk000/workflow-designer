@@ -12,8 +12,6 @@ export default ({ node, data }) => {
     [nodeId]: { lines: linesData },
   } = nodes
 
-  /* FIXME: incorrect way to access data
-            fix later (setGlobal :: utility/editorNode.js) */
   const nodeData = nodes[nodeId]
   nodeData.position = [data.x, data.y]
 

@@ -41,7 +41,7 @@ function addLineMode() {
   const endNode = d3.select(this)
   const endId = endNode.attr('id')
 
-  // TODO: validate node !!!
+  // NOTE: validate node with beginId, endId !!!
   if (nodeValidate({ beginId, endId })) return
 
   // NOTE: prepare data for add line

@@ -42,20 +42,6 @@ $(document).ready(() => {
         new Node(element)
         nodesBuffer.push(element)
       })
-
-      // DEBUG: add node
-      new Node(nodesBuffer[0])
-      new Node(nodesBuffer[1])
-      new Node(nodesBuffer[3])
-
-      // DEBUG: open setting dialog
-      const nodes = getDataFromGlobal('NODES')
-      const nodeId = Object.keys(nodes)[1]
-      setEditorMode(EDITOR_MODE.SETTING)
-      setPassData({
-        nodeId,
-      })
-      settingNodeMode()
     })
     .catch(error => {
       errorDialog(error.response)
