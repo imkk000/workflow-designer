@@ -31,6 +31,11 @@ export const showDialog = ({ id, title, buttons, content, custom }) => {
     title: title.toUpperCase(),
     dialogClass,
     draggable: false,
+    position: {
+      my: 'top+100',
+      at: 'top',
+      of: window,
+    },
     modal: true,
     resizable: false,
     width: 450,
