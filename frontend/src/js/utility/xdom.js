@@ -1,3 +1,1 @@
-export default (domElement, dom) => {
-  document.querySelector(domElement).appendChild(dom)
-}
+export default (domElement, dom) => document.querySelector(domElement).appendChild(dom)
