@@ -36,12 +36,14 @@ $(document).ready(() => {
         const node = nodePreview
           .append('div')
           .attr('id', type)
-          .attr('class', 'node')
+          .attr('class', 'node p-2')
           .attr('draggable', 'true')
           .style('background-color', fill)
-          .style('border', `1px solid ${stroke}`)
+
+        node
+          .append('span')
           .style('color', stroke)
-        node.append('span').text(label)
+          .text(label)
 
         attachDragAndDrop(svg, node)
 
