@@ -6,8 +6,8 @@ const getValidator = type => {
   if (type === 'rotate') {
     return {
       angle: {
-        validator: value => value >= 0 && value <= 359,
-        errorText: 'Angle has value between 0 degree to 359 degree',
+        validator: value => value >= -359 && value <= 359,
+        errorText: 'angle has value between -359 degree to 359 degree',
       },
     }
   } else if (type === 'gaussian_blur') {
