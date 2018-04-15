@@ -1,4 +1,5 @@
 import path from 'path'
+import cors from 'cors'
 import { ProvidePlugin, HotModuleReplacementPlugin } from 'webpack'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 
@@ -28,18 +29,26 @@ const prodConfig = {
     rules: [
       {
         enforce: 'pre',
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: ['babel-loader', 'eslint-loader'],
       },
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
             presets: ['es2015', 'stage-0'],
-            plugins: ['babel-plugin-transform-class-properties'],
+            plugins: [
+              'babel-plugin-transform-class-properties',
+              [
+                'babel-plugin-transform-react-jsx',
+                {
+                  pragma: 'dom',
+                },
+              ],
+            ],
           },
         },
       },
@@ -83,7 +92,7 @@ const prodConfig = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.scss'],
+    extensions: ['.js', '.jsx', '.scss'],
   },
 }
 
@@ -98,45 +107,100 @@ const devConfig = {
     hot: true,
     https: false,
     before: app => {
+      // NOTE: enable cors
+      app.use(cors())
+
       app.get('/api/nodes', (req, res) => {
         res.send([
           {
             x: 100,
             y: 100,
             label: 'Load Image',
+            type: 'load_image',
             fill: 'red',
             stroke: 'black',
-            limitInput: 1,
+            limitInput: 0,
+            files: {
+              fileId: '',
+              fileName: '',
+            },
           },
           {
             x: 200,
             y: 250,
             label: 'Rotate',
+            type: 'rotate',
             fill: 'orange',
             stroke: 'black',
             limitInput: 1,
+            settings: {
+              angle: {
+                label: 'Angle (-359 - 359) [degree]',
+                value: 0,
+                defaultValue: 0,
+              },
+            },
+            files: {
+              fileId: '',
+              fileName: '',
+            },
           },
           {
             x: 300,
             y: 150,
-            label: 'Blur',
+            label: 'GaussianBlur',
+            type: 'gaussian_blur',
             fill: 'cyan',
             stroke: 'black',
             limitInput: 1,
+            settings: {
+              sigmaX: {
+                label: 'Sigma X (0 - 100) [integer]',
+                value: 15,
+                defaultValue: 15,
+              },
+              sigmaY: {
+                label: 'Sigma Y (0 - 100) [integer]',
+                value: 0,
+                defaultValue: 0,
+              },
+            },
+            files: {
+              fileId: '',
+              fileName: '',
+            },
           },
           {
             x: 150,
             y: 350,
             label: 'Resize',
+            type: 'resize',
             fill: '#9BFF00',
             stroke: 'black',
             limitInput: 1,
+            settings: {
+              widthPercent: {
+                label: 'Width (0 - 100) [%]',
+                value: 0,
+                defaultValue: 0,
+              },
+              heightPercent: {
+                label: 'Height (0 - 100) [%]',
+                value: 0,
+                defaultValue: 0,
+              },
+            },
+            files: {
+              fileId: '',
+              fileName: '',
+            },
           },
         ])
       })
 
       app.get('/', (req, res) => {
-        res.render(path.join(__dirname, 'views', 'index.pug'))
+        res.set('Content-Type', 'text/html')
+        res.send('<!DOCTYPE html><html lang="en"><body><script src="/dist/bundle.js"></script></body></html>')
       })
     },
   },
