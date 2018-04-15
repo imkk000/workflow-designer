@@ -62,6 +62,19 @@ export default validator => {
   }
 
   const buttons = {
+    'Reset to Default': function() {
+      confirmDialog('Do you want to continue?', () => {
+        // NOTE: set values
+        settingsValuesToArray.forEach((setting, index) => {
+          const key = settingsKeysToArray[index]
+          const { defaultValue } = settingsValuesToArray[index]
+          $(`input[name=${key}]`).val(defaultValue)
+          setting.value = defaultValue
+        })
+
+        $('#confirm-dialog').dialog('close')
+      })
+    },
     OK() {
       if (checkOk()) {
         confirmDialog('Do you want to continue?', () => {
