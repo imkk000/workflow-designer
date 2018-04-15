@@ -53,5 +53,6 @@ module.exports = {
     'react/no-unknown-property': 0,
     'react/style-prop-object': 0,
     'jsx-a11y/label-has-for': 0,
+    'func-names': 0,
   },
 }
