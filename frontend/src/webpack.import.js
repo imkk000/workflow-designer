@@ -7,6 +7,7 @@ import 'jquery-contextmenu'
 import 'dm-file-uploader'
 import './js/app'
 import './js/contextmenu'
+import './js/editor/grid'
 
 // NOTE: Import style(css, scss) app dependencies
 import '../node_modules/font-awesome/scss/font-awesome.scss'
