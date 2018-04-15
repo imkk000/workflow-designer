@@ -133,6 +133,14 @@ const devConfig = {
             fill: 'orange',
             stroke: 'black',
             limitInput: 1,
+            settings: {
+              angle: {
+                value: 90,
+                defaultValue: 0,
+                validator: value => value >= 0 && value <= 359,
+                errorText: 'Angle has value between 0 degree to 359 degree',
+              },
+            },
             files: {
               fileId: '',
               fileName: '',
@@ -141,11 +149,25 @@ const devConfig = {
           {
             x: 300,
             y: 150,
-            label: 'Blur',
-            type: 'blur',
+            label: 'GaussianBlur',
+            type: 'gaussian_blur',
             fill: 'cyan',
             stroke: 'black',
             limitInput: 1,
+            settings: {
+              sigmaX: {
+                value: 0,
+                defaultValue: 15,
+                validator: value => value >= 0 && value <= 100,
+                errorText: 'sigmaX has value between 0 to 100',
+              },
+              sigmaY: {
+                value: 0,
+                defaultValue: 0,
+                validator: value => value >= 0 && value <= 100,
+                errorText: 'sigmaY has value between 0 to 100. if sigmaY is zero, it is set to be equal to sigmaX',
+              },
+            },
             files: {
               fileId: '',
               fileName: '',
@@ -159,6 +181,20 @@ const devConfig = {
             fill: '#9BFF00',
             stroke: 'black',
             limitInput: 1,
+            settings: {
+              widthPercent: {
+                value: 0,
+                defaultValue: 0,
+                validator: value => value >= 0 && value <= 100,
+                errorText: 'widthPercent has value between 0% to 100%',
+              },
+              heightPercent: {
+                value: 0,
+                defaultValue: 0,
+                validator: value => value >= 0 && value <= 100,
+                errorText: 'heightPercent has value between 0% to 100%',
+              },
+            },
             files: {
               fileId: '',
               fileName: '',
