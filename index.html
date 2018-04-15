@@ -10,15 +10,17 @@
 
 <body>
   <!-- workspace -->
-
+  <div id="drag1" draggable="true"></div>
+  <svg id="div1" ondrop="drop(event)" ondragover="allowDrop(event)" width="500" height="500"></svg>
 
   <!-- Import css & js -->
-  <link href="./node_modules/jquery-ui-bundle/jquery-ui.min.css">
-  <link href="./style.css">
   <script src="./node_modules/jquery/dist/jquery.min.js"></script>
   <script src="./node_modules/jquery-ui-bundle/jquery-ui.min.js"></script>
   <script src="./node_modules/d3/dist/d3.min.js"></script>
   <script src="./script.js"></script>
+
+  <link rel="stylesheet" href="./node_modules/jquery-ui-bundle/jquery-ui.min.css">
+  <link rel="stylesheet" href="./style.css">
 </body>
 
 </html>
