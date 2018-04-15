@@ -50,7 +50,7 @@ $(document).ready(() => {
 
       // DEBUG: open setting dialog
       const nodes = getDataFromGlobal('NODES')
-      const nodeId = Object.keys(nodes)[0]
+      const nodeId = Object.keys(nodes)[1]
       setEditorMode(EDITOR_MODE.SETTING)
       setPassData({
         nodeId,
