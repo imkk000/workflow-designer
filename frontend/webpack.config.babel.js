@@ -156,7 +156,7 @@ const devConfig = {
             settings: {
               sigmaX: {
                 label: 'Sigma X (0 - 100) [integer]',
-                value: 0,
+                value: 15,
                 defaultValue: 15,
               },
               sigmaY: {
