@@ -9,29 +9,28 @@ export default {
   settings: {
     sigmaX: {
       defaultValue: 15,
-      validateOptions: { gt: 0, lt: 100 },
+      validateOptions: { min: 0, max: 100 },
       get validator() {
         return value => isInt(value, this.validateOptions)
       },
       get label() {
-        return `sigmaX (${this.validateOptions.gt} - ${this.validateOptions.lt}) [integer]`
+        return `sigmaX (${this.validateOptions.min} - ${this.validateOptions.max}) [integer]`
       },
       get errorText() {
-        return `sigmaX has value between ${this.validateOptions.gt} to ${this.validateOptions.lt}`
+        return `sigmaX has value between ${this.validateOptions.min} to ${this.validateOptions.max}`
       },
     },
     sigmaY: {
-      defaultValue: 0,
-      validateOptions: { gt: 0, lt: 100 },
+      defaultValue: 15,
+      validateOptions: { min: 0, max: 100 },
       get validator() {
         return value => isInt(value, this.validateOptions)
       },
       get label() {
-        return `sigmaY (${this.validateOptions.gt} - ${this.validateOptions.lt}) [integer]`
+        return `sigmaY (${this.validateOptions.min} - ${this.validateOptions.max}) [integer]`
       },
       get errorText() {
-        return `sigmaY has value between ${this.validateOptions.gt} to ${this.validateOptions.lt}.
-        if sigmaY is zero, it is set to be equal to sigmaX`
+        return `sigmaY has value between ${this.validateOptions.min} to ${this.validateOptions.max}`
       },
     },
   },

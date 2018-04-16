@@ -9,28 +9,28 @@ export default {
   settings: {
     widthPercent: {
       defaultValue: 0,
-      validatorOptions: { gt: -100, lt: 100 },
+      validatorOptions: { min: -100, max: 100 },
       get validator() {
         return value => isInt(value, this.validatorOptions)
       },
       get label() {
-        return `widthPercent (${this.validatorOptions.gt} - ${this.validatorOptions.lt}) [%]`
+        return `widthPercent (${this.validatorOptions.min} - ${this.validatorOptions.max}) [%]`
       },
       get errorText() {
-        return `widthPercent has value between ${this.validatorOptions.gt}% to ${this.validatorOptions.lt}%`
+        return `widthPercent has value between ${this.validatorOptions.min}% to ${this.validatorOptions.max}%`
       },
     },
     heightPercent: {
       defaultValue: 0,
-      validatorOptions: { gt: -100, lt: 100 },
+      validatorOptions: { min: -100, max: 100 },
       get validator() {
         return value => isInt(value, this.validatorOptions)
       },
       get label() {
-        return `heightPercent (${this.validatorOptions.gt} - ${this.validatorOptions.lt}) [%]`
+        return `heightPercent (${this.validatorOptions.min} - ${this.validatorOptions.max}) [%]`
       },
       get errorText() {
-        return `heightPercent has value between ${this.validatorOptions.gt}% to ${this.validatorOptions.lt}%`
+        return `heightPercent has value between ${this.validatorOptions.min}% to ${this.validatorOptions.max}%`
       },
     },
   },

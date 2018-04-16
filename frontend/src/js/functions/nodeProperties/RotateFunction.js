@@ -8,8 +8,8 @@ export default {
   stroke: 'black',
   settings: {
     angle: {
-      defaultValue: 0,
-      validatorOptions: { gt: -359, lt: 359 },
+      defaultValue: 90,
+      validatorOptions: { gt: -360, lt: 360 },
       get validator() {
         return value => isInt(value, this.validatorOptions)
       },
