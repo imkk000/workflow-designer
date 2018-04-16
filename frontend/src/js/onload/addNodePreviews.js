@@ -11,13 +11,13 @@ window.addEventListener('load', () => {
     const node = nodePreview
       .append('div')
       .attr('id', type)
-      .attr('class', 'node-preview-item p-5')
+      .attr('class', 'node-preview-item p-3 pl-5 pr-5')
       .attr('draggable', 'true')
       .style('background-color', fill)
       .style('border-color', stroke)
 
     node
-      .append('span')
+      .append('div')
       .style('color', stroke)
       .text(label)
 
