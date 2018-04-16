@@ -1,35 +1,58 @@
+import { isInt } from 'validator'
 import uploadFileDialog from './settingDialog/upload-file-dialog'
 import setParameterDialog from './settingDialog/set-parameter-dialog'
 import { getDataFromGlobal, getPassData } from '../utility/editorMode'
 
 const getValidator = type => {
   if (type === 'rotate') {
+    const angleOptions = { gt: -359, lt: 359 }
     return {
       angle: {
-        validator: value => value >= -359 && value <= 359,
-        errorText: 'angle has value between -359 degree to 359 degree',
+        value: 0,
+        defaultValue: 0,
+        validator: value => isInt(value, angleOptions),
+        label: `angle (${angleOptions.gt}- ${angleOptions.lt}) [degree]`,
+        errorText: `angle has value between ${angleOptions.gt} degree to ${angleOptions.lt} degree`,
       },
     }
   } else if (type === 'gaussian_blur') {
+    const sigmaXOptions = { gt: 0, lt: 100 }
+    const sigmaYOptions = { gt: 0, lt: 100 }
     return {
       sigmaX: {
-        validator: value => value >= 0 && value <= 100,
-        errorText: 'sigmaX has value between 0 to 100',
+        value: 15,
+        defaultValue: 15,
+        validator: value => isInt(value, sigmaXOptions),
+        label: `sigmaX (${sigmaXOptions.gt} - ${sigmaXOptions.lt}) [integer]`,
+        errorText: `sigmaX has value between ${sigmaXOptions.gt} to ${sigmaXOptions.lt}`,
       },
       sigmaY: {
-        validator: value => value >= 0 && value <= 100,
-        errorText: 'sigmaY has value between 0 to 100. if sigmaY is zero, it is set to be equal to sigmaX',
+        value: 0,
+        defaultValue: 0,
+        validator: value => isInt(value, sigmaYOptions),
+        label: `sigmaY (${sigmaYOptions.gt} - ${sigmaYOptions.lt}) [integer]`,
+        errorText: `sigmaY has value between ${sigmaYOptions.gt} to ${
+          sigmaYOptions.lt
+        }. if sigmaY is zero, it is set to be equal to sigmaX`,
       },
     }
   } else if (type === 'resize') {
+    const widthPercentOptions = { gt: -100, lt: 100 }
+    const heightPercentOptions = { gt: -100, lt: 100 }
     return {
       widthPercent: {
-        validator: value => value >= 0 && value <= 100,
-        errorText: 'widthPercent has value between 0% to 100%',
+        value: 0,
+        defaultValue: 0,
+        validator: value => isInt(value, widthPercentOptions),
+        label: `widthPercent (${widthPercentOptions.gt} - ${widthPercentOptions.lt}) [%]`,
+        errorText: `widthPercent has value between ${widthPercentOptions.gt}% to ${widthPercentOptions.lt}%`,
       },
       heightPercent: {
-        validator: value => value >= 0 && value <= 100,
-        errorText: 'heightPercent has value between 0% to 100%',
+        value: 0,
+        defaultValue: 0,
+        validator: value => isInt(value, heightPercentOptions),
+        label: `heightPercent (${heightPercentOptions.gt} - ${heightPercentOptions.lt}) [%]`,
+        errorText: `heightPercent has value between ${heightPercentOptions.gt}% to ${heightPercentOptions.lt}%`,
       },
     }
   }
