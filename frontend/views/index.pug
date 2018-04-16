@@ -9,10 +9,17 @@ html(lang="en")
 
     script(src="/dist/bundle.js")
   body
+    ul.nav.nav-pills
+      li.nav-item
+        a#start-process.nav-link(href='#') Start Process
+      li.nav-item.dropdown
+        a.nav-link(href='#') Previews
+      li.nav-item
+        a.nav-link(href='#') About
 
     .d-flex
-      #node-preview.flex-column.w-25
-        #show-mode.p-2 NORMAL
+      #node-preview.flex-column
+        #show-mode.p-3 NORMAL
       svg#diagram-drawing
         g#root-area-group(transform="scale(1)")
           g#grid-area-group
