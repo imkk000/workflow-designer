@@ -98,6 +98,7 @@ export default () => {
     },
     onUploadError() {
       errorDialog('File upload error, please try again')
+      $('input[name=file-information]').val('No image uploaded...')
     },
     onUploadSuccess(id, data) {
       nodes[nodeId].files = data
