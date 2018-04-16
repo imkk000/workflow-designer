@@ -121,10 +121,6 @@ const devConfig = {
             fill: 'red',
             stroke: 'black',
             limitInput: 0,
-            files: {
-              fileId: '',
-              fileName: '',
-            },
           },
           {
             x: 0,
@@ -134,11 +130,6 @@ const devConfig = {
             fill: 'orange',
             stroke: 'black',
             limitInput: 1,
-            settings: {},
-            files: {
-              fileId: '',
-              fileName: '',
-            },
           },
           {
             x: 0,
@@ -148,11 +139,6 @@ const devConfig = {
             fill: 'cyan',
             stroke: 'black',
             limitInput: 1,
-            settings: {},
-            files: {
-              fileId: '',
-              fileName: '',
-            },
           },
           {
             x: 0,
@@ -162,11 +148,6 @@ const devConfig = {
             fill: '#9BFF00',
             stroke: 'black',
             limitInput: 1,
-            settings: {},
-            files: {
-              fileId: '',
-              fileName: '',
-            },
           },
           {
             x: 0,
@@ -176,17 +157,6 @@ const devConfig = {
             fill: 'gold',
             stroke: 'black',
             limitInput: 10,
-            settings: {
-              fill: {
-                label: 'How do you feel?',
-                value: 'green',
-                default: 'gold',
-              },
-            },
-            files: {
-              fileId: '',
-              fileName: '',
-            },
           },
         ])
       })
