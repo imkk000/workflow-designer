@@ -1,4 +1,4 @@
-import ABOUT_APP from '../appConfig'
+import ABOUT_APP from '../../../app.config'
 
 export const getAppName = () => ABOUT_APP.name
 export const getAppTitle = () => ABOUT_APP.title

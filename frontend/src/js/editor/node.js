@@ -3,13 +3,7 @@ import { getDrawArea } from '../utility/getArea'
 import { isAddLineMode, getDataFromGlobal, isNormalMode } from '../utility/editorMode'
 import updateLine from './updateLine'
 import addLineMode from '../mode/addLineMode'
-
-/**
- * NOTE: Node life cycle
- * pass options
- * render
- * loadEvent
- */
+import updateNodeLabel from './updateNodeLabel'
 
 export default class {
   constructor(options) {
@@ -44,22 +38,15 @@ export default class {
       .append('text')
       .attr('class', 'node-label')
       .attr('dx', '.48em')
-      .attr('dy', '1.4em')
+      .attr('dy', '1.5em')
       .attr('text-anchor', 'start')
       .attr('stroke', stroke)
-      .text(label.toUpperCase())
-
-    const textBBox = nodeLabel.node().getBBox()
-    const { width: textWidth, height: textHeight } = textBBox
-    const [rectWidthOffset, rectHeightOffset] = [15, 15]
 
     const nodeBox = nodeGroup
       .insert('rect', ':first-child')
       .attr('class', 'node-box')
       .attr('rx', 5)
       .attr('ry', 5)
-      .attr('width', textWidth + rectWidthOffset)
-      .attr('height', textHeight + rectHeightOffset)
       .attr('fill', fill)
       .attr('stroke', stroke)
 
@@ -68,13 +55,14 @@ export default class {
       .attr('class', 'node-bg')
       .attr('rx', 5)
       .attr('ry', 5)
-      .attr('width', textWidth + rectWidthOffset)
-      .attr('height', textHeight + rectHeightOffset)
       .attr('fill', 'white')
 
     // NOTE: add node to graph data
     const graph = getDataFromGlobal('GRAPH')
     graph.addNode(id)
+
+    // NOTE: upload node label
+    updateNodeLabel(id)
 
     this.loadEvent({
       nodeGroup,

@@ -2,6 +2,7 @@ import path from 'path'
 import cors from 'cors'
 import { ProvidePlugin, HotModuleReplacementPlugin } from 'webpack'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
+import ABOUT_APP from './app.config'
 
 const SRC_DIR = path.join(__dirname, 'src')
 const DIST_DIR = path.join(__dirname, 'dist')
@@ -195,12 +196,31 @@ const devConfig = {
               fileName: '',
             },
           },
+          {
+            x: 0,
+            y: 0,
+            label: 'Is Hack Node',
+            type: 'debugger',
+            fill: 'gold',
+            stroke: 'black',
+            limitInput: 10,
+            settings: {
+              fill: {
+                label: 'How do you feel?',
+                value: 'green',
+                default: 'gold',
+              },
+            },
+            files: {
+              fileId: '',
+              fileName: '',
+            },
+          },
         ])
       })
 
       app.get('/', (req, res) => {
-        res.set('Content-Type', 'text/html')
-        res.send('<!DOCTYPE html><html lang="en"><body><script src="/dist/bundle.js"></script></body></html>')
+        res.render(path.join(__dirname, 'views', 'index.pug'), ABOUT_APP)
       })
     },
   },

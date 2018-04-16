@@ -1,0 +1,20 @@
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    meta(name="description", content=title)
+    meta(name="author" content=author)
+    title !{name} - !{version} (Development Mode)
+
+    script(src="/dist/bundle.js")
+  body
+
+    .d-flex
+      #node-preview.flex-column.w-25
+        #show-mode.p-2 NORMAL
+      svg#diagram-drawing
+        g#root-area-group(transform="scale(1)")
+          g#grid-area-group
+          g#temp-area-group
+          g#draw-area-group

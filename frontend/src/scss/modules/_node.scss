@@ -1,8 +1,8 @@
 .node {
   cursor: move;
   stroke-width: 2;
+
   .node-label {
-    font-weight: bold;
     stroke-width: 0;
     pointer-events: none;
     user-select: none;

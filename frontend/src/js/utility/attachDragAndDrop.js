@@ -1,5 +1,5 @@
 import Node from '../editor/node'
-import { getDataFromGlobal } from '../utility/editorMode'
+import { getDataFromGlobal, isNormalMode } from '../utility/editorMode'
 
 const allowDrop = event => {
   event.preventDefault()
@@ -8,7 +8,7 @@ const allowDrop = event => {
 const drop = event => {
   event.preventDefault()
 
-  if (event.target.id === 'diagram-drawing') {
+  if (isNormalMode()) {
     const buffer = getDataFromGlobal('NODES_BUFFER')
     const data = event.dataTransfer.getData('text')
     const nodeBuffer = buffer[data]
