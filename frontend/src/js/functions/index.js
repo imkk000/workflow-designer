@@ -1,10 +1,12 @@
+import { setDataToGlobal } from '../utility/editorMode'
+
 import LoadImageFunction from './nodeProperties/LoadImageFunction'
 import RotateFunction from './nodeProperties/RotateFunction'
 import GaussianBlurFunction from './nodeProperties/GaussianBlurFunction'
 import ResizeFunction from './nodeProperties/ResizeFunction'
 
 window.addEventListener('load', () => {
-  const functionList = [LoadImageFunction, RotateFunction, GaussianBlurFunction, ResizeFunction]
+  const functions = [LoadImageFunction, RotateFunction, GaussianBlurFunction, ResizeFunction]
   const defaultSettings = {
     x: 0,
     y: 0,
@@ -17,7 +19,7 @@ window.addEventListener('load', () => {
   }
 
   // build node properties
-  functionList.map(property => {
+  functions.map(property => {
     const { settings } = property
 
     // set default value by defaultValue
@@ -33,4 +35,6 @@ window.addEventListener('load', () => {
       ...property,
     }
   })
+
+  setDataToGlobal('NODES_PROPERTIES', functions)
 })
