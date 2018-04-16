@@ -12,18 +12,9 @@ body {
   text-align: center;
 }
 
-.node-preview-item {
-  border-radius: 5px;
-  margin: 1em;
-  border: 2px solid black;
-}
-
 #diagram-drawing {
   width: 5000px;
   height: 5000px;
-  overflow: scroll;
-  overflow-x: scroll;
-  overflow-y: scroll;
 }
 
 #show-mode {
