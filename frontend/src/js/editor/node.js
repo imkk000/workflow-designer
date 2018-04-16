@@ -5,13 +5,6 @@ import updateLine from './updateLine'
 import addLineMode from '../mode/addLineMode'
 import updateNodeLabel from './updateNodeLabel'
 
-/**
- * NOTE: Node life cycle
- * pass options
- * render
- * loadEvent
- */
-
 export default class {
   constructor(options) {
     this.render(options)
@@ -45,7 +38,7 @@ export default class {
       .append('text')
       .attr('class', 'node-label')
       .attr('dx', '.48em')
-      .attr('dy', '1.4em')
+      .attr('dy', '1.5em')
       .attr('text-anchor', 'start')
       .attr('stroke', stroke)
 
