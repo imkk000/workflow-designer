@@ -19,11 +19,6 @@ $(document).ready(() => {
   // NOTE: create new svg, root area
   const nodePreview = d3.select('#node-preview')
   const svg = d3.select('#diagram-drawing')
-  const root = svg.append('g').attr('id', 'root-area-group')
-
-  // NOTE: create new temp area, draw area in root area
-  root.append('g').attr('id', 'temp-area-group')
-  root.append('g').attr('id', 'draw-area-group')
 
   // NOTE: query nodes description
   axios
@@ -32,13 +27,14 @@ $(document).ready(() => {
       const buffer = getDataFromGlobal('NODES_BUFFER')
 
       data.forEach(element => {
-        const { type, fill, stroke, label } = element
+        const { type, fill, stroke, label, limitInput } = element
         const node = nodePreview
           .append('div')
           .attr('id', type)
-          .attr('class', 'node p-2')
+          .attr('class', 'node-preview-item p-2')
           .attr('draggable', 'true')
           .style('background-color', fill)
+          .style('border-color', stroke)
 
         node
           .append('span')
