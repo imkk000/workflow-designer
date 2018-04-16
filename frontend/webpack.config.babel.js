@@ -134,13 +134,7 @@ const devConfig = {
             fill: 'orange',
             stroke: 'black',
             limitInput: 1,
-            settings: {
-              angle: {
-                label: 'Angle (-359 - 359) [degree]',
-                value: 0,
-                defaultValue: 0,
-              },
-            },
+            settings: {},
             files: {
               fileId: '',
               fileName: '',
@@ -154,18 +148,7 @@ const devConfig = {
             fill: 'cyan',
             stroke: 'black',
             limitInput: 1,
-            settings: {
-              sigmaX: {
-                label: 'Sigma X (0 - 100) [integer]',
-                value: 15,
-                defaultValue: 15,
-              },
-              sigmaY: {
-                label: 'Sigma Y (0 - 100) [integer]',
-                value: 0,
-                defaultValue: 0,
-              },
-            },
+            settings: {},
             files: {
               fileId: '',
               fileName: '',
@@ -179,18 +162,7 @@ const devConfig = {
             fill: '#9BFF00',
             stroke: 'black',
             limitInput: 1,
-            settings: {
-              widthPercent: {
-                label: 'Width (0 - 100) [%]',
-                value: 0,
-                defaultValue: 0,
-              },
-              heightPercent: {
-                label: 'Height (0 - 100) [%]',
-                value: 0,
-                defaultValue: 0,
-              },
-            },
+            settings: {},
             files: {
               fileId: '',
               fileName: '',
