@@ -111,56 +111,6 @@ const devConfig = {
       // NOTE: enable cors
       app.use(cors())
 
-      app.get('/api/nodes', (req, res) => {
-        res.send([
-          {
-            x: 0,
-            y: 0,
-            label: 'Load Image',
-            type: 'load_image',
-            fill: 'red',
-            stroke: 'black',
-            limitInput: 0,
-          },
-          {
-            x: 0,
-            y: 0,
-            label: 'Rotate',
-            type: 'rotate',
-            fill: 'orange',
-            stroke: 'black',
-            limitInput: 1,
-          },
-          {
-            x: 0,
-            y: 0,
-            label: 'GaussianBlur',
-            type: 'gaussian_blur',
-            fill: 'cyan',
-            stroke: 'black',
-            limitInput: 1,
-          },
-          {
-            x: 0,
-            y: 0,
-            label: 'Resize',
-            type: 'resize',
-            fill: '#9BFF00',
-            stroke: 'black',
-            limitInput: 1,
-          },
-          {
-            x: 0,
-            y: 0,
-            label: 'Is Hack Node',
-            type: 'debugger',
-            fill: 'gold',
-            stroke: 'black',
-            limitInput: 10,
-          },
-        ])
-      })
-
       app.get('/', (req, res) => {
         res.render(path.join(__dirname, 'views', 'index.pug'), ABOUT_APP)
       })
