@@ -4,9 +4,18 @@ import LoadImageFunction from './nodeProperties/LoadImageFunction'
 import RotateFunction from './nodeProperties/RotateFunction'
 import GaussianBlurFunction from './nodeProperties/GaussianBlurFunction'
 import ResizeFunction from './nodeProperties/ResizeFunction'
+import ConvertGrayScaleFunction from './nodeProperties/ConvertGrayScaleFunction'
+import ConvertHSVScaleFunction from './nodeProperties/ConvertHSVScaleFunction'
 
 window.addEventListener('load', () => {
-  const functionsInclude = [LoadImageFunction, RotateFunction, GaussianBlurFunction, ResizeFunction]
+  const functionsInclude = [
+    LoadImageFunction,
+    ConvertGrayScaleFunction,
+    ConvertHSVScaleFunction,
+    GaussianBlurFunction,
+    ResizeFunction,
+    RotateFunction,
+  ]
   const defaultSettings = {
     x: 0,
     y: 0,
