@@ -9,9 +9,9 @@ const drop = event => {
   event.preventDefault()
 
   if (isNormalMode()) {
-    const buffer = getDataFromGlobal('NODES_BUFFER')
+    const nodesProperties = getDataFromGlobal('NODES_PROPERTIES')
     const data = event.dataTransfer.getData('text')
-    const nodeBuffer = buffer[data]
+    const nodeBuffer = nodesProperties[data]
     const nodeData = {
       ...nodeBuffer,
       x: event.offsetX,
