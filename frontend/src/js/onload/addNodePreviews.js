@@ -6,12 +6,12 @@ window.addEventListener('load', () => {
   const svg = d3.select('#diagram-drawing')
   const nodesProperties = getDataFromGlobal('NODES_PROPERTIES')
 
-  nodesProperties.map(element => {
+  Object.values(nodesProperties).map(element => {
     const { type, fill, stroke, label } = element
     const node = nodePreview
       .append('div')
       .attr('id', type)
-      .attr('class', 'node-preview-item p-2')
+      .attr('class', 'node-preview-item p-5')
       .attr('draggable', 'true')
       .style('background-color', fill)
       .style('border-color', stroke)
@@ -23,9 +23,6 @@ window.addEventListener('load', () => {
 
     // add event for div
     attachDragAndDrop(svg, node)
-
-    // save node to buffer with nodeId
-    nodesProperties[type] = element
 
     return true
   })
