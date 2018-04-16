@@ -2,6 +2,6 @@ export default {
   label: 'Load Image',
   type: 'LoadImageFunction',
   limitInput: 0,
-  fill: 'red',
+  fill: 'brown',
   stroke: 'black',
 }
