@@ -5,8 +5,9 @@ import { getDataFromGlobal, getPassData } from '../utility/editorMode'
 export default () => {
   const nodes = getDataFromGlobal('NODES')
   const { nodeId } = getPassData()
-  const { type } = nodes[nodeId]
+  const { type, settings } = nodes[nodeId]
+  const settingsCount = Object.keys(settings).length
 
   if (type === 'LoadImageFunction') uploadFileDialog()
-  else setParameterDialog()
+  else if (settingsCount) setParameterDialog()
 }
