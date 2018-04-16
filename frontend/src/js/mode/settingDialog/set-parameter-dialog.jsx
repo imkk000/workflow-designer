@@ -24,8 +24,7 @@ export default validator => {
     const valid = settingsKeysToArray.map(key => {
       const { validator: validateInput } = settings[key]
       const valueString = $(`input[name=${key}]`).val()
-      const value = parseInt(valueString, 10)
-      return validateInput(value)
+      return validateInput(valueString)
     })
     const errorDialogContent = valid.map((validResult, index) => {
       if (!validResult) {
