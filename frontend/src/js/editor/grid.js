@@ -1,10 +1,10 @@
-import { getRootArea } from '../utility/getArea'
+import { getGridArea } from '../utility/getArea'
 
 // NOTE: load grid line
 // NOTE: reference - https://codepen.io/pigabo/pen/eAiLF?editors=1010
 $(document).ready(() => {
-  const gridLineGroup = getRootArea().insert('g', ':first-child')
-  const defs = gridLineGroup.append('defs')
+  const defs = getGridArea().append('defs')
+
   defs
     .append('pattern')
     .attr('id', 'smallGrid')
@@ -37,7 +37,7 @@ $(document).ready(() => {
     .attr('stroke', 'gray')
     .attr('stroke-width', 1)
 
-  gridLineGroup
+  getGridArea()
     .append('rect')
     .attr('id', 'grid-line-group')
     .attr('width', '100%')

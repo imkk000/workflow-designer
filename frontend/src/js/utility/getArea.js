@@ -6,3 +6,6 @@ export const getTempArea = () => d3.select('#temp-area-group')
 
 // NOTE: Get draw area group
 export const getDrawArea = () => d3.select('#draw-area-group')
+
+// NOTE: get grid area group
+export const getGridArea = () => d3.select('#grid-area-group')

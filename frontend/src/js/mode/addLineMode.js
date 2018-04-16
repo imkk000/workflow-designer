@@ -10,6 +10,7 @@ import generateId from '../utility/generateId'
 import diagonal from '../editor/diagonal'
 import { destroyNodeDrawAreaContextMenu } from '../contextmenu/nodeDrawAreaContextMenu'
 import nodeValidate from '../utility/nodeValidator'
+import updateNodeLabel from '../editor/updateNodeLabel'
 
 // NOTE: other modules can cancel ADD_LINE mode
 export const quitAddLineMode = () => {
@@ -86,6 +87,9 @@ function addLineMode() {
   // NOTE: add edge to graph data
   const graph = getDataFromGlobal('GRAPH')
   graph.addEdge(beginId, endId)
+
+  // NOTE: upload node label
+  updateNodeLabel(endId)
 
   // NOTE: exit ADD_LINE mode
   quitAddLineMode()

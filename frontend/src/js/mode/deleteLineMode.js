@@ -1,4 +1,5 @@
 import EDITOR_MODE, { setEditorMode, getDataFromGlobal, getPassDataBeforeClear } from '../utility/editorMode'
+import updateNodeLabel from '../editor/updateNodeLabel'
 
 export default () => {
   // NOTE: get all data for delete line
@@ -25,6 +26,9 @@ export default () => {
 
   // NOTE: delete target line
   line.remove()
+
+  // NOTE: upload node label
+  updateNodeLabel(endId)
 
   // NOTE: reset mode to NORMAL
   setEditorMode(EDITOR_MODE.NORMAL)

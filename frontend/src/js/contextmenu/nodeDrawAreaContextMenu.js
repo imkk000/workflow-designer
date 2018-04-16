@@ -24,7 +24,7 @@ function callback() {
 
 const show = () => {
   // NOTE: set title before context menu show
-  setContextMenuTitle('EDITOR_MODE = ADD_LINE')
+  setContextMenuTitle('MODE = ADD_LINE')
 }
 
 export default () => {

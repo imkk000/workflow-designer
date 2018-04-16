@@ -69,7 +69,7 @@ function callback(key) {
 
 function show() {
   const nodeId = this.attr('id')
-  const nodeTitleContent = `NODE_ID = ${nodeId}`
+  const nodeTitleContent = `ID = ${nodeId}`
 
   // NOTE: set node context menu title before show
   setContextMenuTitle(nodeTitleContent)
