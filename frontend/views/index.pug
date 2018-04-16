@@ -6,17 +6,15 @@ html(lang="en")
     meta(name="description", content=title)
     meta(name="author" content=author)
     title !{name} - !{version} (Development Mode)
-  body
-    ul.nav.nav-tabs.nav-pills.justify-content-end
-      li.nav-item
-        a.nav-link(href='#') Start
-      li.nav-item
-        a.nav-link(href='#') Previews
-      li.nav-item
-        span.nav-link Mode
-
-    .d-flex
-      #node-preview.d-flex.flex-column
-      svg#diagram-drawing.d-flex
 
     script(src="/dist/bundle.js")
+  body
+
+    .d-flex
+      #node-preview.flex-column.w-25
+        #show-mode.p-2 NORMAL
+      svg#diagram-drawing
+        g#root-area-group
+          g#grid-area-group
+          g#temp-area-group
+          g#draw-area-group
