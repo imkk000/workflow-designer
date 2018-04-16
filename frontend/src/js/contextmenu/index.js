@@ -1,8 +1,8 @@
 import nodeContextMenu from './nodeContextMenu'
 import lineContextMenu from './lineContextMenu'
 
-// NOTE: load all context menu
-$(document).ready(() => {
+// load all context menu
+window.addEventListener('load', () => {
   nodeContextMenu()
   lineContextMenu()
 })
