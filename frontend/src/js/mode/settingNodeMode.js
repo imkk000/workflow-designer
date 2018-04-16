@@ -3,7 +3,7 @@ import uploadFileDialog from './settingDialog/upload-file-dialog'
 import setParameterDialog from './settingDialog/set-parameter-dialog'
 import { getDataFromGlobal, getPassData } from '../utility/editorMode'
 
-const getValidator = type => {
+export const getSettings = type => {
   if (type === 'rotate') {
     const angleOptions = { gt: -359, lt: 359 }
     return {
@@ -55,7 +55,21 @@ const getValidator = type => {
         errorText: `heightPercent has value between ${heightPercentOptions.gt}% to ${heightPercentOptions.lt}%`,
       },
     }
+  } else if (type === 'debugger') {
+    return {
+      fill: {
+        value: 'green',
+        defaultValue: 'gold',
+        validator: () => {
+          console.log(getDataFromGlobal('NODES'))
+          return true
+        },
+        label: 'How do you feel',
+        errorText: '',
+      },
+    }
   }
+
   return {}
 }
 
@@ -63,8 +77,7 @@ export default () => {
   const nodes = getDataFromGlobal('NODES')
   const { nodeId } = getPassData()
   const { type } = nodes[nodeId]
-  const validator = getValidator(type)
 
   if (type === 'load_image') uploadFileDialog()
-  else setParameterDialog(validator)
+  else setParameterDialog()
 }
