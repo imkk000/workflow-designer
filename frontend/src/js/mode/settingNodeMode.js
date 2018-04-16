@@ -7,6 +7,6 @@ export default () => {
   const { nodeId } = getPassData()
   const { type } = nodes[nodeId]
 
-  if (type === 'load_image') uploadFileDialog()
+  if (type === 'LoadImageFunction') uploadFileDialog()
   else setParameterDialog()
 }
