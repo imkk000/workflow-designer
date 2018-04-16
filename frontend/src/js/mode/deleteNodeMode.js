@@ -1,4 +1,5 @@
 import EDITOR_MODE, { setEditorMode, getDataFromGlobal, getPassDataBeforeClear } from '../utility/editorMode'
+import updateNodeLabel from '../editor/updateNodeLabel'
 
 export default () => {
   // NOTE: get all data for delete node
@@ -22,6 +23,9 @@ export default () => {
 
     // NOTE: delete target line
     d3.select($(`#${lineId}`).get(0)).remove()
+
+    // NOTE: upload node label
+    updateNodeLabel(endId)
 
     return delete lines[lineId]
   })
