@@ -27,7 +27,7 @@ $(document).ready(() => {
       const buffer = getDataFromGlobal('NODES_BUFFER')
 
       data.forEach(element => {
-        const { type, fill, stroke, label, limitInput } = element
+        const { type, fill, stroke, label } = element
         const node = nodePreview
           .append('div')
           .attr('id', type)
