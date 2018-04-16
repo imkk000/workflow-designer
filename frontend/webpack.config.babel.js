@@ -196,6 +196,26 @@ const devConfig = {
               fileName: '',
             },
           },
+          {
+            x: 0,
+            y: 0,
+            label: 'Is Hack Node',
+            type: 'debugger',
+            fill: 'gold',
+            stroke: 'black',
+            limitInput: 10,
+            settings: {
+              fill: {
+                label: 'How do you feel?',
+                value: 'green',
+                default: 'gold',
+              },
+            },
+            files: {
+              fileId: '',
+              fileName: '',
+            },
+          },
         ])
       })
 
