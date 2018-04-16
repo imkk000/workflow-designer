@@ -6,7 +6,7 @@ import GaussianBlurFunction from './nodeProperties/GaussianBlurFunction'
 import ResizeFunction from './nodeProperties/ResizeFunction'
 
 window.addEventListener('load', () => {
-  const functions = [LoadImageFunction, RotateFunction, GaussianBlurFunction, ResizeFunction]
+  const functionsInclude = [LoadImageFunction, RotateFunction, GaussianBlurFunction, ResizeFunction]
   const defaultSettings = {
     x: 0,
     y: 0,
@@ -19,8 +19,10 @@ window.addEventListener('load', () => {
   }
 
   // build node properties
-  functions.map(property => {
-    const { settings } = property
+  const properties = {}
+
+  functionsInclude.map(property => {
+    const { type, settings } = property
 
     // set default value by defaultValue
     if (settings) {
@@ -30,11 +32,13 @@ window.addEventListener('load', () => {
       })
     }
 
-    return {
+    properties[type] = {
       ...defaultSettings,
       ...property,
     }
+
+    return true
   })
 
-  setDataToGlobal('NODES_PROPERTIES', functions)
+  setDataToGlobal('NODES_PROPERTIES', properties)
 })
