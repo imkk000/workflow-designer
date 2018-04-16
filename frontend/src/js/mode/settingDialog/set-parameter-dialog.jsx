@@ -12,7 +12,7 @@ const quitSettingNodeMode = () => {
   setEditorMode(EDITOR_MODE.NORMAL)
 }
 
-export default validator => {
+export default () => {
   nodes = getDataFromGlobal('NODES')
 
   const { nodeId } = getPassDataBeforeClear()
@@ -80,8 +80,7 @@ export default validator => {
           settingsValuesToArray.forEach((setting, index) => {
             const key = settingsKeysToArray[index]
             const valueString = $(`input[name=${key}]`).val()
-            const value = parseInt(valueString, 10)
-            setting.value = value
+            setting.value = valueString
           })
 
           quitSettingNodeMode()
@@ -95,14 +94,6 @@ export default validator => {
       $(this).dialog('close')
     },
   }
-
-  Object.keys(settings).map(key => {
-    settings[key] = {
-      ...settings[key],
-      ...validator[key],
-    }
-    return true
-  })
 
   const buildContent = Object.keys(settings).map(key => {
     const { value, label } = settings[key]
