@@ -7,30 +7,18 @@ export default {
   fill: 'cyan',
   stroke: 'black',
   settings: {
-    sigmaX: {
+    sigma: {
       defaultValue: 15,
       validateOptions: { min: 0, max: 100 },
       get validator() {
-        return value => isInt(value, this.validateOptions)
+        return value => isInt(value, this.validateOptions) && value % 2
       },
       get label() {
-        return `sigmaX (${this.validateOptions.min} - ${this.validateOptions.max}) [integer]`
+        return `sigma (${this.validateOptions.min} - ${this.validateOptions.max}) [odd-number]`
       },
       get errorText() {
-        return `sigmaX has value between ${this.validateOptions.min} to ${this.validateOptions.max}`
-      },
-    },
-    sigmaY: {
-      defaultValue: 15,
-      validateOptions: { min: 0, max: 100 },
-      get validator() {
-        return value => isInt(value, this.validateOptions)
-      },
-      get label() {
-        return `sigmaY (${this.validateOptions.min} - ${this.validateOptions.max}) [integer]`
-      },
-      get errorText() {
-        return `sigmaY has value between ${this.validateOptions.min} to ${this.validateOptions.max}`
+        return `sigma has value between ${this.validateOptions.min} to
+        ${this.validateOptions.max}, and is odd number`
       },
     },
   },
