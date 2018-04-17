@@ -1,7 +1,11 @@
 import axios from 'axios'
 import { isLength } from 'validator'
-import { getDataFromGlobal, notNormalMode } from '../utility/editorMode'
+import EDITOR_MODE, { getDataFromGlobal, notNormalMode, setEditorMode } from '../utility/editorMode'
 import { informationDialog, errorDialog, confirmDialog } from '../editor/dialog'
+
+const quitProcessMode = () => {
+  setEditorMode(EDITOR_MODE.NORMAL)
+}
 
 window.addEventListener('load', () => {
   document.getElementById('start-process').addEventListener('click', () => {
@@ -9,6 +13,8 @@ window.addEventListener('load', () => {
       errorDialog('Process can use only NORMAL mode')
       return
     }
+
+    setEditorMode(EDITOR_MODE.NORMAL)
 
     const nodes = getDataFromGlobal('NODES')
     const graph = getDataFromGlobal('GRAPH')
@@ -66,10 +72,12 @@ window.addEventListener('load', () => {
               queueNext()
             } else {
               informationDialog('Process Complete')
+              setEditorMode(EDITOR_MODE.NORMAL)
             }
           })
           .catch(error => {
             errorDialog(error)
+            setEditorMode(EDITOR_MODE.NORMAL)
           })
       }
     }
