@@ -14,6 +14,7 @@
 	"license": "MIT",
 	"private": false,
 	"scripts": {
+		"lint": "npx nodemon --exec eslint --fix src",
 		"dev": "npx webpack-dev-server --watch --progress --mode=development",
 		"build": "npx webpack --progress --mode=production",
 		"full-clean": "npx rimraf dist node_modules *.log"
