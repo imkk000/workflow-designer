@@ -22,7 +22,6 @@ window.addEventListener('load', () => {
     settings: {},
     files: {
       fileId: '',
-      fileName: '',
       fileExt: '',
     },
   }

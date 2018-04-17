@@ -22,8 +22,9 @@ export default () => {
 
   const { nodeId } = getPassDataBeforeClear()
   const {
-    files: { fileId, fileName },
+    files: { fileId, fileExt },
   } = nodes[nodeId]
+  const fileName = `${fileId}.${fileExt}`
   const existingFile = !isEmpty(fileId)
   const initialFileName = existingFile ? fileName : 'No image uploaded...'
 
