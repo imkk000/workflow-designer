@@ -19,7 +19,7 @@ export default () => {
   graph.removeEdge(beginId, endId)
 
   // NOTE: delete target line
-  d3.select($(`#${lineId}`).get(0)).remove()
+  d3.select(document.getElementById(lineId)).remove()
 
   // NOTE: confirm delete node
   delete lines[lineId]
