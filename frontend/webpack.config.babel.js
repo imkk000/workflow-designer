@@ -39,7 +39,10 @@ const prodConfig = {
         enforce: 'pre',
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: ['babel-loader', 'eslint-loader'],
+        loader: 'eslint-loader',
+        options: {
+          fix: true,
+        },
       },
       {
         test: /\.(js|jsx)$/,
