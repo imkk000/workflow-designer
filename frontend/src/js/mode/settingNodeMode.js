@@ -1,6 +1,6 @@
 import uploadFileDialog from './settingDialog/upload-file-dialog'
 import setParameterDialog from './settingDialog/set-parameter-dialog'
-import { getDataFromGlobal, getPassData } from '../utility/editorMode'
+import EDITOR_MODE, { getDataFromGlobal, getPassData, setEditorMode } from '../utility/editorMode'
 
 export default () => {
   const nodes = getDataFromGlobal('NODES')
@@ -10,4 +10,8 @@ export default () => {
 
   if (type === 'LoadImageFunction') uploadFileDialog()
   else if (settingsCount) setParameterDialog()
+  else {
+    // quit setting mode
+    setEditorMode(EDITOR_MODE.NORMAL)
+  }
 }
