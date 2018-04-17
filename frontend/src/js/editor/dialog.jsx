@@ -8,10 +8,9 @@ function close() {
 }
 
 function open() {
-  // const id = $(this).attr('id')
   setTimeout(() => {
     if ($(document).has(this).length > 0) $(this).dialog('close')
-  }, 5000)
+  }, 10000)
 }
 
 export const showDialog = ({ id, title, buttons, content, custom }) => {
@@ -61,14 +60,18 @@ export const errorDialog = content => {
   })
 }
 
-export const confirmDialog = (content, OK) => {
+export const confirmDialog = (
+  content,
+  OK,
+  Cancel = function() {
+    $(this).dialog('close')
+  }
+) => {
   const id = 'confirm-dialog'
   const title = 'Confirm Dialog'
   const buttons = {
     OK,
-    Cancel() {
-      $(this).dialog('close')
-    },
+    Cancel,
   }
   showDialog({
     id,
