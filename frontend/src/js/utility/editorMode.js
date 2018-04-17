@@ -8,6 +8,7 @@ const EDITOR_MODE = {
   ERROR: 'ERROR',
   DELETE_NODE: 'DELETE_NODE',
   DELETE_LINE: 'DELETE_LINE',
+  PROCESS: 'PROCESS',
 }
 
 // NOTE: check mode is NORMAL
@@ -18,9 +19,6 @@ export const notNormalMode = () => !isNormalMode()
 
 // NOTE: check mode is ADD_LINE
 export const isAddLineMode = () => window.EDITOR_MODE === EDITOR_MODE.ADD_LINE
-
-// NOTE: check mode is not ADD_LINE
-export const notAddLineMode = () => !isAddLineMode()
 
 // NOTE: check mode is SETTING
 export const isSettingMode = () => window.EDITOR_MODE === EDITOR_MODE.SETTING
