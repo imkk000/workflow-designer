@@ -73,7 +73,10 @@ export default class {
   }
 
   loadEvent = ({ nodeGroup }) => {
-    nodeGroup.on('click', this.handleNodeGroupClick).call(d3.drag().on('drag', this.handleNodeGroupDragging))
+    nodeGroup
+      .on('mouseover', this.handleNodeGroupMouseOver)
+      .on('click', this.handleNodeGroupClick)
+      .call(d3.drag().on('drag', this.handleNodeGroupDragging))
   }
 
   handleNodeGroupDragging(data) {
@@ -91,6 +94,10 @@ export default class {
       // update line
       updateLine({ node, data })
     }
+  }
+
+  handleNodeGroupMouseOver() {
+    this.parentNode.appendChild(this)
   }
 
   handleNodeGroupClick() {
