@@ -16,4 +16,11 @@
     pointer-events: none;
     user-select: none;
   }
+
+  .line-background-path {
+    background-color: #fff;
+    fill: none;
+    opacity: 0;
+    stroke-width: 15;
+  }
 }
