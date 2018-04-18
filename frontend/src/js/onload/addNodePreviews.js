@@ -22,7 +22,7 @@ window.addEventListener('load', () => {
 
     node
       .append('div')
-      .style('color', stroke)
+      .style('color', 'black')
       .text(label)
 
     // add event for div
