@@ -9,19 +9,23 @@ html(lang="en")
 
     script(src="/dist/bundle.js")
   body
-    ul.nav.nav-pills.justify-content-end
-      li.nav-item
-        a#process.nav-link.nav-link-custom(href='#') Start Process
-      li.nav-item.dropdown
-        a.nav-link.nav-link-custom(href='#') Previews
-      li.nav-item
-        a.nav-link.nav-link-custom(href='#') About
+    svg#diagram-drawing
+      g#root-area-group(transform="scale(1)")
+        g#grid-area-group
+        g#temp-area-group
+        g#draw-area-group
 
-    .d-flex
-      #node-preview.flex-column
-        #show-mode.p-3 NORMAL
-      svg#diagram-drawing
-        g#root-area-group(transform="scale(1)")
-          g#grid-area-group
-          g#temp-area-group
-          g#draw-area-group
+    #workspace-editor
+      #editor-menu.block-style
+        h2 Mode
+        h3#current-mode NORMAL
+      #controller-menu.block-style
+        h2 Controller
+        h3 | Start | Previews |
+        h3 | Save | Load |
+        h3 | Import | Export |
+      #node-list.block-style
+        h2 Input
+        #input-list
+        h2 Function
+        #function-list
