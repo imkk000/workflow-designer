@@ -57,11 +57,11 @@ export default class {
       .attr('ry', 5)
       .attr('fill', 'white')
 
-    // NOTE: add node to graph data
+    // add node to graph data
     const graph = getDataFromGlobal('GRAPH')
     graph.addNode(id)
 
-    // NOTE: upload node label
+    // upload node label
     updateNodeLabel(id)
 
     this.loadEvent({
@@ -77,18 +77,18 @@ export default class {
   }
 
   handleNodeGroupDragging(data) {
-    // NOTE: on drag active on NORMAL mode
+    // on drag active on NORMAL mode
     if (isNormalMode()) {
-      // NOTE: Calculate coordinate
+      // Calculate coordinate
       data.x += d3.event.dx
       data.y += d3.event.dy
 
       const node = d3.select(this)
 
-      // NOTE: set transform from [x, y]
+      // set transform from [x, y]
       node.attr('transform', `translate(${data.x}, ${data.y})`)
 
-      // NOTE: update line
+      // update line
       updateLine({ node, data })
     }
   }
