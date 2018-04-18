@@ -4,8 +4,8 @@ export default {
   label: 'Resize',
   type: 'ResizeFunction',
   limitInput: 1,
-  fill: '#9BFF00',
-  stroke: 'black',
+  fill: '#CCFFFF',
+  stroke: 'brown',
   settings: {
     widthPercent: {
       defaultValue: 0,

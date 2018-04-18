@@ -4,8 +4,8 @@ export default {
   label: 'Rotate',
   type: 'RotateFunction',
   limitInput: 1,
-  fill: 'orange',
-  stroke: 'black',
+  fill: '#99FF66',
+  stroke: 'brown',
   settings: {
     angle: {
       defaultValue: 90,

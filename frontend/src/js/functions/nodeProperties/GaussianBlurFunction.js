@@ -4,8 +4,8 @@ export default {
   label: 'Gaussian Blur',
   type: 'GaussianBlurFunction',
   limitInput: 1,
-  fill: 'cyan',
-  stroke: 'black',
+  fill: '#CCCCFF',
+  stroke: 'brown',
   settings: {
     sigma: {
       defaultValue: 15,
