@@ -6,17 +6,39 @@ html,
 body {
   font-family: $font-family;
   font-size: $font-size;
+  margin: 0;
+  padding: 0;
 }
 
-#node-preview {
+#workspace-editor {
+  padding-top: 10px;
+  position: fixed;
+  background-color: #fff;
+  border-right: 1px solid gray;
+  left: 0;
+  width: 180px;
+  user-select: none;
+  height: 100%;
+  overflow: auto;
   text-align: center;
 }
 
 #diagram-drawing {
+  position: absolute;
   width: 5000px;
   height: 5000px;
+  pointer-events: all;
+  top: 0;
+  left: 179px;
 }
 
-#show-mode {
+#current-mode {
+  border-radius: 5px;
+  padding: .7em;
+  margin: .5em;
   background: lightgray;
+}
+
+.block-style {
+  padding-bottom: 5px;
 }
