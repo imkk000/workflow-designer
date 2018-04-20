@@ -15,7 +15,7 @@ const prodConfig = {
   output: {
     filename: 'bundle.js',
     path: DIST_DIR,
-    publicPath: '/dist/',
+    publicPath: '/editor/',
   },
   plugins: [
     new CleanWebpackPlugin(pathsToClean),
@@ -114,7 +114,7 @@ const prodConfig = {
 const devConfig = {
   devtool: 'source-map',
   devServer: {
-    publicPath: '/dist/',
+    publicPath: '/editor/',
     contentBase: [SRC_DIR],
     watchContentBase: true,
     port: 3000,
