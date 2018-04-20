@@ -3,7 +3,7 @@ source = {
   y: 100
 };
 target = {
-  x: 100,
+  x: 300,
   y: 300
 };
 
@@ -14,12 +14,15 @@ middle = {
 
 // set line original
 (function() {
+  // M100,100C200,100,200,300,300,300Z
+  // M100,100C200,100,200,300,300,300Z
+
   lineGuide = document.querySelector('#line-new');
   _ =
-    `M ${source.x} ${source.y},` +
-    `C ${middle.x} ${source.y},` +
-    `${middle.x} ${target.y},` +
-    `${target.x} ${target.y},`;
+    `M${source.x},${source.y}` +
+    `C${middle.x},${source.y},` +
+    `${middle.x},${target.y},` +
+    `${target.x},${target.y}`;
   console.log('_ori_:', _);
   lineGuide.setAttribute('d', _);
 })();
