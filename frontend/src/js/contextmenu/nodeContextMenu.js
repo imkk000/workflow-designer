@@ -1,4 +1,4 @@
-import EDITOR_MODE, { setEditorMode, setPassData } from '../utility/editorMode'
+import EDITOR_MODE, { setEditorMode, setPassData, getDataFromGlobal } from '../utility/editorMode'
 import nodeDrawAreaContextMenu from './nodeDrawAreaContextMenu'
 import { setContextMenuTitle } from './contextMenuTitle'
 import deleteNodeMode from '../mode/deleteNodeMode'
@@ -16,6 +16,9 @@ const items = {
   SETTING: {
     name: 'Setting',
     icon: 'fa-edit',
+    disabled() {
+      return this.data('toggleSettings')
+    },
   },
   SEP2: '---------',
   DELETE_NODE: {
@@ -36,10 +39,10 @@ function callback(key) {
   if (key === EDITOR_MODE.ADD_LINE) {
     setEditorMode(EDITOR_MODE.ADD_LINE)
 
-    // NOTE: set all nodes before add line
+    // set all nodes before add line
     d3.selectAll('g.node').style('cursor', 'pointer')
 
-    // NOTE: when active box
+    // when active box
     setPassData({
       node,
       beginId: nodeId,
@@ -47,7 +50,7 @@ function callback(key) {
     })
     nodeBox.attr('stroke', 'pink')
 
-    // NOTE: toggle context menu
+    // toggle context menu
     $('g.node').contextMenu(false)
     nodeDrawAreaContextMenu()
   } else if (key === EDITOR_MODE.SETTING) {
@@ -71,12 +74,19 @@ function show() {
   const nodeId = this.attr('id')
   const nodeTitleContent = `ID = ${nodeId}`
 
-  // NOTE: set node context menu title before show
+  // set node context menu title before show
   setContextMenuTitle(nodeTitleContent)
+
+  // toggle settings when empty settings
+  const nodes = getDataFromGlobal('NODES')
+  const node = nodes[nodeId]
+  const notEmptySettings = !Object.keys(node.settings).length
+  const notLoadImageFunction = !(node.type === 'LoadImageFunction')
+  this.data('toggleSettings', notEmptySettings && notLoadImageFunction)
 }
 
 export default () => {
-  // NOTE: context menu on right click trigger
+  // context menu on right click trigger
   $.contextMenu({
     selector,
     className,
