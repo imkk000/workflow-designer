@@ -7,10 +7,4 @@ const saveMode = () => {
   localStorage.setItem('LINES', JSON.stringify(lines))
 }
 
-window.addEventListener('load', () => {
-  document.getElementById('save').addEventListener('click', () => {
-    saveMode()
-  })
-})
-
 export default saveMode
