@@ -104,7 +104,7 @@ export default () => {
     onUploadSuccess(id, data) {
       nodes[nodeId].files = data
 
-      // NOTE: destroy uploader and close dialog
+      // destroy uploader and close dialog
       $(this).dmUploader('destroy')
       $(`#${dialogId}`).dialog('close')
     },
