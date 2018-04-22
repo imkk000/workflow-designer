@@ -30,6 +30,7 @@ body {
   pointer-events: all;
   top: 0;
   left: 179px;
+  shape-rendering: geometricPrecision;
 }
 
 #current-mode {
