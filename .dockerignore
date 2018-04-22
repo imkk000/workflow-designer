@@ -1,0 +1,7 @@
+**
+
+!package.json
+!frontend/dist/**
+!backend/**
+
+**/*.lock
