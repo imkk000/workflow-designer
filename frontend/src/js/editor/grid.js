@@ -1,10 +1,11 @@
 import { getGridArea } from '../utility/getArea'
 
-// NOTE: load grid line
-// NOTE: reference - https://codepen.io/pigabo/pen/eAiLF?editors=1010
+// load grid line
+// reference - https://codepen.io/pigabo/pen/eAiLF?editors=1010
+const side = 40
+
 $(document).ready(() => {
   const defs = getGridArea().append('defs')
-  const side = 35
   const grid = defs
     .append('pattern')
     .attr('id', 'grid')
