@@ -4,15 +4,25 @@ import Line from '../editor/line'
 import { getDataFromGlobal, setDataToGlobal } from '../utility/editorMode'
 import { getDrawArea } from '../utility/getArea'
 
-const loadMode = () => {
-  const localStorageNodes = localStorage.getItem('NODES')
-  const localStorageLines = localStorage.getItem('LINES')
+const loadMode = data => {
+  let parseNodes = null
+  let parseLines = null
 
-  if (!localStorageNodes && !localStorageLines) return false
+  if (data) {
+    const { nodes, lines } = JSON.parse(data)
+    parseNodes = nodes
+    parseLines = lines
+  } else {
+    parseNodes = localStorage.getItem('NODES')
+    parseLines = localStorage.getItem('LINES')
+
+    if (!parseNodes || !parseLines) return
+
+    parseNodes = JSON.parse(parseNodes)
+    parseLines = JSON.parse(parseLines)
+  }
 
   const nodesProperties = getDataFromGlobal('NODES_PROPERTIES')
-  const parseNodes = JSON.parse(localStorageNodes)
-  const parseLines = JSON.parse(localStorageLines)
   const nodes = []
   const lines = parseLines
 
@@ -66,8 +76,6 @@ const loadMode = () => {
     new Line(line)
     return true
   })
-
-  return true
 }
 
 window.addEventListener('load', () => {
