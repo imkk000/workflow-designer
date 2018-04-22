@@ -1,6 +1,6 @@
 # env
 NODE_ENV=$1
-APP_PATH=/app
+APP_PATH=/usr/src/app
 
 # build frontend
 cd frontend
