@@ -78,10 +78,4 @@ const loadMode = data => {
   })
 }
 
-window.addEventListener('load', () => {
-  document.getElementById('load').addEventListener('click', () => {
-    loadMode()
-  })
-})
-
 export default loadMode
