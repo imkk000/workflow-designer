@@ -11,6 +11,7 @@ import './js/contextmenu'
 import './js/editor/grid'
 import './js/mode/clearMode'
 import './js/mode/exportMode'
+import './js/mode/importMode'
 import './js/mode/loadMode'
 import './js/mode/processMode'
 
