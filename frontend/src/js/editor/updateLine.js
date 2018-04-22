@@ -21,29 +21,14 @@ export default ({ node, data }) => {
     const {
       [lineId]: { beginId, endId },
     } = lines
-    const beginNode = select(document.getElementById(beginId))
     const line = select(document.getElementById(lineId).querySelector('.line-path'))
     const lineBackground = select(document.getElementById(lineId).querySelector('.line-background-path'))
     const source = nodeId === beginId ? nodeData : nodes[beginId]
     const target = nodeId === endId ? nodeData : nodes[endId]
-    const link = diagonal({ beginId, beginNode })
-    line
-      .data([
-        {
-          source,
-          target,
-        },
-      ])
-      .attr('d', link)
+    const link = diagonal({ source, target })
 
-    lineBackground
-      .data([
-        {
-          source,
-          target,
-        },
-      ])
-      .attr('d', link)
+    line.attr('d', link)
+    lineBackground.attr('d', link)
 
     return true
   })
