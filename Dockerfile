@@ -12,7 +12,7 @@ RUN mkdir -p $APP_PATH && cp -a node_modules $APP_PATH
 
 # cleanup package manager
 RUN apt-get remove --purge -y cmake git
-RUN apt-get autoclean && apt-get clean && apt-get autoremove
+RUN apt-get autoclean && apt-get clean && apt-get -y autoremove
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN rm -rf ~
 
@@ -20,6 +20,6 @@ WORKDIR $APP_PATH
 ADD backend/* ./
 ADD frontend/dist ./dist
 
-EXPOSE 5665
+EXPOSE 1412
 
-CMD ["node", "index.js"]
+CMD ["node", "app.js"]
