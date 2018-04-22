@@ -10,6 +10,8 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'no-restricted-globals': 0,
+    'no-alert': 0,
     'no-new': 0,
     'no-param-reassign': 0,
     'no-use-before-define': 0,
