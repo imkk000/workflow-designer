@@ -13,16 +13,16 @@ const quitProcessMode = () => {
 
 const toggleMode = () => {
   if (startProcessState) {
-    document.getElementById('process').innerText = 'Start Process'
+    document.getElementById('start').innerText = 'Start'
     startProcessState = false
   } else {
-    document.getElementById('process').innerText = 'Stop Process'
+    document.getElementById('start').innerText = 'Process'
     startProcessState = true
   }
 }
 
 window.addEventListener('load', () => {
-  document.getElementById('process').addEventListener('click', () => {
+  document.getElementById('start').addEventListener('click', () => {
     if (notNormalMode()) {
       errorDialog('Process can use only NORMAL mode')
       return
