@@ -17,9 +17,7 @@ window.addEventListener('load', () => {
       const fr = new FileReader()
       fr.onload = e => {
         if (e.target.result.length === 0) return
-
-        const result = JSON.parse(e.target.result)
-        loadMode(result)
+        loadMode(e.target.result)
       }
       fr.readAsText(files[0])
     })
