@@ -43,3 +43,11 @@ body {
 .block-style {
   padding-bottom: 5px;
 }
+
+span.button {
+  cursor: pointer;
+}
+
+span.button:hover {
+  color: blue;
+}
