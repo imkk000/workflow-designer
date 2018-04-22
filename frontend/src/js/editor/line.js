@@ -48,6 +48,10 @@ export default class {
     const graph = getDataFromGlobal('GRAPH')
     graph.addEdge(beginId, endId)
 
+    // add line to global LINES
+    const lines = getDataFromGlobal('LINES')
+    lines[lineId] = { beginId, endId }
+
     // upload node label
     updateNodeLabel(endId)
   }

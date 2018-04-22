@@ -51,10 +51,6 @@ function addLineMode() {
   source.lines.push(lineId)
   target.lines.push(lineId)
 
-  // add line to global LINES
-  const lines = getDataFromGlobal('LINES')
-  lines[lineId] = { beginId, endId }
-
   new Line({
     lineId,
     beginId,
