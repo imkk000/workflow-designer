@@ -1,5 +1,5 @@
 import { getDataFromGlobal } from '../utility/editorMode'
-import attachDragAndDrop from '../utility/attachDragAndDrop'
+import attachDragAndDrop from '../mode/attachDragAndDrop'
 
 window.addEventListener('load', () => {
   const svg = d3.select('#diagram-drawing')
