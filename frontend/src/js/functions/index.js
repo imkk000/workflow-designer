@@ -20,10 +20,6 @@ window.addEventListener('load', () => {
     x: 0,
     y: 0,
     settings: {},
-    files: {
-      fileId: '',
-      fileExt: '',
-    },
   }
 
   // build node properties
@@ -41,6 +37,7 @@ window.addEventListener('load', () => {
     }
 
     properties[type] = {
+      files: [],
       ...defaultSettings,
       ...property,
     }
