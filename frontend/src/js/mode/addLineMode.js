@@ -1,4 +1,3 @@
-import { getDrawArea } from '../utility/getArea'
 import EDITOR_MODE, {
   setEditorMode,
   getDataFromGlobal,
@@ -6,11 +5,10 @@ import EDITOR_MODE, {
   getPassDataBeforeClear,
   isAddLineMode,
 } from '../utility/editorMode'
+import Line from '../editor/line'
 import generateId from '../utility/generateId'
-import diagonal from '../editor/diagonal'
 import { destroyNodeDrawAreaContextMenu } from '../contextmenu/nodeDrawAreaContextMenu'
 import nodeValidate from '../utility/nodeValidator'
-import updateNodeLabel from '../editor/updateNodeLabel'
 
 // other modules can cancel ADD_LINE mode
 export const quitAddLineMode = () => {
@@ -34,11 +32,10 @@ export const quitAddLineMode = () => {
 }
 
 function addLineMode() {
-  const drawArea = getDrawArea()
   const nodes = getDataFromGlobal('NODES')
 
   // prepare data for validate
-  const { beginId, node: beginNode } = getPassData()
+  const { beginId } = getPassData()
   const endNode = d3.select(this)
   const endId = endNode.attr('id')
 
@@ -46,7 +43,6 @@ function addLineMode() {
   if (nodeValidate({ beginId, endId })) return
 
   // prepare data for add line
-  const link = diagonal({ beginId, beginNode })
   const lineId = generateId()
   const { [beginId]: source } = nodes
   const { [endId]: target } = nodes
@@ -59,41 +55,11 @@ function addLineMode() {
   const lines = getDataFromGlobal('LINES')
   lines[lineId] = { beginId, endId }
 
-  // render line group to draw-area-group
-  const lineGroup = drawArea
-    .insert('g', ':first-child')
-    .attr('class', 'line')
-    .attr('id', lineId)
-    .data([{ source, target }])
-
-  // render path
-  lineGroup
-    .append('path')
-    .attr('class', 'line-background-path')
-    .attr('d', link)
-
-  lineGroup
-    .append('path')
-    .attr('class', 'line-path')
-    .attr('id', `line-path-${lineId}`)
-    .attr('d', link)
-
-  // render arrow by text
-  lineGroup
-    .append('text')
-    .attr('class', 'line-text')
-    .append('textPath')
-    .attr('href', `#line-path-${lineId}`)
-    .attr('dominant-baseline', 'middle')
-    .attr('startOffset', '50%')
-    .text('►')
-
-  // add edge to graph data
-  const graph = getDataFromGlobal('GRAPH')
-  graph.addEdge(beginId, endId)
-
-  // upload node label
-  updateNodeLabel(endId)
+  new Line({
+    lineId,
+    beginId,
+    endId,
+  })
 
   // exit ADD_LINE mode
   quitAddLineMode()
