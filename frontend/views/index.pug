@@ -20,19 +20,16 @@ html(lang="en")
         h2 Mode
         h3#current-mode NORMAL
       #controller-menu.block-style
-        h2 Controller
-        h3
-          span#start.button Start
-          span -|-
-          span#preview.button Preview
-        h3
-          span#save.button Save
-          span -|-
-          span#load.button Load
-        h3
-          span#import.button Import
-          span -|-
-          span#export.button Export
+        h2#controller-menu-title Controller
+        h3.row
+          #start.button Start
+          #preview.button Preview
+        h3.row
+          #save.button Save
+          #load.button Load
+        h3.row
+          #import.button Import
+          #export.button Export
       #node-list.block-style
         h2 Input
         #input-list
