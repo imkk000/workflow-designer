@@ -25,7 +25,7 @@ export default ({ node, data }) => {
     const lineBackground = select(document.getElementById(lineId).querySelector('.line-background-path'))
     const source = nodeId === beginId ? nodeData : nodes[beginId]
     const target = nodeId === endId ? nodeData : nodes[endId]
-    const link = diagonal({ source, target })
+    const link = diagonal({ source })
 
     line.attr('d', link)
     lineBackground.attr('d', link)

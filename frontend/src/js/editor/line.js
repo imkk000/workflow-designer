@@ -10,10 +10,10 @@ export default class {
 
   render = ({ lineId, beginId, endId }) => {
     const drawArea = getDrawArea()
+    const nodes = getDataFromGlobal('NODES')
     const { [beginId]: source } = nodes
     const { [endId]: target } = nodes
-    const link = diagonal({ source, target })
-    const nodes = getDataFromGlobal('NODES')
+    const link = diagonal({ source })
 
     // render line group to draw-area-group
     const lineGroup = drawArea
