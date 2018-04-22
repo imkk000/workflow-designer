@@ -1,29 +1,35 @@
 import Node from '../editor/node'
-import { getDataFromGlobal, isNormalMode } from '../utility/editorMode'
+import { getDataFromGlobal, notNormalMode } from '../utility/editorMode'
 
 const allowDrop = event => {
   event.preventDefault()
 }
 
 const drop = event => {
-  event.preventDefault()
-
-  if (isNormalMode()) {
-    const nodesProperties = getDataFromGlobal('NODES_PROPERTIES')
-    const data = event.dataTransfer.getData('text')
-    const nodeBuffer = nodesProperties[data]
-    const nodeData = {
-      ...nodeBuffer,
-      x: event.offsetX,
-      y: event.offsetY,
-    }
-
-    // NOTE: create new Node
-    new Node(nodeData)
+  if (notNormalMode()) {
+    event.preventDefault()
+    return
   }
+
+  const nodesProperties = getDataFromGlobal('NODES_PROPERTIES')
+  const data = event.dataTransfer.getData('text')
+  const nodeBuffer = nodesProperties[data]
+  const nodeData = {
+    ...nodeBuffer,
+    x: event.offsetX,
+    y: event.offsetY,
+  }
+
+  // create new Node
+  new Node(nodeData)
 }
 
 const drag = event => {
+  if (notNormalMode()) {
+    event.preventDefault()
+    return
+  }
+
   event.dataTransfer.setData('text', event.target.id)
 }
 
