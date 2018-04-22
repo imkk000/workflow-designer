@@ -1,4 +1,5 @@
 import loadMode from './loadMode'
+import { errorDialog } from '../editor/dialog'
 
 let fileUpload = null
 
@@ -11,8 +12,14 @@ window.addEventListener('load', () => {
 
     fileUpload.addEventListener('change', function() {
       const { files } = this
-      if (files.length <= 0) return
-      if (files[0].type !== 'application/json') return
+      if (files.length <= 0) {
+        errorDialog('File import length is zero, please try again')
+        return
+      }
+      if (files[0].type !== 'application/json') {
+        errorDialog('File type only json, please try again')
+        return
+      }
 
       const fr = new FileReader()
       fr.onload = e => {
