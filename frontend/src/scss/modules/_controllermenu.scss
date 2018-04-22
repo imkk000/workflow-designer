@@ -4,16 +4,19 @@
     flex-direction: row;
     justify-content: center;
   }
-
-  .button {
-    cursor: pointer;
-    width: 65px;
-    text-align: center;
-  }
-
-  .button:hover {
-    color: blue;
-    background-color: yellow;
-  }
 }
 
+#reset {
+ cursor: pointer;
+}
+
+.button {
+  cursor: pointer;
+  width: 65px;
+  text-align: center;
+}
+
+.button:hover {
+  color: blue;
+  background-color: yellow;
+}
