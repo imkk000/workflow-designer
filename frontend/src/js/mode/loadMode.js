@@ -49,7 +49,6 @@ window.addEventListener('load', () => {
       return true
     })
 
-    console.log(lines)
     // reset global variable
     setDataToGlobal('NODES', {})
     setDataToGlobal('LINES', {})
