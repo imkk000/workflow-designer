@@ -4,5 +4,8 @@ export default {
   limitInput: 0,
   fill: '#FFFFCC',
   stroke: 'brown',
-  files: {},
+  files: {
+    fileId: '',
+    fileExt: '',
+  },
 }
