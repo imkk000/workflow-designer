@@ -1,5 +1,5 @@
 import generateId from '../utility/generateId'
-import { getDrawArea } from '../utility/getArea'
+import { getDrawArea, getDiagramSize } from '../utility/getArea'
 import { isAddLineMode, getDataFromGlobal, isNormalMode } from '../utility/editorMode'
 import updateLine from './updateLine'
 import addLineMode from '../mode/addLineMode'
@@ -83,10 +83,13 @@ export default class {
     // on drag active on NORMAL mode
     if (isNormalMode()) {
       // Calculate coordinate
-      data.x += d3.event.dx
-      data.y += d3.event.dy
-
       const node = d3.select(this)
+      const { width, height } = node.node().getBBox()
+      const { width: svgWidth, height: svgHeight } = getDiagramSize()
+      const strokeWidth = 3
+
+      data.x = Math.max(strokeWidth, Math.min(svgWidth - width - strokeWidth, d3.event.x))
+      data.y = Math.max(strokeWidth, Math.min(svgHeight - height - strokeWidth, d3.event.y))
 
       // set transform from [x, y]
       node.attr('transform', `translate(${data.x}, ${data.y})`)
