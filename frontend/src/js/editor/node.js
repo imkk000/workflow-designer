@@ -100,7 +100,7 @@ export default class {
   }
 
   handleNodeGroupMouseOver() {
-    this.parentNode.appendChild(this)
+    d3.select(this).raise()
   }
 
   handleNodeGroupClick() {
