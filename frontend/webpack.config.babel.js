@@ -50,7 +50,7 @@ const prodConfig = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['es2015', 'stage-0'],
+            presets: ['env', 'stage-0'],
             plugins: [
               'babel-plugin-transform-class-properties',
               [
