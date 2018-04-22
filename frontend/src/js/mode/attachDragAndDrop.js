@@ -1,5 +1,6 @@
 import Node from '../editor/node'
 import { getDataFromGlobal, notNormalMode } from '../utility/editorMode'
+import saveMode from './saveMode'
 
 const allowDrop = event => {
   event.preventDefault()
@@ -22,6 +23,9 @@ const drop = event => {
 
   // create new Node
   new Node(nodeData)
+
+  // auto save on NORMAL mode
+  saveMode()
 }
 
 const drag = event => {

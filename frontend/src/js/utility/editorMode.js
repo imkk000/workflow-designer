@@ -1,4 +1,5 @@
 import showCurrentMode from '../editor/showCurrentMode'
+import saveMode from '../mode/saveMode'
 
 // initial constant editor mode
 const EDITOR_MODE = {
@@ -61,6 +62,9 @@ export const setEditorMode = data => {
 
   // show mode after set mode
   showCurrentMode(window.EDITOR_MODE)
+
+  // auto save on NORMAL mode
+  if (isNormalMode()) saveMode()
 }
 
 // set data to global variable

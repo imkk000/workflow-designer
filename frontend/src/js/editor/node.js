@@ -4,6 +4,7 @@ import { isAddLineMode, getDataFromGlobal, isNormalMode } from '../utility/edito
 import updateLine from './updateLine'
 import addLineMode from '../mode/addLineMode'
 import updateNodeLabel from './updateNodeLabel'
+import saveMode from '../mode/saveMode'
 
 export default class {
   constructor(options) {
@@ -76,7 +77,12 @@ export default class {
     nodeGroup
       .on('mouseover', this.handleNodeGroupMouseOver)
       .on('click', this.handleNodeGroupClick)
-      .call(d3.drag().on('drag', this.handleNodeGroupDragging))
+      .call(
+        d3
+          .drag()
+          .on('drag', this.handleNodeGroupDragging)
+          .on('end', this.handleNodeGroupDragEnd)
+      )
   }
 
   handleNodeGroupDragging(data) {
@@ -97,6 +103,11 @@ export default class {
       // update line
       updateLine({ node, data })
     }
+  }
+
+  handleNodeGroupDragEnd = () => {
+    // auto save on NORMAL mode
+    if (isNormalMode()) saveMode()
   }
 
   handleNodeGroupMouseOver() {
