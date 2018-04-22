@@ -2,6 +2,7 @@
 	"name": "@workflow-designer/front-end",
 	"version": "0.0.1",
 	"description": "Workflow Designer for Basic Image Processing (Front-End)",
+	"main": "src/webpack.import.js",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/ImKK-000/workflow-designer.git"

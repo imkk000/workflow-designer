@@ -2,6 +2,7 @@
   "name": "@workflow-designer/back-end",
   "version": "0.0.1",
   "description": "Workflow Designer for Basic Image Processing (Back-End)",
+  "main": "app.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/ImKK-000/workflow-designer.git"
@@ -38,5 +39,8 @@
     "md5-file": "^4.0.0",
     "opencv4nodejs": "^4.2.1",
     "pm2": "^2.10.2"
+  },
+  "scripts": {
+    "start": "npx pm2 start app.js"
   }
 }
