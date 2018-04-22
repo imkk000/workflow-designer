@@ -9,6 +9,7 @@ import './js/app'
 import './js/onload/addNodePreviews'
 import './js/contextmenu'
 import './js/editor/grid'
+import './js/mode/saveMode'
 
 // NOTE: Import style(css, scss) app dependencies
 import '../node_modules/roboto-fontface/css/roboto/sass/roboto-fontface.scss'
