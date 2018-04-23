@@ -26,11 +26,14 @@ export const saveFile = (img = new cv.Mat(), fileName = tempFile) => {
     if (fs.existsSync(fileName)) fs.unlinkSync(fileName)
     cv.imwrite(fileName, img)
 
-    const hash = md5file.sync(fileName)
-    const files = { fileId: hash, fileExt: 'png' }
-    const newFile = processFile(files)
-    fs.renameSync(fileName, newFile)
-    return newFile
+    if (fileName === tempFile) {
+      const hash = md5file.sync(fileName)
+      const files = { fileId: hash, fileExt: 'png' }
+      const newFile = processFile(files)
+      fs.renameSync(fileName, newFile)
+      return newFile
+    }
+    return fileName
   } catch (err) {
     console.error(err)
   }
