@@ -1,6 +1,6 @@
 import cv from 'opencv4nodejs'
 import path from 'path'
-import { sayFileName, saveFile } from './imagePath'
+import { sayFileName, saveFile } from '../imagePath'
 
 export default (data) => {
   return new Promise((resolve, reject) => {

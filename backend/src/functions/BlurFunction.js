@@ -1,6 +1,6 @@
 import cv from 'opencv4nodejs'
 import path from 'path'
-import { sayFileName, saveFile } from './imagePath'
+import { sayFileName, saveFile } from '../imagePath'
 
 export default (data) => {
   return new Promise((resolve, reject) => {
@@ -8,11 +8,11 @@ export default (data) => {
     const img = cv.imread(fileName)
 
     const { settings } = data
-    const { sigma } = settings
+    const { kSizeWidth, kSizeHeight } = settings
 
-    const size = new cv.Size()
-    const gaussian = img.gaussianBlur(size, sigma)
+    const size = new cv.Size(kSizeWidth, kSizeHeight)
+    const blurImg = img.blur(size)
 
-    resolve(saveFile(gaussian))
+    resolve(saveFile(blurImg, 'test.png'))
   })
 }

@@ -3,7 +3,7 @@ import fs from 'fs'
 import cv from 'opencv4nodejs'
 import md5file from 'md5-file'
 
-const rootPath = path.join(__dirname, '..', '..')
+const rootPath = path.join(__dirname, '..')
 
 export const uploadFilesPath = path.join(rootPath, 'upload_files')
 export const processFilesPath = path.join(rootPath, 'process_files')

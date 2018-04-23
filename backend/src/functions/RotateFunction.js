@@ -1,6 +1,6 @@
 import cv from 'opencv4nodejs'
 import path from 'path'
-import { sayFileName, saveFile } from './imagePath'
+import { sayFileName, saveFile } from '../imagePath'
 
 export default (data) => {
   return new Promise((resolve, reject) => {
@@ -26,7 +26,7 @@ export default (data) => {
 
     const newMat = img.warpAffine(rotMat2D, newSize)
     const tmpImg = new cv.Mat(width, height, cv.CV_8UC4, [255, 255, 255, 255])
-      .cvtColor(cv.COLOR_BGR2GRAY)
+      .bgrToGray()
       .warpAffine(rotMat2D, newSize)
 
     const rgb = newMat.split()
