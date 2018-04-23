@@ -35,8 +35,7 @@ router
       if (!req.files) return res.status(400)
 
       const { name, mimetype, md5, mv } = req.files.file
-      const fileExt = mimetype.match(/(png|jpg|jpeg)/g)[0]
-      const fileName = uploadFile({ fileId: md5, fileExt })
+      const fileName = uploadFile({ fileId: md5, fileExt: 'png' })
 
       if (!fs.existsSync(fileName)) mv(fileName)
 
@@ -46,27 +45,55 @@ router
     }
   })
 
-const oneData = {
-  type: 'LoadImageFunction',
-  files: {
-    fileId: 'tux_profile',
-    fileExt: 'png',
-  }
-}
-const twoData = {
-  type: 'RotateFunction',
-  settings: {
-    angle: 45,
-  },
-  files: {
-    fileId: '6127a6f5675926f55141c7145d48242f',
-    fileExt: 'png',
-  }
-}
-
-rimraf(path.join(__dirname, '..', 'process_files'), (err) => {
+rimraf(path.join(__dirname, '..', 'process_files'), async (err) => {
   if (err) return
 
-  functions['LoadImageFunction'](oneData)
-  functions['RotateFunction'](twoData)
+  const oneData = {
+    type: 'LoadImageFunction',
+    files: {
+      fileId: 'tux_profile',
+      fileExt: 'png',
+    }
+  }
+  const oneFile = await functions['LoadImageFunction'](oneData)
+
+  const twoData = {
+    type: 'RotateFunction',
+    settings: {
+      angle: 45,
+    },
+    files: {
+      fileId: oneFile,
+      fileExt: 'png',
+    }
+  }
+  const twoFile = await functions['RotateFunction'](twoData)
+
+  const threeData = {
+    type: 'RotateFunction',
+    settings: {
+      angle: 45,
+    },
+    files: {
+      fileId: twoFile,
+      fileExt: 'png',
+    }
+  }
+  const threeFile = await functions['RotateFunction'](threeData)
+  console.log(threeFile)
+
+  const fourData = {
+    type: 'RotateFunction',
+    settings: {
+      angle: 45,
+    },
+    files: {
+      fileId: threeFile,
+      fileExt: 'png',
+    }
+  }
+  const fourFile = await functions['RotateFunction'](fourData)
+  console.log(fourFile)
+
+  console.log('END')
 })
