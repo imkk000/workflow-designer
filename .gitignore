@@ -19,3 +19,8 @@ dist/
 
 # docker core
 core
+
+# ignore directory
+upload_files
+process_files
+!upload_files/tux_profile.png
