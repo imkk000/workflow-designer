@@ -22,7 +22,7 @@ export const sayFileName = (data) => {
   return type === 'LoadImageFunction' ? uploadFile(files) : processFile(files)
 }
 
-export const saveFile = (img = new cv.Mat(), fileName = tempFile) => {
+export const writeImage = (img = new cv.Mat(), fileName = tempFile) => {
   try {
     if (fs.existsSync(fileName)) fs.unlinkSync(fileName)
     cv.imwrite(fileName, img)
@@ -40,4 +40,9 @@ export const saveFile = (img = new cv.Mat(), fileName = tempFile) => {
   }
 
   return
+}
+export const readImage = (data) => {
+  const fileName = sayFileName(data)
+  const { settings } = data
+  return { img: cv.imread(fileName), settings }
 }
