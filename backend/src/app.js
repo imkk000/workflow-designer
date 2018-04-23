@@ -2,6 +2,10 @@ import cv from 'opencv4nodejs'
 import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
+import functions from './functions'
+import fs from 'fs'
+import path from 'path'
+import rimraf from 'rimraf'
 
 const PORT = process.env.PORT || 1412
 const app = express()
@@ -17,12 +21,39 @@ app
 router
   .route('/process')
   .get(async (req, res) => {
-    try {
-      const img = cv.imreadAsync('')
-    } catch (err) {
-      console.error(err)
-    }
-
-    console.log('fix!')
+    const { data } = req.body
     res.json({ null: null })
   })
+
+const data = {
+  files: [
+    {
+      fileId: 'tux_profile',
+      fileExt: 'png',
+    },
+  ]
+}
+const oneData = {
+  type: 'LoadImageFunction',
+  files: {
+    fileId: 'tux_profile',
+    fileExt: 'png',
+  }
+}
+const twoData = {
+  type: 'RotateFunction',
+  settings: {
+    angle: 45,
+  },
+  files: {
+    fileId: '6127a6f5675926f55141c7145d48242f',
+    fileExt: 'png',
+  }
+}
+
+rimraf(path.join(__dirname, '..', 'process_files'), (err) => {
+  if (err) return
+
+  functions['LoadImageFunction'](oneData)
+  functions['RotateFunction'](twoData)
+})
