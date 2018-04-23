@@ -7,7 +7,7 @@ import fs from 'fs'
 import path from 'path'
 import rimraf from 'rimraf'
 import fileUpload from 'express-fileupload'
-import { uploadFile } from './functions/imagePath'
+import { uploadFile } from './imagePath'
 
 const PORT = process.env.PORT || 1412
 const app = express()
@@ -56,44 +56,20 @@ rimraf(path.join(__dirname, '..', 'process_files'), async (err) => {
     }
   }
   const oneFile = await functions['LoadImageFunction'](oneData)
+  console.log(oneFile)
 
   const twoData = {
-    type: 'RotateFunction',
+    type: 'OpeningFunction',
     settings: {
-      angle: 45,
+      kSize: 60,
     },
     files: {
       fileId: oneFile,
       fileExt: 'png',
     }
   }
-  const twoFile = await functions['RotateFunction'](twoData)
-
-  const threeData = {
-    type: 'BlurFunction',
-    settings: {
-      sigma: 5
-    },
-    files: {
-      fileId: twoFile,
-      fileExt: 'png',
-    }
-  }
-  const threeFile = await functions['BlurFunction'](threeData)
-  console.log(threeFile)
-
-  // const fourData = {
-  //   type: 'RotateFunction',
-  //   settings: {
-  //     angle: 45,
-  //   },
-  //   files: {
-  //     fileId: threeFile,
-  //     fileExt: 'png',
-  //   }
-  // }
-  // const fourFile = await functions['RotateFunction'](fourData)
-  // console.log(fourFile)
+  const twoFile = await functions['OpeningFunction'](twoData)
+  console.log(twoFile)
 
   console.log('END')
 })
