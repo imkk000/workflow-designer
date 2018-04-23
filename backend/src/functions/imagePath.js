@@ -8,8 +8,8 @@ const rootPath = path.join(__dirname, '..', '..')
 export const uploadFilesPath = path.join(rootPath, 'upload_files')
 export const processFilesPath = path.join(rootPath, 'process_files')
 export const tempFile = path.join(processFilesPath, 'temp_process.png')
-export const uploadFile = ({ fileId, fileExt }) => path.join(uploadFilesPath, `${fileId}.${fileExt}`)
-export const processFile = ({ fileId, fileExt }) => path.join(processFilesPath, `${fileId}.${fileExt}`)
+export const uploadFile = ({ fileId, fileExt }) => path.join(uploadFilesPath, `${fileId}.png`)
+export const processFile = ({ fileId }) => path.join(processFilesPath, `${fileId}.png`)
 export const sayFileName = (data) => {
   if (!data) return
   if (!fs.existsSync(processFilesPath)) fs.mkdirSync(processFilesPath)
@@ -21,6 +21,7 @@ export const sayFileName = (data) => {
 
   return type === 'LoadImageFunction' ? uploadFile(files) : processFile(files)
 }
+
 export const saveFile = (img = new cv.Mat(), fileName = tempFile) => {
   try {
     if (fs.existsSync(fileName)) fs.unlinkSync(fileName)
@@ -31,7 +32,7 @@ export const saveFile = (img = new cv.Mat(), fileName = tempFile) => {
       const files = { fileId: hash, fileExt: 'png' }
       const newFile = processFile(files)
       fs.renameSync(fileName, newFile)
-      return newFile
+      return hash
     }
     return fileName
   } catch (err) {
