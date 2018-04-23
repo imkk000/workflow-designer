@@ -12,7 +12,6 @@ export default (data) => {
 
     const size = new cv.Size()
     const gaussian = img.gaussianBlur(size, sigma)
-    console.log(gaussian)
 
     resolve(saveFile(gaussian))
   })
