@@ -16,3 +16,6 @@ temp/
 
 # Dist directory
 dist/
+
+# docker core
+core
