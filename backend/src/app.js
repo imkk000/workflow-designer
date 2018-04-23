@@ -70,30 +70,30 @@ rimraf(path.join(__dirname, '..', 'process_files'), async (err) => {
   const twoFile = await functions['RotateFunction'](twoData)
 
   const threeData = {
-    type: 'RotateFunction',
+    type: 'BlurFunction',
     settings: {
-      angle: 45,
+      sigma: 5
     },
     files: {
       fileId: twoFile,
       fileExt: 'png',
     }
   }
-  const threeFile = await functions['RotateFunction'](threeData)
+  const threeFile = await functions['BlurFunction'](threeData)
   console.log(threeFile)
 
-  const fourData = {
-    type: 'RotateFunction',
-    settings: {
-      angle: 45,
-    },
-    files: {
-      fileId: threeFile,
-      fileExt: 'png',
-    }
-  }
-  const fourFile = await functions['RotateFunction'](fourData)
-  console.log(fourFile)
+  // const fourData = {
+  //   type: 'RotateFunction',
+  //   settings: {
+  //     angle: 45,
+  //   },
+  //   files: {
+  //     fileId: threeFile,
+  //     fileExt: 'png',
+  //   }
+  // }
+  // const fourFile = await functions['RotateFunction'](fourData)
+  // console.log(fourFile)
 
   console.log('END')
 })
