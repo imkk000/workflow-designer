@@ -1,14 +1,13 @@
 import cv from 'opencv4nodejs'
 import path from 'path'
-import { sayFileName, saveFile } from '../imagePath'
+import { readImage, writeImage } from '../imagePath'
 
 export default (data) => {
   return new Promise((resolve, reject) => {
-    const fileName = sayFileName(data)
-    const img = cv.imread(fileName)
+    const { img } = readImage(data)
 
     const grayImg = img.bgrToGray()
 
-    resolve(saveFile(grayImg))
+    resolve(writeImage(grayImg))
   })
 }

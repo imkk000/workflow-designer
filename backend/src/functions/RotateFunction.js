@@ -1,13 +1,10 @@
 import cv from 'opencv4nodejs'
 import path from 'path'
-import { sayFileName, saveFile } from '../imagePath'
+import { readImage, writeImage } from '../imagePath'
 
 export default (data) => {
   return new Promise((resolve, reject) => {
-    const fileName = sayFileName(data)
-    const img = cv.imread(fileName)
-
-    const { settings } = data
+    const { img, settings } = readImage(data)
     const { angle } = settings
 
     const [height, width] = img.sizes
@@ -33,6 +30,6 @@ export default (data) => {
     const alpha = tmpImg.threshold(0, 255, cv.THRESH_BINARY)
     const newMatTransparent = new cv.Mat([...rgb, alpha])
 
-    resolve(saveFile(newMatTransparent))
+    resolve(writeImage(newMatTransparent))
   })
 }
