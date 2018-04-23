@@ -1,7 +1,7 @@
 import LoadImageFunction from './LoadImageFunction'
 import RotateFunction from './RotateFunction'
 import BlurFunction from './BlurFunction'
-import ConvertGrayscaleFunction from './ConvertGrayscaleFunction'
+import BGR2GrayFunction from './BGR2GrayFunction'
 import CannyFunction from './CannyFunction'
 
 // function registry
@@ -9,6 +9,6 @@ export default {
   LoadImageFunction,
   RotateFunction,
   BlurFunction,
-  ConvertGrayscaleFunction,
+  BGR2GrayFunction,
   CannyFunction,
 }
