@@ -7,7 +7,7 @@ import fs from 'fs'
 import path from 'path'
 import rimraf from 'rimraf'
 import fileUpload from 'express-fileupload'
-import { uploadFile, processFilesPath, uploadFilesPath } from './imagePath'
+import { uploadFile, processFilesPath, uploadFilesPath, processFile } from './imagePath'
 
 const PORT = process.env.PORT || 1412
 const app = express()
@@ -41,7 +41,7 @@ router
       const fileId = await functions[type](req.body)
 
       res
-        .sendStatus(200)
+        .status(200)
         .json({
           fileId
         })
@@ -85,6 +85,29 @@ router
     }
 
     res.status(404).send(generate404(req))
+  })
+
+router
+  .route('/image/:id')
+  .get((req, res) => {
+    const { id } = req.params
+
+    const queryData = {
+      fileId: id
+    }
+    const upload = uploadFile(queryData)
+    const process = processFile(queryData)
+
+    if (fs.existsSync(upload)) {
+      res.sendFile(upload)
+      return
+    }
+    if (fs.existsSync(process)) {
+      res.sendFile(process)
+      return
+    }
+
+    res.sendStatus(400)
   })
 
 router
