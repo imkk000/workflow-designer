@@ -1,11 +1,14 @@
 export default {
-  label: 'Rotate',
-  type: 'RotateFunction',
+  label: 'Dilate',
+  type: 'DilateFunction',
   limitInput: 1,
-  fill: '#DCD800',
+  fill: '#FF7C62',
   stroke: 'brown',
   settings: {
-    angle: {
+    kSizeWidth: {
+      defaultValue: 0,
+    },
+    kSizeHeight: {
       defaultValue: 0,
     },
   },

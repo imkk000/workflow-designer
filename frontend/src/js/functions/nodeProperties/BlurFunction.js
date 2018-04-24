@@ -1,11 +1,14 @@
 export default {
-  label: 'Rotate',
-  type: 'RotateFunction',
+  label: 'Blur',
+  type: 'BlurFunction',
   limitInput: 1,
-  fill: '#DCD800',
+  fill: '#40FF9A',
   stroke: 'brown',
   settings: {
-    angle: {
+    kSizeWidth: {
+      defaultValue: 0,
+    },
+    kSizeHeight: {
       defaultValue: 0,
     },
   },

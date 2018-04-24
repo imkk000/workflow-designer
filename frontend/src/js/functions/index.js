@@ -2,19 +2,23 @@ import { setDataToGlobal } from '../utility/editorMode'
 
 import LoadImageFunction from './nodeProperties/LoadImageFunction'
 import RotateFunction from './nodeProperties/RotateFunction'
-import GaussianBlurFunction from './nodeProperties/GaussianBlurFunction'
-import ResizeFunction from './nodeProperties/ResizeFunction'
-import ConvertGrayScaleFunction from './nodeProperties/ConvertGrayScaleFunction'
-import ConvertHSVScaleFunction from './nodeProperties/ConvertHSVScaleFunction'
+import BlurFunction from './nodeProperties/BlurFunction'
+import BGR2GrayFunction from './nodeProperties/BGR2GrayFunction'
+import CannyFunction from './nodeProperties/CannyFunction'
+import DilateFunction from './nodeProperties/DilateFunction'
+import ErodeFunction from './nodeProperties/ErodeFunction'
+import SobelFunction from './nodeProperties/SobelFunction'
 
 window.addEventListener('load', () => {
   const functionsInclude = [
     LoadImageFunction,
-    ConvertGrayScaleFunction,
-    ConvertHSVScaleFunction,
-    GaussianBlurFunction,
-    ResizeFunction,
+    BGR2GrayFunction,
     RotateFunction,
+    DilateFunction,
+    CannyFunction,
+    ErodeFunction,
+    SobelFunction,
+    BlurFunction,
   ]
   const defaultSettings = {
     x: 0,

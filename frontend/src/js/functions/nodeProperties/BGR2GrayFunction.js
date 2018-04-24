@@ -1,11 +1,14 @@
 export default {
-  label: 'Rotate',
-  type: 'RotateFunction',
+  label: 'Convert Gray',
+  type: 'BGR2GrayFunction',
   limitInput: 1,
-  fill: '#DCD800',
+  fill: '#42FFEE',
   stroke: 'brown',
   settings: {
-    angle: {
+    kSizeWidth: {
+      defaultValue: 0,
+    },
+    kSizeHeight: {
       defaultValue: 0,
     },
   },

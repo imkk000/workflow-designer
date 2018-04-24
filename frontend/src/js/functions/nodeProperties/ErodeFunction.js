@@ -1,11 +1,14 @@
 export default {
-  label: 'Rotate',
-  type: 'RotateFunction',
+  label: 'Erode',
+  type: 'ErodeFunction',
   limitInput: 1,
-  fill: '#DCD800',
+  fill: '#F786FF',
   stroke: 'brown',
   settings: {
-    angle: {
+    kSizeWidth: {
+      defaultValue: 0,
+    },
+    kSizeHeight: {
       defaultValue: 0,
     },
   },
