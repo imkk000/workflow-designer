@@ -20,50 +20,10 @@ export default () => {
 
   const dialogId = 'setting-dialog'
   const title = `Setting Node id ${nodeId}`
-  const checkOk = () => {
-    const valid = settingsKeysToArray.map(key => {
-      const { validator: validateInput } = settings[key]
-      const valueString = $(`input[name=${key}]`).val()
-      return validateInput(valueString)
-    })
-    const errorDialogContent = valid.map((validResult, index) => {
-      if (!validResult) {
-        const key = settingsKeysToArray[index]
-        const { value, errorText } = settingsValuesToArray[index]
-        $(`input[name=${key}]`).val(value)
-
-        return <p>- {errorText}</p>
-      }
-      return false
-    })
-    const validCount = errorDialogContent.reduce((sum, current) => sum + (current !== false))
-
-    if (validCount) {
-      const id = 'error-dialog'
-      const buttons = {
-        Close() {
-          $(this).dialog('close')
-        },
-      }
-      const content = <div id={id}>{errorDialogContent}</div>
-
-      showDialog({
-        custom: true,
-        id,
-        title: 'Error Dialog',
-        buttons,
-        content,
-      })
-      return false
-    }
-
-    return true
-  }
-
   const buttons = {
     'Reset to Default': function() {
       confirmDialog('Do you want to continue?', () => {
-        // NOTE: set values
+        // set values
         settingsValuesToArray.forEach((setting, index) => {
           const key = settingsKeysToArray[index]
           const { defaultValue } = settingsValuesToArray[index]
@@ -74,20 +34,18 @@ export default () => {
       })
     },
     OK() {
-      if (checkOk()) {
-        confirmDialog('Do you want to continue?', () => {
-          // NOTE: set values
-          settingsValuesToArray.forEach((setting, index) => {
-            const key = settingsKeysToArray[index]
-            const valueString = $(`input[name=${key}]`).val()
-            setting.value = valueString
-          })
-
-          quitSettingNodeMode()
-          $('#confirm-dialog').dialog('close')
-          $(this).dialog('close')
+      confirmDialog('Do you want to continue?', () => {
+        // set values
+        settingsValuesToArray.forEach((setting, index) => {
+          const key = settingsKeysToArray[index]
+          const valueString = $(`input[name=${key}]`).val()
+          setting.value = valueString
         })
-      }
+
+        quitSettingNodeMode()
+        $('#confirm-dialog').dialog('close')
+        $(this).dialog('close')
+      })
     },
     Cancel() {
       quitSettingNodeMode()
