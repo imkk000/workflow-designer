@@ -121,6 +121,12 @@ const devConfig = {
     host: '0.0.0.0',
     hot: true,
     https: false,
+    proxy: {
+      '/api': {
+        target: 'http://0.0.0.0:1412',
+        secure: false,
+      },
+    },
     before: app => {
       app
         .use(cors())
