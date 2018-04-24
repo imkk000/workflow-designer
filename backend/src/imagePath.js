@@ -8,7 +8,7 @@ const rootPath = path.join(__dirname, '..')
 export const uploadFilesPath = path.join(rootPath, 'upload_files')
 export const processFilesPath = path.join(rootPath, 'process_files')
 export const tempFile = path.join(processFilesPath, 'temp_process.png')
-export const uploadFile = ({ fileId, fileExt }) => path.join(uploadFilesPath, `${fileId}.png`)
+export const uploadFile = ({ fileId }) => path.join(uploadFilesPath, `${fileId}.png`)
 export const processFile = ({ fileId }) => path.join(processFilesPath, `${fileId}.png`)
 export const sayFileName = (data) => {
   if (!data) return
