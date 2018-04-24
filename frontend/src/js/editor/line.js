@@ -53,6 +53,7 @@ export default class {
     lines[lineId] = { beginId, endId }
 
     // upload node label
+    updateNodeLabel(beginId)
     updateNodeLabel(endId)
   }
 }
