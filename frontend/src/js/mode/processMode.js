@@ -2,6 +2,7 @@ import axios from 'axios'
 import { isLength } from 'validator'
 import EDITOR_MODE, { getDataFromGlobal, notNormalMode, setEditorMode } from '../utility/editorMode'
 import { informationDialog, errorDialog, confirmDialog } from '../editor/dialog'
+import previewMode from './previewMode'
 
 let startProcessState = false
 
@@ -111,7 +112,7 @@ window.addEventListener('load', () => {
           }
 
           axios
-            .post('http://0.0.0.0:9999/api/process', sendData)
+            .post('//0.0.0.0:1412/api/process', sendData)
             .then(({ data }) => {
               if (!startProcessState) return
 
@@ -126,6 +127,8 @@ window.addEventListener('load', () => {
               } else {
                 informationDialog('Process Complete')
                 quitProcessMode()
+
+                previewMode()
               }
             })
             .catch(error => {

@@ -122,15 +122,17 @@ const devConfig = {
     hot: true,
     https: false,
     before: app => {
-      // enable cors
-      app.use(cors())
-
-      app.get('/', (req, res) => {
-        res.render(path.join(__dirname, 'views', 'index.pug'), {
-          dev: true,
-          ...ABOUT_APP,
+      app
+        .use(cors())
+        .get('/', (req, res) => {
+          res.render(path.join(__dirname, 'views', 'index.pug'), {
+            dev: true,
+            ...ABOUT_APP,
+          })
         })
-      })
+        .get('/preview', (req, res) => {
+          res.render(path.join(__dirname, 'views', 'preview.pug'))
+        })
     },
   },
 }
