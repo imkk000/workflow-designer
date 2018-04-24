@@ -7,7 +7,7 @@ import fs from 'fs'
 import path from 'path'
 import rimraf from 'rimraf'
 import fileUpload from 'express-fileupload'
-import { uploadFile } from './imagePath'
+import { uploadFile, processFilesPath } from './imagePath'
 
 const PORT = process.env.PORT || 1412
 const app = express()
@@ -25,6 +25,11 @@ router
   .route('/process')
   .post((req, res) => {
     const { data } = req.body
+
+    rimraf(processFilesPath(), async (err) => {
+      if (err) return
+    })
+
     res.json({ null: null })
   })
 
@@ -44,34 +49,3 @@ router
       res.status(400)
     }
   })
-
-rimraf(path.join(__dirname, '..', 'process_files'), async (err) => {
-  if (err) return
-
-  const oneData = {
-    type: 'LoadImageFunction',
-    files: {
-      fileId: 'lenna',
-      fileExt: 'png',
-    }
-  }
-  const oneFile = await functions['LoadImageFunction'](oneData)
-  console.log(oneFile)
-
-  const twoData = {
-    type: 'SobelFunction',
-    settings: {
-      ddepth: -1,
-      dx: 1,
-      dy: 0,
-    },
-    files: {
-      fileId: oneFile,
-      fileExt: 'png',
-    }
-  }
-  const twoFile = await functions['SobelFunction'](twoData)
-  console.log(twoFile)
-
-  console.log('END')
-})
