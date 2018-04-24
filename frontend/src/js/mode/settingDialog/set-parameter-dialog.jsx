@@ -1,6 +1,7 @@
 import dom from 'jsx-render'
 import { showDialog, confirmDialog } from '../../editor/dialog'
 import EDITOR_MODE, { setEditorMode, getDataFromGlobal, getPassDataBeforeClear } from '../../utility/editorMode'
+import updateNodeLabel from '../../editor/updateNodeLabel'
 
 let settingsKeysToArray = null
 let settingsValuesToArray = null
@@ -42,6 +43,7 @@ export default () => {
           setting.value = valueString
         })
 
+        updateNodeLabel(nodeId)
         quitSettingNodeMode()
         $('#confirm-dialog').dialog('close')
         $(this).dialog('close')
