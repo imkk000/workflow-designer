@@ -1,7 +1,6 @@
 import { setDataToGlobal } from '../utility/editorMode'
 
 import LoadImageFunction from './nodeProperties/LoadImageFunction'
-import RotateFunction from './nodeProperties/RotateFunction'
 import BlurFunction from './nodeProperties/BlurFunction'
 import BGR2GrayFunction from './nodeProperties/BGR2GrayFunction'
 import CannyFunction from './nodeProperties/CannyFunction'
@@ -13,7 +12,6 @@ window.addEventListener('load', () => {
   const functionsInclude = [
     LoadImageFunction,
     BGR2GrayFunction,
-    RotateFunction,
     DilateFunction,
     CannyFunction,
     ErodeFunction,
@@ -24,6 +22,9 @@ window.addEventListener('load', () => {
     x: 0,
     y: 0,
     settings: {},
+    files: {
+      fileId: '',
+    },
   }
 
   // build node properties

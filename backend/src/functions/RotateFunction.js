@@ -4,6 +4,7 @@ import { readImage, writeImage } from '../imagePath'
 
 export default (data) => {
   return new Promise((resolve, reject) => {
+    // FIXME: not working
     const { img, settings } = readImage(data)
     const { angle } = settings
 
@@ -11,7 +12,8 @@ export default (data) => {
     const centerX = width / 2
     const centerY = height / 2
     const centerPoint = new cv.Point2(centerX, centerY)
-    const rotMat2D = cv.getRotationMatrix2D(centerPoint, angle, 1.0)
+    const rotMat2D = cv.getRotationMatrix2D(centerPoint, angle)
+    const newMat = img.warpAffine(rotMat2D, new cv.Size(width, height))
     const cos = Math.abs(rotMat2D.at(0, 0))
     const sin = Math.abs(rotMat2D.at(0, 1))
     const newWidth = Math.floor((height * sin) + (width * cos))
