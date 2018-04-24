@@ -19,7 +19,7 @@ export default nodeId => {
     paramsString = `(${paramsString}) `
   }
 
-  const newLabel = `${limitInput}-${label} ${paramsString} (${nodeInDegree}, ${nodeOutDegree})`
+  const newLabel = `${limitInput}-${label} ${paramsString} ( ${nodeInDegree} , ${nodeOutDegree} )`
   const nodeLabel = node.select('.node-label').text(newLabel)
   const textBBox = nodeLabel.node().getBBox()
   const { width: textWidth, height: textHeight } = textBBox
