@@ -77,7 +77,7 @@ export default () => {
   })
 
   $('input[name=file]').dmUploader({
-    url: 'http://127.0.0.1:9999/api/upload',
+    url: `${location.origin}/api/upload`,
     auto: false,
     multiple: false,
     maxFileSize: 10485760,
