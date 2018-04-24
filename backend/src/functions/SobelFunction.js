@@ -5,10 +5,10 @@ import { readImage, writeImage } from '../imagePath'
 export default (data) => {
   return new Promise((resolve, reject) => {
     const { img, settings } = readImage(data)
-    const { dx, dy } = settings
+    const { ddepth, dx, dy } = settings
 
     console.log(img)
-    const sobelImg = img.sobel(img.depth, 1, 0)
+    const sobelImg = img.sobel(ddepth, dx, dy)
 
     resolve(writeImage(sobelImg))
   })
