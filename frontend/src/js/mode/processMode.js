@@ -116,20 +116,16 @@ window.addEventListener('load', () => {
             .then(({ data }) => {
               if (!startProcessState) return
 
-              if (queue.length) {
-                if (data.status) {
-                  errorDialog('something error on server, please try again')
-                  return
-                }
+              node.files = data
 
-                node.files = data
-                queueNext()
-              } else {
+              if (!queue.length) {
                 informationDialog('Process Complete')
                 quitProcessMode()
 
                 previewMode()
               }
+
+              queueNext()
             })
             .catch(error => {
               errorDialog('Something error, please try again')
