@@ -35,14 +35,6 @@ export default class {
       .attr('id', id)
       .attr('transform', data => `translate(${data.x}, ${data.y})`)
 
-    const nodeLabel = nodeGroup
-      .append('text')
-      .attr('class', 'node-label')
-      .attr('dx', '5px')
-      .attr('dy', '1.7em')
-      .attr('text-anchor', 'start')
-      .attr('stroke', stroke)
-
     const nodeBox = nodeGroup
       .insert('rect', ':first-child')
       .attr('class', 'node-box')
@@ -57,6 +49,16 @@ export default class {
       .attr('rx', 5)
       .attr('ry', 5)
       .attr('fill', 'white')
+
+    const nodeLabel = nodeGroup
+      .append('text')
+      .attr('class', 'node-label')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('text-anchor', 'middle')
+      .attr('alignment-baseline', 'middle')
+      .attr('stroke', stroke)
+      .attr('stroke-width', 1)
 
     // add node to graph data
     const graph = getDataFromGlobal('GRAPH')
