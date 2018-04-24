@@ -7,7 +7,7 @@ import fs from 'fs'
 import path from 'path'
 import rimraf from 'rimraf'
 import fileUpload from 'express-fileupload'
-import { uploadFile } from './imagePath'
+import { uploadFile, processFilesPath, uploadFilesPath } from './imagePath'
 
 const PORT = process.env.PORT || 1412
 const app = express()
@@ -27,12 +27,15 @@ router
     const { id, type, files, settings } = req.body
     try {
       const fileId = await functions[type](req.body)
-      res.json({
-        fileId
-      })
+
+      res
+        .status(200)
+        .json({
+          fileId
+        })
     } catch (error) {
       console.error(error)
-      res.status(400).json({})
+      res.status(400)
     }
   })
 
@@ -40,7 +43,7 @@ router
   .route('/upload')
   .post((req, res) => {
     try {
-      if (!req.files) return res.status(400).json({})
+      if (!req.files) return res.status(400)
 
       const { name, mimetype, md5, mv } = req.files.file
       const fileIdResult = { fileId: md5 }
@@ -50,6 +53,18 @@ router
 
       res.json(fileIdResult)
     } catch (err) {
-      res.status(400).json({})
+      res.status(400)
     }
+  })
+
+router
+  .route('/clear')
+  .post((req, res) => {
+    rimraf.sync(uploadFilesPath)
+    rimraf.sync(processFilesPath)
+
+    if (!fs.existsSync(uploadFilesPath)) fs.mkdirSync(uploadFilesPath)
+    if (!fs.existsSync(processFilesPath)) fs.mkdirSync(processFilesPath)
+
+    res.status(200)
   })
