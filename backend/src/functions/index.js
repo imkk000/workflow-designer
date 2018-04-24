@@ -7,6 +7,7 @@ import DilateFunction from './DilateFunction'
 import SobelFunction from './SobelFunction'
 import GaussianBlurFunction from './GaussianBlurFunction'
 import ResizeFunction from './ResizeFunction'
+import ThresholdFunction from './ThresholdFunction'
 
 // function registry
 export default {
@@ -19,4 +20,5 @@ export default {
   DilateFunction,
   SobelFunction,
   ResizeFunction,
+  ThresholdFunction,
 }
