@@ -37,6 +37,7 @@ window.addEventListener('load', () => {
     setEditorMode(EDITOR_MODE.PROCESS)
 
     const nodes = getDataFromGlobal('NODES')
+    const lines = getDataFromGlobal('LINES')
     const graph = getDataFromGlobal('GRAPH')
     // sort and remove some node dont have lines
     const topologicalSort = graph
@@ -58,8 +59,8 @@ window.addEventListener('load', () => {
       return
     }
 
-    const isFilesValid = loadImageFunctions.reduce((valid, { files: { fileId, fileExt } }) => {
-      const isValid = isLength(fileId, { min: 32 }) && isLength(fileExt, { min: 3, max: 4 })
+    const isFilesValid = loadImageFunctions.reduce((valid, { files: { fileId } }) => {
+      const isValid = isLength(fileId, { min: 32 })
       return valid && isValid
     }, true)
 
@@ -75,7 +76,13 @@ window.addEventListener('load', () => {
       if (startProcessState) {
         const node = queue.shift()
         if (node) {
-          const { id, type, files, settings } = node
+          const { id, type, settings, lines: linesNode } = node
+
+          if (type === 'LoadImageFunction') {
+            queueNext()
+            return
+          }
+
           // deep clone
           const newSettings = JSON.parse(JSON.stringify(settings))
           Object.keys(newSettings).map(key => {
@@ -84,10 +91,22 @@ window.addEventListener('load', () => {
             return true
           })
 
+          const beginFiles = linesNode
+            .filter(lineId => {
+              const { beginId } = lines[lineId]
+              return id !== beginId
+            })
+            .map(lineId => {
+              const { beginId } = lines[lineId]
+              const nodeFiles = nodes[beginId].files
+              return nodeFiles
+            })
+
+          const newFiles = beginFiles.length === 1 ? beginFiles[0] : beginFiles
           const sendData = {
             id,
             type,
-            files,
+            files: newFiles,
             settings: newSettings,
           }
 
@@ -102,7 +121,7 @@ window.addEventListener('load', () => {
                   return
                 }
 
-                queue[0].files = data
+                node.files = data
                 queueNext()
               } else {
                 informationDialog('Process Complete')
@@ -110,7 +129,7 @@ window.addEventListener('load', () => {
               }
             })
             .catch(error => {
-              errorDialog(error)
+              errorDialog('Something error, please try again')
               quitProcessMode()
             })
         }
