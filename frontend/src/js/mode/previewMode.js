@@ -1,5 +1,5 @@
 const previewMode = () => {
-  console.log(previewMode)
+  window.open('//0.0.0.0:1412/preview')
 }
 
 window.addEventListener('load', () => {
