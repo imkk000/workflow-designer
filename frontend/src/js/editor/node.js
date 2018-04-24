@@ -38,8 +38,8 @@ export default class {
     const nodeLabel = nodeGroup
       .append('text')
       .attr('class', 'node-label')
-      .attr('dx', '.48em')
-      .attr('dy', '1.5em')
+      .attr('dx', '.5em')
+      .attr('dy', '1.7em')
       .attr('text-anchor', 'start')
       .attr('stroke', stroke)
 
