@@ -5,11 +5,13 @@ import CannyFunction from './CannyFunction'
 import ErodeFunction from './ErodeFunction'
 import DilateFunction from './DilateFunction'
 import SobelFunction from './SobelFunction'
+import GaussianBlurFunction from './GaussianBlurFunction'
 
 // function registry
 export default {
   LoadImageFunction,
   BlurFunction,
+  GaussianBlurFunction,
   BGR2GrayFunction,
   CannyFunction,
   ErodeFunction,

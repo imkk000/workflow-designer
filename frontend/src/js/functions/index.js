@@ -2,6 +2,7 @@ import { setDataToGlobal } from '../utility/editorMode'
 
 import LoadImageFunction from './nodeProperties/LoadImageFunction'
 import BlurFunction from './nodeProperties/BlurFunction'
+import GaussianBlurFunction from './nodeProperties/GaussianBlurFunction'
 import BGR2GrayFunction from './nodeProperties/BGR2GrayFunction'
 import CannyFunction from './nodeProperties/CannyFunction'
 import DilateFunction from './nodeProperties/DilateFunction'
@@ -12,12 +13,14 @@ window.addEventListener('load', () => {
   const functionsInclude = [
     LoadImageFunction,
     BGR2GrayFunction,
+    GaussianBlurFunction,
     DilateFunction,
     CannyFunction,
     ErodeFunction,
     SobelFunction,
     BlurFunction,
-  ]
+  ].sort((a, b) => a.label.length < b.label.length)
+
   const defaultSettings = {
     x: 0,
     y: 0,
