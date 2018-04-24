@@ -8,6 +8,7 @@ import CannyFunction from './nodeProperties/CannyFunction'
 import DilateFunction from './nodeProperties/DilateFunction'
 import ErodeFunction from './nodeProperties/ErodeFunction'
 import SobelFunction from './nodeProperties/SobelFunction'
+import ResizeFunction from './nodeProperties/ResizeFunction'
 
 window.addEventListener('load', () => {
   const functionsInclude = [
@@ -19,6 +20,7 @@ window.addEventListener('load', () => {
     ErodeFunction,
     SobelFunction,
     BlurFunction,
+    ResizeFunction,
   ].sort((a, b) => a.label.length < b.label.length)
 
   const defaultSettings = {

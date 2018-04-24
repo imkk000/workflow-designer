@@ -6,6 +6,7 @@ import ErodeFunction from './ErodeFunction'
 import DilateFunction from './DilateFunction'
 import SobelFunction from './SobelFunction'
 import GaussianBlurFunction from './GaussianBlurFunction'
+import ResizeFunction from './ResizeFunction'
 
 // function registry
 export default {
@@ -17,4 +18,5 @@ export default {
   ErodeFunction,
   DilateFunction,
   SobelFunction,
+  ResizeFunction,
 }
