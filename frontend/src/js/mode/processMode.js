@@ -112,7 +112,7 @@ window.addEventListener('load', () => {
           }
 
           axios
-            .post('//0.0.0.0:1412/api/process', sendData)
+            .post(`${location.origin}/api/process`, sendData)
             .then(({ data }) => {
               if (!startProcessState) return
 

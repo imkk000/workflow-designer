@@ -1,5 +1,5 @@
 const previewMode = () => {
-  window.open('//0.0.0.0:1412/preview')
+  window.open(`${location.origin}/preview`)
 }
 
 window.addEventListener('load', () => {
