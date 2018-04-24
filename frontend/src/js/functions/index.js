@@ -10,6 +10,8 @@ import ErodeFunction from './nodeProperties/ErodeFunction'
 import SobelFunction from './nodeProperties/SobelFunction'
 import ResizeFunction from './nodeProperties/ResizeFunction'
 import ThresholdFunction from './nodeProperties/ThresholdFunction'
+import OpeningFunction from './nodeProperties/OpeningFunction'
+import ClosingFunction from './nodeProperties/ClosingFunction'
 
 window.addEventListener('load', () => {
   const functionsInclude = [
@@ -23,6 +25,8 @@ window.addEventListener('load', () => {
     BlurFunction,
     ResizeFunction,
     ThresholdFunction,
+    OpeningFunction,
+    ClosingFunction,
   ].sort((a, b) => a.label.length < b.label.length)
 
   const defaultSettings = {

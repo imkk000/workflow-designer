@@ -8,6 +8,8 @@ import SobelFunction from './SobelFunction'
 import GaussianBlurFunction from './GaussianBlurFunction'
 import ResizeFunction from './ResizeFunction'
 import ThresholdFunction from './ThresholdFunction'
+import OpeningFunction from './OpeningFunction'
+import ClosingFunction from './ClosingFunction'
 
 // function registry
 export default {
@@ -21,4 +23,6 @@ export default {
   SobelFunction,
   ResizeFunction,
   ThresholdFunction,
+  OpeningFunction,
+  ClosingFunction,
 }
