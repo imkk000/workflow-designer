@@ -10,14 +10,10 @@ export default {
       defaultValue: 0,
     },
     dx: {
-      defaultValue: 0,
+      defaultValue: 1,
     },
     dy: {
       defaultValue: 0,
     },
-  },
-  files: {
-    fileId: '',
-    fileExt: '',
   },
 }

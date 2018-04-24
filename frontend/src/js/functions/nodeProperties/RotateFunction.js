@@ -11,8 +11,4 @@ export default {
       defaultValue: 0,
     },
   },
-  files: {
-    fileId: '',
-    fileExt: '',
-  },
 }
