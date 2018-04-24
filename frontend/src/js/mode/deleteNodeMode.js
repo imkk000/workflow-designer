@@ -25,6 +25,7 @@ export default () => {
     d3.select(document.getElementById(lineId)).remove()
 
     // upload node label
+    updateNodeLabel(beginId)
     updateNodeLabel(endId)
 
     return delete lines[lineId]
