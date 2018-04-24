@@ -77,7 +77,6 @@ export default () => {
   })
 
   $('input[name=file]').dmUploader({
-    // DEBUG: url upload file server
     url: 'http://127.0.0.1:9999/api/upload',
     auto: false,
     multiple: false,
@@ -96,9 +95,6 @@ export default () => {
     },
     onFileExtError() {
       errorDialog('File support [ jpg, jpeg, png ]')
-    },
-    onBeforeUpload() {
-      console.log(this)
     },
     onUploadError() {
       errorDialog('File upload error, please try again')
