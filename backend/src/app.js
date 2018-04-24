@@ -12,6 +12,18 @@ import { uploadFile, processFilesPath, uploadFilesPath } from './imagePath'
 const PORT = process.env.PORT || 1412
 const app = express()
 const router = express.Router()
+const generate404 = ({ method, originalUrl }) => {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot ${method} ${originalUrl}</pre>
+</body>
+</html>`
+}
 
 app
   .use(cors())
@@ -29,13 +41,13 @@ router
       const fileId = await functions[type](req.body)
 
       res
-        .status(200)
+        .sendStatus(200)
         .json({
           fileId
         })
     } catch (error) {
       console.error(error)
-      res.status(400)
+      res.sendStatus(400)
     }
   })
 
@@ -43,7 +55,7 @@ router
   .route('/upload')
   .post((req, res) => {
     try {
-      if (!req.files) return res.status(400)
+      if (!req.files) return res.sendStatus(400)
 
       const { name, mimetype, md5, mv } = req.files.file
       const fileIdResult = { fileId: md5 }
@@ -53,18 +65,24 @@ router
 
       res.json(fileIdResult)
     } catch (err) {
-      res.status(400)
+      res.sendStatus(400)
     }
   })
 
 router
   .route('/clear')
-  .post((req, res) => {
-    rimraf.sync(uploadFilesPath)
-    rimraf.sync(processFilesPath)
+  .delete((req, res) => {
+    const { helpme } = req.body
 
-    if (!fs.existsSync(uploadFilesPath)) fs.mkdirSync(uploadFilesPath)
-    if (!fs.existsSync(processFilesPath)) fs.mkdirSync(processFilesPath)
+    if (helpme === 'please') {
+      rimraf.sync(uploadFilesPath)
+      rimraf.sync(processFilesPath)
 
-    res.status(200)
+      if (!fs.existsSync(uploadFilesPath)) fs.mkdirSync(uploadFilesPath)
+      if (!fs.existsSync(processFilesPath)) fs.mkdirSync(processFilesPath)
+
+      res.sendStatus(200)
+    }
+
+    res.status(404).send(generate404(req))
   })
