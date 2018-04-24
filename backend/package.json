@@ -42,6 +42,9 @@
   },
   "scripts": {
     "start": "npx pm2 start app.js -i 4",
+    "build-clean": "npx rimraf lib",
+    "full-clean": "npm run build-clean && npx rimraf process_files node_modules *.log",
+    "build": "npm run build-clean && npx babel src -d lib",
     "dev": "npx nodemon src/app.js --exec babel-node --presets=env,stage-0"
   }
 }
