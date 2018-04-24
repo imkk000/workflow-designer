@@ -11,11 +11,10 @@ export default nodeId => {
   const nodeLabel = node.select('.node-label').text(newLabel)
   const textBBox = nodeLabel.node().getBBox()
   const { width: textWidth, height: textHeight } = textBBox
-  const newWidth = Math.max(120, textWidth)
+  const newWidth = Math.max(105, textWidth)
   const newHeight = Math.max(35, textHeight)
-
   node
     .select('.node-box')
-    .attr('width', newWidth)
+    .attr('width', newWidth + 15)
     .attr('height', newHeight)
 }
