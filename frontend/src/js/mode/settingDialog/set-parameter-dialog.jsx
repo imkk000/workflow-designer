@@ -96,10 +96,10 @@ export default () => {
   }
 
   const buildContent = Object.keys(settings).map(key => {
-    const { value, label } = settings[key]
+    const { value } = settings[key]
     return (
       <div>
-        <label for={key}>{label}:</label>
+        <label for={key}>{key}:</label>
         <input type="text" name={key} class="text ui-widget-content ui-corner-all" value={value} />
       </div>
     )
