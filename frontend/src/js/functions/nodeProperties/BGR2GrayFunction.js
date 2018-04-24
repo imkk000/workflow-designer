@@ -1,5 +1,5 @@
 export default {
-  label: 'Convert Gray',
+  label: 'Convert Grayscale',
   type: 'BGR2GrayFunction',
   limitInput: 1,
   fill: '#42FFEE',
