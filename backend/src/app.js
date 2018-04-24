@@ -86,3 +86,9 @@ router
 
     res.status(404).send(generate404(req))
   })
+
+router
+  .route('/')
+  .get((req, res) => {
+    res.sendStatus(200)
+  })
