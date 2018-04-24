@@ -4,4 +4,7 @@
 !frontend/dist/**
 !backend/**
 
+backend/process_files
+backend/upload_files
+
 **/*.lock
