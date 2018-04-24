@@ -14,6 +14,7 @@ import './js/mode/importMode'
 import './js/mode/processMode'
 import './js/mode/resetMode'
 import './js/onload/filterNode'
+import './js/mode/clearServerMode'
 
 // NOTE: Import style(css, scss) app dependencies
 import '../node_modules/roboto-fontface/css/roboto/sass/roboto-fontface.scss'
