@@ -111,7 +111,7 @@ window.addEventListener('load', () => {
           }
 
           axios
-            .post('http://127.0.0.1:9999/api/process', sendData)
+            .post('http://0.0.0.0:9999/api/process', sendData)
             .then(({ data }) => {
               if (!startProcessState) return
 
