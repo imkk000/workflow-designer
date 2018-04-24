@@ -7,7 +7,7 @@ export default (data) => {
     const { img, settings } = readImage(data)
     const { ddepth, dx, dy } = settings
 
-    const sobelImg = img.sobel(ddepth, dx, dy)
+    const sobelImg = img.sobel(Number(ddepth), Number(dx), Number(dy))
 
     resolve(writeImage(sobelImg))
   })

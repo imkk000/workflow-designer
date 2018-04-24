@@ -7,7 +7,7 @@ export default (data) => {
     const { img, settings } = readImage(data)
     const { threshold1, threshold2 } = settings
 
-    const cannyImg = img.canny(threshold1, threshold2)
+    const cannyImg = img.canny(Number(threshold1), Number(threshold2))
 
     resolve(writeImage(cannyImg))
   })

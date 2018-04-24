@@ -7,7 +7,7 @@ export default (data) => {
     const { img, settings } = readImage(data)
     const { kSizeWidth, kSizeHeight } = settings
 
-    const size = new cv.Size(kSizeWidth, kSizeHeight)
+    const size = new cv.Size(Number(kSizeWidth), Number(kSizeHeight))
     const blurImg = img.blur(size)
 
     resolve(writeImage(blurImg))

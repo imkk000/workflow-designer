@@ -8,7 +8,7 @@ export default (data) => {
     const { sigmaX, sigmaY } = settings
 
     const size = new cv.Size(0, 0)
-    const gaussianImg = img.gaussianBlur(size, sigmaX, sigmaY)
+    const gaussianImg = img.gaussianBlur(size, Number(sigmaX), Number(sigmaY))
 
     resolve(writeImage(gaussianImg))
   })

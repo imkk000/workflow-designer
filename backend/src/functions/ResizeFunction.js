@@ -14,7 +14,7 @@ export default (data) => {
     if (newWidth <= 0) newWidth = width
     if (newHeight <= 0) newHeight = height
 
-    const resizeImg = img.resize(newWidth, newHeight)
+    const resizeImg = img.resize(Number(newWidth), Number(newHeight))
 
     resolve(writeImage(resizeImg))
   })

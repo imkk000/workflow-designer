@@ -7,7 +7,7 @@ export default (data) => {
     const { img, settings } = readImage(data)
     const { kSizeWidth, kSizeHeight } = settings
 
-    const size = new cv.Mat(kSizeWidth, kSizeHeight)
+    const size = new cv.Mat(Number(kSizeWidth), Number(kSizeHeight))
     const erodeImg = img.erode(size)
 
     resolve(writeImage(erodeImg))
