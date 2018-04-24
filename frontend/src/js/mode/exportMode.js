@@ -2,8 +2,27 @@ import { getDataFromGlobal } from '../utility/editorMode'
 
 // http://www.codevoila.com/post/30/export-json-data-to-downloadable-file-using-javascript
 const exportMode = () => {
-  const nodes = getDataFromGlobal('NODES')
-  const lines = getDataFromGlobal('LINES')
+  const xnodes = getDataFromGlobal('NODES')
+  const xlines = getDataFromGlobal('LINES')
+
+  const nodes = JSON.parse(JSON.stringify(xnodes))
+  const lines = JSON.parse(JSON.stringify(xlines))
+
+  const newNodes = Object.keys(nodes).map(nodeId => {
+    const node = nodes[nodeId]
+
+    delete node.label
+    delete node.documentation
+    delete node.limitInput
+    delete node.files
+
+    Object.keys(node.settings).map(settingKey => {
+      delete node.settings[settingKey].defaultValue
+      return true
+    })
+
+    return node
+  })
 
   const newLines = Object.keys(lines).map(lineId => ({
     lineId,
@@ -11,7 +30,7 @@ const exportMode = () => {
   }))
 
   return {
-    nodes,
+    nodes: newNodes,
     lines: newLines,
   }
 }
