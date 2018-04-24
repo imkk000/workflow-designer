@@ -1,9 +1,14 @@
 # env
 NODE_ENV=$1
-APP_PATH=/usr/src/app
+APP_PATH=/app
 
 # build frontend
 cd frontend
+yarn build
+cd ..
+
+# build backend
+cd backend
 yarn build
 cd ..
 
