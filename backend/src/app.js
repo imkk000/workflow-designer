@@ -51,7 +51,7 @@ rimraf(path.join(__dirname, '..', 'process_files'), async (err) => {
   const oneData = {
     type: 'LoadImageFunction',
     files: {
-      fileId: 'tux_profile',
+      fileId: 'lenna',
       fileExt: 'png',
     }
   }
@@ -59,16 +59,18 @@ rimraf(path.join(__dirname, '..', 'process_files'), async (err) => {
   console.log(oneFile)
 
   const twoData = {
-    type: 'OpeningFunction',
+    type: 'SobelFunction',
     settings: {
-      kSize: 60,
+      ddepth: -1,
+      dx: 1,
+      dy: 0,
     },
     files: {
       fileId: oneFile,
       fileExt: 'png',
     }
   }
-  const twoFile = await functions['OpeningFunction'](twoData)
+  const twoFile = await functions['SobelFunction'](twoData)
   console.log(twoFile)
 
   console.log('END')
