@@ -1,11 +1,21 @@
 #preview-mode {
   text-align: center;
   margin: 0 auto;
-  padding: 0;
+  padding: 1%;
 }
 
-table,
-td {
-  border: 1px solid black;
-  margin: 0 auto;
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+td.image {
+  width: 100;
 }
