@@ -19,6 +19,9 @@ export const sayFileName = (data) => {
   if (Array.isArray(files))
     return files.map((file) => processFile(file))
 
+  if (files.path === 'upload') return uploadFile(files)
+  if (files.path === 'process') return processFile(files)
+
   return type === 'LoadImageFunction' ? uploadFile(files) : processFile(files)
 }
 
