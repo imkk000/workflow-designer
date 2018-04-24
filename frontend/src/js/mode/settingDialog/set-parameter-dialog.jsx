@@ -17,7 +17,7 @@ export default () => {
   nodes = getDataFromGlobal('NODES')
 
   const { nodeId } = getPassDataBeforeClear()
-  const { settings } = nodes[nodeId]
+  const { label, settings, documentation } = nodes[nodeId]
 
   const dialogId = 'setting-dialog'
   const title = `Setting Node id ${nodeId}`
@@ -67,6 +67,11 @@ export default () => {
 
   const content = (
     <div id={dialogId}>
+      <h2 class="dialog-information">
+        <a href={documentation} target="_blank">
+          {label} Function
+        </a>
+      </h2>
       <form>
         <fieldset>{buildContent}</fieldset>
       </form>
