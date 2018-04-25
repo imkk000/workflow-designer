@@ -1,2 +1,2 @@
-# run with argument [default node index.js]
-docker run -it --rm anonyfz/workflow-designer:$1 $2
+# run with argument [default npm start]
+docker run -it --rm $1 anonyfz/workflow-designer:latest $2
