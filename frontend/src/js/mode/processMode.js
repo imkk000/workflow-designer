@@ -23,7 +23,10 @@ const toggleMode = () => {
 }
 
 window.addEventListener('load', () => {
-  document.getElementById('start').addEventListener('click', () => {
+  const startId = document.getElementById('start')
+  if (!startId) return
+
+  startId.addEventListener('click', () => {
     if (notNormalMode()) {
       errorDialog('Process can use only NORMAL mode')
       return

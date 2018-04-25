@@ -1,7 +1,10 @@
 import addNodePreviews from './addNodePreviews'
 
 window.addEventListener('load', () => {
-  document.getElementById('filterNode').addEventListener('keyup', event => {
+  const filterNodeID = document.getElementById('filterNode')
+  if (!filterNodeID) return
+
+  filterNodeID.addEventListener('keyup', event => {
     addNodePreviews(event.target.value.trim())
   })
 })

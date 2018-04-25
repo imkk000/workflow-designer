@@ -1,9 +1,12 @@
 import { getDataFromGlobal } from '../utility/editorMode'
 
 export default nodeId => {
+  const getNodeId = document.getElementById(nodeId)
+  if (!getNodeId) return
+
   const nodes = getDataFromGlobal('NODES')
   const graph = getDataFromGlobal('GRAPH')
-  const node = d3.select(document.getElementById(nodeId))
+  const node = d3.select(getNodeId)
   const nodeInDegree = graph.indegree(nodeId)
   const nodeOutDegree = graph.outdegree(nodeId)
   const { label, limitInput, settings } = nodes[nodeId]

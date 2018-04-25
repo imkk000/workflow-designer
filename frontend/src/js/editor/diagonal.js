@@ -1,10 +1,10 @@
-import { path as pathLink } from 'd3'
-import { getDataFromGlobal } from '../utility/editorMode'
-
 export default ({ source: beginNode }) => {
-  // computed path
   const { id: beginId } = beginNode
-  const beginNodeObject = d3.select(document.getElementById(beginId))
+  const nodeBeginId = document.getElementById(beginId)
+  if (!nodeBeginId) return false
+
+  // computed path
+  const beginNodeObject = d3.select(nodeBeginId)
   const { width: widthBeginNode, height: heightBeginNode } = beginNodeObject.node().getBBox()
   const halfHeightBeginNode = heightBeginNode / 2
   const source = window.NODES[beginId]

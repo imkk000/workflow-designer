@@ -46,6 +46,9 @@ const addNodePreviews = (keyword = '') => {
 }
 
 window.addEventListener('load', () => {
+  const nodeListId = document.getElementById('node-list')
+  if (!nodeListId) return
+
   addNodePreviews()
 })
 

@@ -3,7 +3,10 @@ const previewMode = () => {
 }
 
 window.addEventListener('load', () => {
-  document.getElementById('preview').addEventListener('click', () => {
+  const previewId = document.getElementById('preview')
+  if (!previewId) return
+
+  previewId.addEventListener('click', () => {
     previewMode()
   })
 })

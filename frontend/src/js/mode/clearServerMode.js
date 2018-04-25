@@ -16,7 +16,10 @@ const clearServerMode = () => {
 }
 
 window.addEventListener('load', () => {
-  document.getElementById('clear-files').addEventListener('click', () => {
+  const clearFilesId = document.getElementById('clear-files')
+  if (!clearFilesId) return
+
+  clearFilesId.addEventListener('click', () => {
     clearServerMode()
   })
 })
