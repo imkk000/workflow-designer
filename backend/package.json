@@ -34,7 +34,7 @@
     "rimraf": "^2.6.2"
   },
   "scripts": {
-    "start": "npx pm2 start app.js -i 4",
+    "start": "npx pm2 start lib/app.js -i 2",
     "build-clean": "npx rimraf lib",
     "full-clean": "npm run build-clean && npx rimraf process_files node_modules *.log",
     "build": "npm run build-clean && npx babel src -d lib",
