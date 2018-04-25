@@ -138,13 +138,13 @@ const devConfig = {
     before: app => {
       app
         .use(cors())
-        .get('/', (req, res) => {
+        .get('/editor/', (req, res) => {
           res.render(path.join(__dirname, 'views', 'index.pug'), {
             dev: true,
             ...ABOUT_APP,
           })
         })
-        .get('/preview', (req, res) => {
+        .get('/editor/preview', (req, res) => {
           res.render(path.join(__dirname, 'views', 'preview.pug'), {
             dev: true,
             ...ABOUT_APP,
