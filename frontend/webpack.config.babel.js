@@ -20,7 +20,15 @@ const prodConfig = {
   plugins: [
     new CleanWebpackPlugin(pathsToClean),
     new HtmlWebpackPlugin({
+      filename: 'index.html',
       template: path.join(__dirname, 'views', 'index.pug'),
+      templateParameters: ABOUT_APP,
+      inject: false,
+      hash: true,
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'preview.html',
+      template: path.join(__dirname, 'views', 'preview.pug'),
       templateParameters: ABOUT_APP,
       inject: false,
       hash: true,
@@ -137,7 +145,10 @@ const devConfig = {
           })
         })
         .get('/preview', (req, res) => {
-          res.render(path.join(__dirname, 'views', 'preview.pug'))
+          res.render(path.join(__dirname, 'views', 'preview.pug'), {
+            dev: true,
+            ...ABOUT_APP,
+          })
         })
     },
   },
