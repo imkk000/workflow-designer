@@ -38,7 +38,10 @@ const exportMode = file => {
 }
 
 window.addEventListener('load', () => {
-  document.getElementById('export').addEventListener('click', () => {
+  const exportId = document.getElementById('export')
+  if (!exportId) return
+
+  exportId.addEventListener('click', () => {
     const jsonData = exportMode()
     const dataStr = JSON.stringify(jsonData)
     const dataUri = `data:application/json;charset=utf-8,${encodeURIComponent(dataStr)}`
