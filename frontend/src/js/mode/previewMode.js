@@ -1,5 +1,5 @@
 const previewMode = () => {
-  window.open(`${location.origin}/preview`)
+  window.open(`${location.origin}/editor/preview`)
 }
 
 window.addEventListener('load', () => {
