@@ -2,8 +2,8 @@ import dom from 'jsx-render'
 import axios from 'axios'
 
 window.addEventListener('load', () => {
-  const previewId = document.getElementById('preview')
-  if (!previewId) return
+  const previewTable = document.getElementById('preview-table')
+  if (!previewTable) return
 
   let xnodes = JSON.parse(localStorage.getItem('NODES'))
   let xlines = JSON.parse(localStorage.getItem('LINES'))
@@ -23,7 +23,6 @@ window.addEventListener('load', () => {
   xnodes = newxNodes
   xlines = newxLines
 
-  const previewTable = document.getElementById('preview-table')
   previewTable.appendChild(
     <tr>
       <th>Image</th>
