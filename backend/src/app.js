@@ -30,6 +30,7 @@ app
   .use(bodyParser.urlencoded({ extended: false }))
   .use(bodyParser.json())
   .use(fileUpload())
+  .use('/editor/', express.static('dist'))
   .use('/api', router)
   .listen(PORT)
 
