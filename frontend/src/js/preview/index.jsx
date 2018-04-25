@@ -1,64 +1,86 @@
 import dom from 'jsx-render'
+import axios from 'axios'
 
 window.addEventListener('load', () => {
-  const previewMode = document.getElementById('preview-mode')
+  const previewId = document.getElementById('preview')
+  if (!previewId) return
 
-  if (previewMode) {
-    let xnodes = JSON.parse(localStorage.getItem('NODES'))
-    let xlines = JSON.parse(localStorage.getItem('LINES'))
-    const newxNodes = {}
-    const newxLines = {}
-    xnodes.map(node => {
-      newxNodes[node.id] = node
-      return true
-    })
-    xlines.map(({ lineId, beginId, endId }) => {
-      newxLines[lineId] = {
-        beginId,
-        endId,
-      }
-      return true
-    })
-    xnodes = newxNodes
-    xlines = newxLines
+  let xnodes = JSON.parse(localStorage.getItem('NODES'))
+  let xlines = JSON.parse(localStorage.getItem('LINES'))
+  const newxNodes = {}
+  const newxLines = {}
+  xnodes.map(node => {
+    newxNodes[node.id] = node
+    return true
+  })
+  xlines.map(({ lineId, beginId, endId }) => {
+    newxLines[lineId] = {
+      beginId,
+      endId,
+    }
+    return true
+  })
+  xnodes = newxNodes
+  xlines = newxLines
 
-    const previewTable = document.getElementById('preview-table')
-    previewTable.appendChild(
-      <tr>
-        <th>Image</th>
-        <th>Description</th>
-      </tr>
-    )
-    const loadImageTypes = Object.values(xnodes).filter(({ type }) => type === 'LoadImageFunction')
-    const valid = {}
-    const loopGetData = data => {
-      data.map(({ lines }) => {
-        lines.map(lineId => {
-          if (valid[lineId]) return false
+  const previewTable = document.getElementById('preview-table')
+  previewTable.appendChild(
+    <tr>
+      <th>Image</th>
+      <th>Description</th>
+    </tr>
+  )
+  const loadImageTypes = Object.values(xnodes).filter(({ type }) => type === 'LoadImageFunction')
+  const valid = {}
+  const loopGetData = data => {
+    data.map(({ lines }) => {
+      lines.map(lineId => {
+        if (valid[lineId]) return false
 
-          const { endId } = xlines[lineId]
-          const {
-            id,
-            files: { fileId },
-          } = xnodes[endId]
+        const { endId } = xlines[lineId]
+        const {
+          id,
+          files: { fileId },
+          label,
+          settings,
+        } = xnodes[endId]
+
+        const buildSettings = Object.keys(settings).map(settingKey => {
+          const { value } = settings[settingKey]
+          return (
+            <div>
+              <span>{settingKey}: </span>
+              <span>{value}</span>
+            </div>
+          )
+        })
+
+        axios.get(`${location.origin}/api/image/${fileId}`, { responseType: 'arraybuffer' }).then(response => {
+          // https://stackoverflow.com/questions/44611047/get-image-from-server-and-preview-it-on-client
+          const base64 = btoa(new Uint8Array(response.data).reduce((d, byte) => d + String.fromCharCode(byte), ''))
 
           previewTable.appendChild(
             <tr>
               <td class="image">
-                <img src={`${location.origin}/api/image/${fileId}`} alt={id} width="200" height="auto" />
+                <p>
+                  {label} - {id}
+                </p>
+                <img src={`data:;base64,${base64}`} alt={id} width="300" height="auto" />
               </td>
-              <td />
+              <td class="desc">
+                <p>{buildSettings}</p>
+              </td>
             </tr>
           )
-
-          valid[lineId] = true
-          loopGetData([xnodes[endId]])
-          return true
         })
 
+        valid[lineId] = true
+        loopGetData([xnodes[endId]])
         return true
       })
-    }
-    loopGetData(loadImageTypes)
+
+      return true
+    })
   }
+  loopGetData(loadImageTypes)
 })
