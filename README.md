@@ -2,6 +2,19 @@
 
 ![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)
 
+## Requirements
+
+- Docker stable or edge
+- Download docker image via internet
+
+## Installation
+
+> <https://hub.docker.com/r/anonyfz/workflow-designer/>
+
+```bash
+docker pull anonyfz/workflow-designer
+```
+
 ## Browser Support
 
 > jQuery-contextMenu
