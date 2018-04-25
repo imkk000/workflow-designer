@@ -2,6 +2,7 @@
   "name": "@workflow-designer/back-end",
   "version": "0.0.1",
   "description": "Workflow Designer for Basic Image Processing (Back-End)",
+  "main": "app.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/ImKK-000/workflow-designer.git"
@@ -16,21 +17,27 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
-    "babel-eslint": "^8.2.2",
-    "babel-jest": "^22.4.3",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-es2017": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "babel-register": "^6.26.0",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-babel": "^5.0.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.7.0",
-    "jest": "^22.4.3",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "express-fileupload": "^0.4.0",
+    "md5-file": "^4.0.0",
     "nodemon": "^1.17.3",
-    "regenerator-runtime": "^0.11.1",
+    "opencv4nodejs": "^4.3.0",
+    "pm2": "^2.10.2",
+    "production": "0.0.2",
     "rimraf": "^2.6.2"
+  },
+  "scripts": {
+    "start": "npx pm2 start lib/app.js -i 2",
+    "build-clean": "npx rimraf lib",
+    "full-clean": "npm run build-clean && npx rimraf process_files node_modules *.log",
+    "build": "npm run build-clean && npx babel src -d lib",
+    "dev": "npx nodemon src/app.js --exec babel-node --presets=env,stage-0"
   }
 }

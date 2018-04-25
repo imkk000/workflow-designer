@@ -1,25 +1,41 @@
 import { setDataToGlobal } from '../utility/editorMode'
 
 import LoadImageFunction from './nodeProperties/LoadImageFunction'
-import RotateFunction from './nodeProperties/RotateFunction'
+import BlurFunction from './nodeProperties/BlurFunction'
 import GaussianBlurFunction from './nodeProperties/GaussianBlurFunction'
+import BGR2GrayFunction from './nodeProperties/BGR2GrayFunction'
+import CannyFunction from './nodeProperties/CannyFunction'
+import DilateFunction from './nodeProperties/DilateFunction'
+import ErodeFunction from './nodeProperties/ErodeFunction'
+import SobelFunction from './nodeProperties/SobelFunction'
 import ResizeFunction from './nodeProperties/ResizeFunction'
-import ConvertGrayScaleFunction from './nodeProperties/ConvertGrayScaleFunction'
-import ConvertHSVScaleFunction from './nodeProperties/ConvertHSVScaleFunction'
+import ThresholdFunction from './nodeProperties/ThresholdFunction'
+import OpeningFunction from './nodeProperties/OpeningFunction'
+import ClosingFunction from './nodeProperties/ClosingFunction'
 
 window.addEventListener('load', () => {
   const functionsInclude = [
     LoadImageFunction,
-    ConvertGrayScaleFunction,
-    ConvertHSVScaleFunction,
+    BGR2GrayFunction,
     GaussianBlurFunction,
+    DilateFunction,
+    CannyFunction,
+    ErodeFunction,
+    SobelFunction,
+    BlurFunction,
     ResizeFunction,
-    RotateFunction,
-  ]
+    ThresholdFunction,
+    OpeningFunction,
+    ClosingFunction,
+  ].sort((a, b) => a.label.length < b.label.length)
+
   const defaultSettings = {
     x: 0,
     y: 0,
     settings: {},
+    files: {
+      fileId: '',
+    },
   }
 
   // build node properties

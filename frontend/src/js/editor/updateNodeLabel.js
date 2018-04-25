@@ -1,20 +1,40 @@
 import { getDataFromGlobal } from '../utility/editorMode'
 
 export default nodeId => {
+  const getNodeId = document.getElementById(nodeId)
+  if (!getNodeId) return
+
   const nodes = getDataFromGlobal('NODES')
   const graph = getDataFromGlobal('GRAPH')
-  const node = d3.select($(`#${nodeId}`).get(0))
+  const node = d3.select(getNodeId)
   const nodeInDegree = graph.indegree(nodeId)
-  const { label, limitInput } = nodes[nodeId]
-  const nodeCountLabel = `${nodeInDegree}/`
-  const newLabel = `(${nodeInDegree > 0 ? nodeCountLabel : ''}${limitInput}) ${label}`
-  const nodeLabel = node.select('.node-label').text(newLabel.toUpperCase())
+  const nodeOutDegree = graph.outdegree(nodeId)
+  const { label, limitInput, settings } = nodes[nodeId]
+
+  const settingsArray = Object.keys(settings)
+  let paramsString = ''
+  if (settingsArray.length) {
+    settingsArray.map((key, index) => {
+      paramsString += `${settings[key].value}`
+      if (settingsArray.length - 1 > index) paramsString += ', '
+      return true
+    })
+    paramsString = `(${paramsString}) `
+  }
+
+  const newLabel = `${limitInput}-${label} ${paramsString} ( ${nodeInDegree} , ${nodeOutDegree} )`
+  const nodeLabel = node.select('.node-label').text(newLabel)
   const textBBox = nodeLabel.node().getBBox()
   const { width: textWidth, height: textHeight } = textBBox
-  const [rectWidthOffset, rectHeightOffset] = [15, 15]
+  const newWidth = Math.max(90, textWidth) + 15
+  const newHeight = Math.max(35, textHeight)
+
+  // fix node label center
+  nodeLabel.attr('x', newWidth / 2)
+  nodeLabel.attr('y', newHeight / 2)
 
   node
     .select('.node-box')
-    .attr('width', textWidth + rectWidthOffset)
-    .attr('height', textHeight + rectHeightOffset)
+    .attr('width', newWidth)
+    .attr('height', newHeight)
 }

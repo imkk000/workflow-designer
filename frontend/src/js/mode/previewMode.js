@@ -1,9 +1,12 @@
 const previewMode = () => {
-  console.log(previewMode)
+  window.open(`${location.origin}/editor/preview`)
 }
 
 window.addEventListener('load', () => {
-  document.getElementById('preview').addEventListener('click', () => {
+  const previewId = document.getElementById('preview')
+  if (!previewId) return
+
+  previewId.addEventListener('click', () => {
     previewMode()
   })
 })

@@ -5,7 +5,10 @@ let fileUpload = null
 
 // https://jsfiddle.net/Ln37kqc0/
 window.addEventListener('load', () => {
-  document.getElementById('import').addEventListener('click', () => {
+  const importId = document.getElementById('import')
+  if (!importId) return
+
+  importId.addEventListener('click', () => {
     fileUpload = document.createElement('input')
     fileUpload.setAttribute('type', 'file')
     fileUpload.setAttribute('name', 'import-file')

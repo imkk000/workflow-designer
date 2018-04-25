@@ -6,7 +6,8 @@
   }
 }
 
-#reset {
+#reset,
+#clear-files {
  cursor: pointer;
 }
 
@@ -19,4 +20,8 @@
 .button:hover {
   color: blue;
   background-color: yellow;
+}
+
+#filterNode {
+  width: 150px;
 }

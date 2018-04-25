@@ -20,7 +20,15 @@ const prodConfig = {
   plugins: [
     new CleanWebpackPlugin(pathsToClean),
     new HtmlWebpackPlugin({
+      filename: 'index.html',
       template: path.join(__dirname, 'views', 'index.pug'),
+      templateParameters: ABOUT_APP,
+      inject: false,
+      hash: true,
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'preview.html',
+      template: path.join(__dirname, 'views', 'preview.pug'),
       templateParameters: ABOUT_APP,
       inject: false,
       hash: true,
@@ -50,7 +58,7 @@ const prodConfig = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['es2015', 'stage-0'],
+            presets: ['env', 'stage-0'],
             plugins: [
               'babel-plugin-transform-class-properties',
               [
@@ -121,16 +129,27 @@ const devConfig = {
     host: '0.0.0.0',
     hot: true,
     https: false,
+    proxy: {
+      '/api': {
+        target: 'http://0.0.0.0:1412',
+        secure: false,
+      },
+    },
     before: app => {
-      // enable cors
-      app.use(cors())
-
-      app.get('/', (req, res) => {
-        res.render(path.join(__dirname, 'views', 'index.pug'), {
-          dev: true,
-          ...ABOUT_APP,
+      app
+        .use(cors())
+        .get('/editor/', (req, res) => {
+          res.render(path.join(__dirname, 'views', 'index.pug'), {
+            dev: true,
+            ...ABOUT_APP,
+          })
         })
-      })
+        .get('/editor/preview', (req, res) => {
+          res.render(path.join(__dirname, 'views', 'preview.pug'), {
+            dev: true,
+            ...ABOUT_APP,
+          })
+        })
     },
   },
 }

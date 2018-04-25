@@ -5,7 +5,7 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     meta(name="description", content=title)
     meta(name="author" content=author)
-    title #{name} - #{version}#{dev ? ' (Development Mode)' : ''}
+    title #{name} - #{version}#{dev ? ' (Development Mode)' : ''} Editor Mode
 
     script(src="/editor/bundle.js")
   body
@@ -27,10 +27,10 @@ html(lang="en")
         h3.row
           #import.button Import
           #export.button Export
+        h2
+          span Filter Node
+          input(id="filterNode", type="text")
       #node-list.block-style
-        h2 Input
-        #input-list
-        h2 Function
-        #function-list
       .block-style
+        h6#clear-files CLEAR FILES
         h6#reset RESET EDITOR

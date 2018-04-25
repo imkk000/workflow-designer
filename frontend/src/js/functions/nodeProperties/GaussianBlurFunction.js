@@ -1,25 +1,16 @@
-import { isInt } from 'validator'
-
 export default {
   label: 'Gaussian Blur',
   type: 'GaussianBlurFunction',
   limitInput: 1,
-  fill: '#CCCCFF',
+  fill: '#C4DF00',
   stroke: 'brown',
+  documentation: 'https://docs.opencv.org/3.1.0/d4/d86/group__imgproc__filter.html#gaabe8c836e97159a9193fb0b11ac52cf1',
   settings: {
-    sigma: {
-      defaultValue: 15,
-      validateOptions: { min: 0, max: 100 },
-      get validator() {
-        return value => isInt(value, this.validateOptions) && value % 2
-      },
-      get label() {
-        return `sigma (${this.validateOptions.min} - ${this.validateOptions.max}) [odd-number]`
-      },
-      get errorText() {
-        return `sigma has value between ${this.validateOptions.min} to
-        ${this.validateOptions.max}, and is odd number`
-      },
+    sigmaX: {
+      defaultValue: 1,
+    },
+    sigmaY: {
+      defaultValue: 0,
     },
   },
 }

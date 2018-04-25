@@ -11,7 +11,20 @@ export default class {
     this.render(options)
   }
 
-  render = ({ id = generateId(), x, y, limitInput, files, settings, type, label, fill, stroke, lines = [] }) => {
+  render = ({
+    id = generateId(),
+    x,
+    y,
+    limitInput,
+    files,
+    settings,
+    type,
+    label,
+    fill,
+    stroke,
+    lines = [],
+    documentation,
+  }) => {
     const drawArea = getDrawArea()
     const nodes = getDataFromGlobal('NODES')
 
@@ -24,6 +37,7 @@ export default class {
       limitInput,
       type,
       label,
+      documentation,
       settings,
       files,
     }
@@ -34,14 +48,6 @@ export default class {
       .attr('class', 'node')
       .attr('id', id)
       .attr('transform', data => `translate(${data.x}, ${data.y})`)
-
-    const nodeLabel = nodeGroup
-      .append('text')
-      .attr('class', 'node-label')
-      .attr('dx', '.48em')
-      .attr('dy', '1.5em')
-      .attr('text-anchor', 'start')
-      .attr('stroke', stroke)
 
     const nodeBox = nodeGroup
       .insert('rect', ':first-child')
@@ -57,6 +63,16 @@ export default class {
       .attr('rx', 5)
       .attr('ry', 5)
       .attr('fill', 'white')
+
+    const nodeLabel = nodeGroup
+      .append('text')
+      .attr('class', 'node-label')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('text-anchor', 'middle')
+      .attr('alignment-baseline', 'middle')
+      .attr('stroke', stroke)
+      .attr('stroke-width', 1)
 
     // add node to graph data
     const graph = getDataFromGlobal('GRAPH')

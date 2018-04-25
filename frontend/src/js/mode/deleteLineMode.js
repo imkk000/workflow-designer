@@ -28,6 +28,7 @@ export default () => {
   line.remove()
 
   // NOTE: upload node label
+  updateNodeLabel(beginId)
   updateNodeLabel(endId)
 
   // NOTE: reset mode to NORMAL

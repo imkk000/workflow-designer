@@ -22,9 +22,9 @@ export default () => {
 
   const { nodeId } = getPassDataBeforeClear()
   const {
-    files: { fileId, fileExt },
+    files: { fileId },
   } = nodes[nodeId]
-  const fileName = `${fileId}.${fileExt}`
+  const fileName = `${fileId}.png`
   const existingFile = !isEmpty(fileId)
   const initialFileName = existingFile ? fileName : 'No image uploaded...'
 
@@ -77,8 +77,7 @@ export default () => {
   })
 
   $('input[name=file]').dmUploader({
-    // DEBUG: url upload file server
-    url: '//0.0.0.0:9999/upload',
+    url: `${location.origin}/api/upload`,
     auto: false,
     multiple: false,
     maxFileSize: 10485760,
@@ -102,7 +101,10 @@ export default () => {
       $('input[name=file-information]').val('No image uploaded...')
     },
     onUploadSuccess(id, data) {
-      nodes[nodeId].files = data
+      nodes[nodeId].files = {
+        ...data,
+        path: 'upload',
+      }
 
       // destroy uploader and close dialog
       $(this).dmUploader('destroy')

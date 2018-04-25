@@ -1,6 +1,7 @@
 import dom from 'jsx-render'
 import { showDialog, confirmDialog } from '../../editor/dialog'
 import EDITOR_MODE, { setEditorMode, getDataFromGlobal, getPassDataBeforeClear } from '../../utility/editorMode'
+import updateNodeLabel from '../../editor/updateNodeLabel'
 
 let settingsKeysToArray = null
 let settingsValuesToArray = null
@@ -16,54 +17,14 @@ export default () => {
   nodes = getDataFromGlobal('NODES')
 
   const { nodeId } = getPassDataBeforeClear()
-  const { settings } = nodes[nodeId]
+  const { label, settings, documentation } = nodes[nodeId]
 
   const dialogId = 'setting-dialog'
   const title = `Setting Node id ${nodeId}`
-  const checkOk = () => {
-    const valid = settingsKeysToArray.map(key => {
-      const { validator: validateInput } = settings[key]
-      const valueString = $(`input[name=${key}]`).val()
-      return validateInput(valueString)
-    })
-    const errorDialogContent = valid.map((validResult, index) => {
-      if (!validResult) {
-        const key = settingsKeysToArray[index]
-        const { value, errorText } = settingsValuesToArray[index]
-        $(`input[name=${key}]`).val(value)
-
-        return <p>- {errorText}</p>
-      }
-      return false
-    })
-    const validCount = errorDialogContent.reduce((sum, current) => sum + (current !== false))
-
-    if (validCount) {
-      const id = 'error-dialog'
-      const buttons = {
-        Close() {
-          $(this).dialog('close')
-        },
-      }
-      const content = <div id={id}>{errorDialogContent}</div>
-
-      showDialog({
-        custom: true,
-        id,
-        title: 'Error Dialog',
-        buttons,
-        content,
-      })
-      return false
-    }
-
-    return true
-  }
-
   const buttons = {
     'Reset to Default': function() {
       confirmDialog('Do you want to continue?', () => {
-        // NOTE: set values
+        // set values
         settingsValuesToArray.forEach((setting, index) => {
           const key = settingsKeysToArray[index]
           const { defaultValue } = settingsValuesToArray[index]
@@ -74,20 +35,19 @@ export default () => {
       })
     },
     OK() {
-      if (checkOk()) {
-        confirmDialog('Do you want to continue?', () => {
-          // NOTE: set values
-          settingsValuesToArray.forEach((setting, index) => {
-            const key = settingsKeysToArray[index]
-            const valueString = $(`input[name=${key}]`).val()
-            setting.value = valueString
-          })
-
-          quitSettingNodeMode()
-          $('#confirm-dialog').dialog('close')
-          $(this).dialog('close')
+      confirmDialog('Do you want to continue?', () => {
+        // set values
+        settingsValuesToArray.forEach((setting, index) => {
+          const key = settingsKeysToArray[index]
+          const valueString = $(`input[name=${key}]`).val()
+          setting.value = valueString
         })
-      }
+
+        updateNodeLabel(nodeId)
+        quitSettingNodeMode()
+        $('#confirm-dialog').dialog('close')
+        $(this).dialog('close')
+      })
     },
     Cancel() {
       quitSettingNodeMode()
@@ -96,10 +56,10 @@ export default () => {
   }
 
   const buildContent = Object.keys(settings).map(key => {
-    const { value, label } = settings[key]
+    const { value } = settings[key]
     return (
       <div>
-        <label for={key}>{label}:</label>
+        <label for={key}>{key}:</label>
         <input type="text" name={key} class="text ui-widget-content ui-corner-all" value={value} />
       </div>
     )
@@ -107,6 +67,11 @@ export default () => {
 
   const content = (
     <div id={dialogId}>
+      <h2 class="dialog-information">
+        <a href={documentation} target="_blank">
+          {label} Function
+        </a>
+      </h2>
       <form>
         <fieldset>{buildContent}</fieldset>
       </form>

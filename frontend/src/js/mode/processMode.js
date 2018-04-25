@@ -2,6 +2,7 @@ import axios from 'axios'
 import { isLength } from 'validator'
 import EDITOR_MODE, { getDataFromGlobal, notNormalMode, setEditorMode } from '../utility/editorMode'
 import { informationDialog, errorDialog, confirmDialog } from '../editor/dialog'
+import previewMode from './previewMode'
 
 let startProcessState = false
 
@@ -22,7 +23,10 @@ const toggleMode = () => {
 }
 
 window.addEventListener('load', () => {
-  document.getElementById('start').addEventListener('click', () => {
+  const startId = document.getElementById('start')
+  if (!startId) return
+
+  startId.addEventListener('click', () => {
     if (notNormalMode()) {
       errorDialog('Process can use only NORMAL mode')
       return
@@ -37,6 +41,7 @@ window.addEventListener('load', () => {
     setEditorMode(EDITOR_MODE.PROCESS)
 
     const nodes = getDataFromGlobal('NODES')
+    const lines = getDataFromGlobal('LINES')
     const graph = getDataFromGlobal('GRAPH')
     // sort and remove some node dont have lines
     const topologicalSort = graph
@@ -58,8 +63,8 @@ window.addEventListener('load', () => {
       return
     }
 
-    const isFilesValid = loadImageFunctions.reduce((valid, { files: { fileId, fileExt } }) => {
-      const isValid = isLength(fileId, { min: 32 }) && isLength(fileExt, { min: 3, max: 4 })
+    const isFilesValid = loadImageFunctions.reduce((valid, { files: { fileId } }) => {
+      const isValid = isLength(fileId, { min: 32 })
       return valid && isValid
     }, true)
 
@@ -75,7 +80,13 @@ window.addEventListener('load', () => {
       if (startProcessState) {
         const node = queue.shift()
         if (node) {
-          const { id, type, files, settings } = node
+          const { id, type, settings, lines: linesNode } = node
+
+          if (type === 'LoadImageFunction') {
+            queueNext()
+            return
+          }
+
           // deep clone
           const newSettings = JSON.parse(JSON.stringify(settings))
           Object.keys(newSettings).map(key => {
@@ -84,33 +95,43 @@ window.addEventListener('load', () => {
             return true
           })
 
+          const beginFiles = linesNode
+            .filter(lineId => {
+              const { beginId } = lines[lineId]
+              return id !== beginId
+            })
+            .map(lineId => {
+              const { beginId } = lines[lineId]
+              const nodeFiles = nodes[beginId].files
+              return nodeFiles
+            })
+
+          const newFiles = beginFiles.length === 1 ? beginFiles[0] : beginFiles
           const sendData = {
             id,
             type,
-            files,
+            files: newFiles,
             settings: newSettings,
           }
 
           axios
-            .post('http://127.0.0.1:9999/api/process', sendData)
+            .post(`${location.origin}/api/process`, sendData)
             .then(({ data }) => {
               if (!startProcessState) return
 
-              if (queue.length) {
-                if (data.status) {
-                  errorDialog('something error on server, please try again')
-                  return
-                }
+              node.files = data
 
-                queue[0].files = data
-                queueNext()
-              } else {
+              if (!queue.length) {
                 informationDialog('Process Complete')
                 quitProcessMode()
+
+                previewMode()
               }
+
+              queueNext()
             })
             .catch(error => {
-              errorDialog(error)
+              errorDialog('Something error, please try again')
               quitProcessMode()
             })
         }

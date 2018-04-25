@@ -19,12 +19,11 @@ export default ({ node, data }) => {
   // update line when node moving
   linesData.map(lineId => {
     const {
-      [lineId]: { beginId, endId },
+      [lineId]: { beginId },
     } = lines
     const line = select(document.getElementById(lineId).querySelector('.line-path'))
     const lineBackground = select(document.getElementById(lineId).querySelector('.line-background-path'))
     const source = nodeId === beginId ? nodeData : nodes[beginId]
-    const target = nodeId === endId ? nodeData : nodes[endId]
     const link = diagonal({ source })
 
     line.attr('d', link)

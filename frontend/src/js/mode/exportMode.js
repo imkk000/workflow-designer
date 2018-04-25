@@ -1,23 +1,27 @@
 import { getDataFromGlobal } from '../utility/editorMode'
 
 // http://www.codevoila.com/post/30/export-json-data-to-downloadable-file-using-javascript
-const exportMode = () => {
-  const nodes = getDataFromGlobal('NODES')
-  const lines = getDataFromGlobal('LINES')
+const exportMode = file => {
+  const xnodes = getDataFromGlobal('NODES')
+  const xlines = getDataFromGlobal('LINES')
 
-  const newNodes = Object.values(nodes).map(node => {
-    const { settings } = node
+  const nodes = JSON.parse(JSON.stringify(xnodes))
+  const lines = JSON.parse(JSON.stringify(xlines))
 
-    // remove value depth 0
-    delete node.label
-    delete node.limitInput
+  const newNodes = Object.keys(nodes).map(nodeId => {
+    const node = nodes[nodeId]
 
-    // remove value depth 1: settings
-    Object.keys(settings).map(settingKey => {
-      const { value } = settings[settingKey]
-      settings[settingKey] = { value }
-      return true
-    })
+    if (file) {
+      delete node.label
+      delete node.documentation
+      delete node.limitInput
+      delete node.files
+
+      Object.keys(node.settings).map(settingKey => {
+        delete node.settings[settingKey].defaultValue
+        return true
+      })
+    }
 
     return node
   })
@@ -34,7 +38,10 @@ const exportMode = () => {
 }
 
 window.addEventListener('load', () => {
-  document.getElementById('export').addEventListener('click', () => {
+  const exportId = document.getElementById('export')
+  if (!exportId) return
+
+  exportId.addEventListener('click', () => {
     const jsonData = exportMode()
     const dataStr = JSON.stringify(jsonData)
     const dataUri = `data:application/json;charset=utf-8,${encodeURIComponent(dataStr)}`

@@ -2,7 +2,7 @@ import { getGridArea } from '../utility/getArea'
 
 // load grid line
 // reference - https://codepen.io/pigabo/pen/eAiLF?editors=1010
-const side = 40
+const side = 35
 
 $(document).ready(() => {
   const defs = getGridArea().append('defs')
