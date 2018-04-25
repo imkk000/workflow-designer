@@ -9,7 +9,7 @@ const resetMode = () => {
 }
 
 window.addEventListener('load', () => {
-  const resetId = document.getElementById('filterNode')
+  const resetId = document.getElementById('reset')
   if (!resetId) return
 
   resetId.addEventListener('click', () => {
