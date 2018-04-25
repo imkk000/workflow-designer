@@ -1,7 +1,7 @@
 #preview-mode {
   text-align: center;
   margin: 0 auto;
-  padding: 1%;
+  padding: 5%;
 }
 
 table {
@@ -18,4 +18,12 @@ td, th {
 
 td.image {
   width: 100;
+
+  img {
+    border: 1px solid black;
+  }
+}
+
+td.desc {
+  vertical-align: top;
 }
