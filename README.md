@@ -1,4 +1,4 @@
-# Workflow Designer for Basic Image Processing
+# Workflow Designer for Simple Image Processing
 
 ![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)
 
