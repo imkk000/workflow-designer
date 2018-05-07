@@ -117,5 +117,11 @@ router
 router
   .route('/')
   .get((req, res) => {
-    res.sendStatus(200)
+    res.redirect('/editor')
+  })
+
+// default redirect
+app
+  .get('/', (req, res) => {
+    res.redirect('/editor')
   })
