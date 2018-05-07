@@ -4,15 +4,26 @@
 
 ## Requirements
 
-- Docker stable or edge
-- Download docker image via internet
+- Docker Community Edition (CE) [[Download]](https://www.docker.com/community-edition)
+- Internet for download docker image (~850 MiB) [[Docker Hub]](https://hub.docker.com/r/anonyfz/workflow-designer/)
 
-## Installation
-
-> <https://hub.docker.com/r/anonyfz/workflow-designer/>
+## How to use
 
 ```bash
-docker pull anonyfz/workflow-designer
+# Download workflow-designer image from docker hub
+docker pull anonyfz/workflow-designer:latest
+
+# Create new container with container name "workflow-editor"
+docker run --name workflow-editor -p 1412:1412 anonyfz/workflow-designer:latest
+
+# If you want to stop image
+docker stop workflow-editor
+
+# If you want to remove container
+docker rm workflow-editor
+
+# If you want to remove workflow-designer image
+docker rmi anonyfz/workflow-designer:latest
 ```
 
 ## Browser Support
