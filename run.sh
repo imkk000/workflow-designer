@@ -1,2 +1,1 @@
-# run with argument [default npm start]
-docker run -it --rm $1 anonyfz/workflow-designer:latest $2
+docker run --name workflow-editor -p 1412:1412 anonyfz/workflow-designer:latest $1
