@@ -32,7 +32,7 @@ docker rmi anonyfz/workflow-designer:latest
 
 [![jQuery ContextMenu Test Status](https://saucelabs.com/browser-matrix/bbrala-contextmenu.svg)](https://saucelabs.com/u/bbrala-contextmenu)
 
-## Contributions
+## Contributors
 
 1. Mr. Nattakit Boonyang
 2. Mr. Kullawat Chaowanawatee **(Advisor)**
